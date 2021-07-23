@@ -8,8 +8,7 @@ import java.io.IOException;
 
 public class HomePageServlet extends HttpServlet {
 
-    @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        System.out.println("c");
+
     }
 }
