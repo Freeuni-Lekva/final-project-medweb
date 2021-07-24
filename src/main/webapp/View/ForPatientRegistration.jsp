@@ -4,6 +4,13 @@
         <title>Registration</title>
     </head>
     <body>
+        <h1>Registration Form</h1>
+        <%if(request.getAttribute("Registered") != null) {%>
+            <% if((Boolean)request.getAttribute("Registered")){%>
+                <h2>This ID Number is used!</h2>
+             <%}%>
+
+        <%} %>
         <form action = "/pr" method="post">
             <label>First Name </label>
             <input type="text" name = "fName"><br>
@@ -13,6 +20,9 @@
 
             <label>ID Number </label>
             <input type="text" name = "ID"><br>
+
+            <label>Password </label>
+            <input type="text" name="password"><br>
 
             <label>Birthday </label>
             <input type="date" name="birthday"><br>
@@ -42,17 +52,12 @@
                 <% if((Boolean)request.getAttribute("Optional")){%>
                     <label>Father ID Number</label>
                     <input type="text" name = "fID"><br>
-
                     <label>Mother ID Number</label>
                     <input type = "text" name = "mID"> <br>
-
                 <%}%>
             <%}%>
             <br>
-            <input type="submit" value = "Submit">
-
-      
-
+            <input type="submit" value = "Submit" name = "submit">
         </form>
     </body>
 </html>
