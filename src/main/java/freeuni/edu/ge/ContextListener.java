@@ -8,6 +8,8 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         AdministratorDao adminDAO = new InMemoryAdmnDao();
+        PatientDAOInterface patientDao = new PatientDAO();
+        servletContextEvent.getServletContext().setAttribute("PatientsBase", patientDao);
         servletContextEvent.getServletContext().setAttribute("AdministratorDAO",adminDAO);
     }
 

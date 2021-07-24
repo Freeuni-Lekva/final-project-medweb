@@ -20,6 +20,7 @@
     <a href="/pr"> Sign Up As Patient</a> &nbsp &nbsp
     <a href="/dr"> Sign Up As Doctor</a>
 
+ <br>
     <%if(request.getAttribute("message") != null){%>
     <%=request.getAttribute("message")%>
     <%}%>
