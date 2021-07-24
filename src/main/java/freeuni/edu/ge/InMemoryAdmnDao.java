@@ -1,9 +1,6 @@
 package freeuni.edu.ge;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class InMemoryAdmnDao implements AdministratorDao{
     private List<Request> list;
@@ -35,6 +32,10 @@ public class InMemoryAdmnDao implements AdministratorDao{
         p.setSurname("gvari");
         p.setSex("mamakacuri");
         p.setMobileNumber("577777777");
+//        Map<String, String> family = (Map<String, String>) new ArrayList<>();
+//        family.put("giorgi", "kmari");
+//        family.put("eka", "shvili");
+//        p.setFamily(family);
         return p;
     }
 

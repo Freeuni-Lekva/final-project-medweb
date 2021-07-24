@@ -22,9 +22,7 @@ public class HomePageServlet extends HttpServlet {
             if(dao.checkIfItIsAdministrator(id, password)) {
                 httpServletResponse.sendRedirect("http://localhost:8080/admin");
             } else if(dao.checkIfItIsPatient(id, password)) {
-                httpServletRequest.setAttribute("id", id);
-                httpServletRequest.getRequestDispatcher("View/loginPatient.jsp").forward(httpServletRequest,httpServletResponse);
-                //httpServletResponse.sendRedirect("http://localhost:8080/loginPT");
+                httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + id);
             } else if(dao.checkIfItIsDoctor(id, password)) {
                 //httpServletResponse.sendRedirect("http://localhost:8080/ekimis servletis saxeli");
             }

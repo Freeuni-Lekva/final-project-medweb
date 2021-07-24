@@ -1,5 +1,7 @@
 <%@ page import="freeuni.edu.ge.Patient" %>
-<%@ page import="freeuni.edu.ge.InMemoryAdmnDao" %><%--
+<%@ page import="freeuni.edu.ge.InMemoryAdmnDao" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="freeuni.edu.ge.AdministratorDao" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/24/2021
@@ -8,8 +10,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String id = request.getParameter("id");
-    InMemoryAdmnDao dao = (InMemoryAdmnDao) request.getServletContext().getAttribute("AdministratorDAO");
+    String id = (String) request.getAttribute("id");
+    //System.out.println(id);
+    AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute("AdministratorDAO");
     Patient patient = dao.getPatientById(id);
 %>
 <html>
@@ -29,7 +32,16 @@
         <label>Address: </label> <%=patient.getAddress() %> </br>
         <label>Mobile: </label> <%=patient.getMobileNumber() %> </br>
     </p>
-
-
+    
+    <%--
+    <% if(!patient.getFamily().isEmpty()) { %>
+        <ul>
+            <% Map<String, String> family = patient.getFamily();
+                for(String name : family.keySet()) { %>
+                    <li><%=family.get(name)%> - name</li>
+            <%}%>
+        </ul>
+    <%}%>
+--%>
 </body>
 </html>
