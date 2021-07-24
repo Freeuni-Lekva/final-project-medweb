@@ -1,6 +1,7 @@
 package freeuni.edu.ge;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,13 +25,28 @@ public class InMemoryAdmnDao implements AdministratorDao{
     }
 
     @Override
+    public Patient getPatientById(String id) {
+        Patient p = new Patient();
+        p.setName("saxeli");
+        p.setAddress("rustaveli");
+        p.setCity("Tbilisi");
+        p.setDateOfBirth(new Date(System.currentTimeMillis()));
+        p.setID(ID);
+        p.setSurname("gvari");
+        p.setSex("mamakacuri");
+        p.setMobileNumber("577777777");
+        return p;
+    }
+
+    @Override
     public boolean checkIfItIsAdministrator(String ID, String password) {
-        return ID.equals(this.ID)&&password.equals(this.Password);
+        return false;
+        //return ID.equals(this.ID)&&password.equals(this.Password);
     }
 
     @Override
     public boolean checkIfItIsPatient(String ID, String password) {
-        return false;
+        return true;
     }
 
     @Override

@@ -10,6 +10,7 @@ public class LoginPatientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+
         httpServletRequest.getRequestDispatcher("View/loginPatient.jsp").forward(httpServletRequest,httpServletResponse);
     }
 

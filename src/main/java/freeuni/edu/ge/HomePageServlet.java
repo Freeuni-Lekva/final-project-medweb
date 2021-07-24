@@ -15,13 +15,17 @@ public class HomePageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         if(httpServletRequest.getParameter("submit") != null){
+            String id = httpServletRequest.getParameter("ID");
+            String password = httpServletRequest.getParameter("pass");
         //admin login
             AdministratorDao dao = getAdministratorDao(httpServletRequest);
-            if(dao.checkIfItIsAdministrator(httpServletRequest.getParameter("ID"),httpServletRequest.getParameter("pass"))) {
+            if(dao.checkIfItIsAdministrator(id, password)) {
                 httpServletResponse.sendRedirect("http://localhost:8080/admin");
-            } else if(dao.checkIfItIsPatient(httpServletRequest.getParameter("ID"),httpServletRequest.getParameter("pass"))) {
-                httpServletResponse.sendRedirect("http://localhost:8080/loginPT");
-            } else if(dao.checkIfItIsDoctor(httpServletRequest.getParameter("ID"),httpServletRequest.getParameter("pass"))) {
+            } else if(dao.checkIfItIsPatient(id, password)) {
+                httpServletRequest.setAttribute("id", id);
+                httpServletRequest.getRequestDispatcher("View/loginPatient.jsp").forward(httpServletRequest,httpServletResponse);
+                //httpServletResponse.sendRedirect("http://localhost:8080/loginPT");
+            } else if(dao.checkIfItIsDoctor(id, password)) {
                 //httpServletResponse.sendRedirect("http://localhost:8080/ekimis servletis saxeli");
             }
         }
