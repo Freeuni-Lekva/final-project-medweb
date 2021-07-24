@@ -8,7 +8,6 @@ import java.io.IOException;
 
 public class HomePageServlet extends HttpServlet {
 
-    @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         httpServletRequest.getRequestDispatcher("View/homePage.jsp").forward(httpServletRequest,httpServletResponse);
     }
@@ -23,6 +22,7 @@ public class HomePageServlet extends HttpServlet {
             }
         }
     }
+
 
     private AdministratorDao getAdministratorDao(HttpServletRequest request){
         return (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
