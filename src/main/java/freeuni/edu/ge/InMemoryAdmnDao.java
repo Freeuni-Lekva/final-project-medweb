@@ -78,4 +78,9 @@ public class InMemoryAdmnDao implements AdministratorDao{
         if(answer) canRegister.add(save);
     }
 
+    @Override
+    public boolean canDoctorRegister(String name, String surname, String ID) {
+        return canRegister.contains(new Request(name, surname, ID));
+    }
+
 }
