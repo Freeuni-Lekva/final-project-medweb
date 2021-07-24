@@ -37,7 +37,7 @@ public class InMemoryAdmnDao implements AdministratorDao{
         p.setName("saxeli");
         p.setAddress("rustaveli");
         p.setCity("Tbilisi");
-        p.setDateOfBirth(new Date(System.currentTimeMillis()));
+       // p.setDateOfBirth(new Date(System.currentTimeMillis()));
         p.setID(ID);
         p.setSurname("gvari");
         p.setSex("mamakacuri");
@@ -47,6 +47,17 @@ public class InMemoryAdmnDao implements AdministratorDao{
 //        family.put("eka", "shvili");
 //        p.setFamily(family);
         return p;
+    }
+
+    @Override
+    public Doctor getDoctorById(String id) {
+        Doctor doctor = new Doctor();
+        doctor.setName("Mr");
+        doctor.setSurname("Doctor");
+        doctor.setCity("Tbilisi");
+        doctor.setID("112");
+        doctor.setMobileNumber("50000000");
+        return doctor;
     }
 
     @Override

@@ -71,5 +71,14 @@
         <url-pattern>/loginPT</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LoginDoctor</servlet-name>
+        <servlet-class>freeuni.edu.ge.LoginDoctorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginDoctor</servlet-name>
+        <url-pattern>/loginDc</url-pattern>
+    </servlet-mapping>
 
 </web-app>
