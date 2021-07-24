@@ -61,6 +61,15 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>LoginPatient</servlet-name>
+        <servlet-class>freeuni.edu.ge.LoginPatientServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginPatient</servlet-name>
+        <url-pattern>/loginPT</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>
