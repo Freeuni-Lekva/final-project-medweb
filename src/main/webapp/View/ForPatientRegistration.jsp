@@ -14,9 +14,6 @@
             <label>ID Number </label>
             <input type="text" name = "ID"><br>
 
-            <label>Password </label>
-            <input type="text" name="password"><br>
-
             <label>Birthday </label>
             <input type="date" name="birthday"><br>
 
@@ -53,6 +50,8 @@
             <%}%>
             <br>
             <input type="submit" value = "Submit">
+
+      
 
         </form>
     </body>

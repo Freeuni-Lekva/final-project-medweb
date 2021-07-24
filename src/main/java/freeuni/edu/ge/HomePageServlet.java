@@ -19,8 +19,15 @@ public class HomePageServlet extends HttpServlet {
             AdministratorDao dao = getAdministratorDao(httpServletRequest);
             if(dao.checkIfItIsAdministrator(httpServletRequest.getParameter("ID"),httpServletRequest.getParameter("pass"))) {
                 httpServletResponse.sendRedirect("http://localhost:8080/admin");
+            } else if(dao.checkIfItIsPatient(httpServletRequest.getParameter("ID"),httpServletRequest.getParameter("pass"))) {
+                httpServletResponse.sendRedirect("http://localhost:8080/loginPT");
+            } else if(dao.checkIfItIsDoctor(httpServletRequest.getParameter("ID"),httpServletRequest.getParameter("pass"))) {
+                //httpServletResponse.sendRedirect("http://localhost:8080/ekimis servletis saxeli");
             }
         }
+
+        //if username or password is incorrect: setAttribute message on request
+
     }
 
 
