@@ -4,10 +4,7 @@
 
 </head>
 <body>
-<%-- needs action to add here--%>
-<form>
-
-    <h1> Login </h1>
+ <h1> Login </h1>
     <br>
     <form action = "/home" method="post">
         <label>ID Number </label>
@@ -26,8 +23,6 @@
     <%if(request.getAttribute("message") != null){%>
     <%=request.getAttribute("message")%>
     <%}%>
-</form>
-
 
 </body>
 
