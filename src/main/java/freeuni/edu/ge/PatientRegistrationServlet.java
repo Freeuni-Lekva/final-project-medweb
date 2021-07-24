@@ -14,8 +14,13 @@ public class PatientRegistrationServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         PatientDAO base = getDAO(httpServletRequest);
+        if(httpServletRequest.getParameter("add") != null) {
+            System.out.println("YES");
+            httpServletRequest.setAttribute("Optional", true);
+            httpServletRequest.getRequestDispatcher("View/ForPatientRegistration.jsp").forward(httpServletRequest,httpServletResponse);
+        }
 
     }
 
