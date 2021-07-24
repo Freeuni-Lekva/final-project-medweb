@@ -10,6 +10,11 @@
     <display-name>Archetype Created Web Application</display-name>
 
 
+    <listener>
+        <listener-class>freeuni.edu.ge.ContextListener</listener-class>
+    </listener>
+
+
     <servlet>
         <servlet-name>home-page</servlet-name>
         <servlet-class>freeuni.edu.ge.HomePageServlet</servlet-class>
@@ -54,7 +59,6 @@
         <servlet-name>Admin</servlet-name>
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
-
 
 
 

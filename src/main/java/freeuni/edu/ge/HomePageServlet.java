@@ -14,7 +14,17 @@ public class HomePageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        if(httpServletRequest.getParameter("submit") != null){
+        //admin login
+            AdministratorDao dao = getAdministratorDao(httpServletRequest);
+            if(dao.checkIfItIsAdministrator(httpServletRequest.getParameter("ID"),httpServletRequest.getParameter("pass"))) {
+                httpServletResponse.sendRedirect("http://localhost:8080/admin");
+            }
+        }
+    }
 
 
+    private AdministratorDao getAdministratorDao(HttpServletRequest request){
+        return (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
     }
 }
