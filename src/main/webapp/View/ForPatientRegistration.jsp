@@ -4,7 +4,7 @@
         <title>Registration</title>
     </head>
     <body>
-        <form> action = "/pr" method="post">
+        <form action = "/pr" method="post">
             <label>First Name </label>
             <input type="text" name = "fName"><br>
 
@@ -23,6 +23,6 @@
             <label>Address </label>
             <input type="text" name = "address"><br>
 
-        </form>>
+        </form>
     </body>
 </html>
