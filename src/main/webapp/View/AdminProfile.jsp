@@ -18,11 +18,14 @@
         Request next = it.next();
     %>
 <p>
-    <label>Name: </label> <%=next.getName() %> &nbsp
-    <label>Surname: </label> <%=next.getSurname() %> &nbsp
-    <label>ID: </label> <%=next.getID() %> &nbsp
-    <input type="submit" value="Accept">
-    <input type="submit" value="Reject">
+    <form action = "/admin" method = "post" name = "action">
+        <label>Name: </label> <%=next.getName() %> &nbsp
+        <label>Surname: </label> <%=next.getSurname() %> &nbsp
+        <label>ID: </label> <%=next.getID() %> &nbsp
+        <input type="submit" value="Accept" name = <%="accept"+next.getID()%>>
+        <input type="submit" value="Reject" name = <%="reject"+next.getID()%>>
+        <input type = "hidden" name= "hidden" value = <%=next.getID()%> >
+    </form>
 </p>
 
 
