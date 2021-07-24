@@ -21,6 +21,9 @@ public class HomePageServlet extends HttpServlet {
                 httpServletResponse.sendRedirect("http://localhost:8080/admin");
             }
         }
+
+        //if username or password is incorrect: setAttribute message on request
+
     }
 
 
