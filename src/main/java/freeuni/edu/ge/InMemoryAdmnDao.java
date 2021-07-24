@@ -27,4 +27,14 @@ public class InMemoryAdmnDao implements AdministratorDao{
     public boolean checkIfItIsAdministrator(String ID, String password) {
         return ID.equals(this.ID)&&password.equals(this.Password);
     }
+
+    @Override
+    public boolean checkIfItIsPatient(String ID, String password) {
+        return false;
+    }
+
+    @Override
+    public boolean checkIfItIsDoctor(String ID, String password) {
+        return false;
+    }
 }
