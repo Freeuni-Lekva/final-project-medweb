@@ -16,6 +16,7 @@ public class DoctorRegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         if (httpServletRequest.getParameter("submit") != null) {
+            System.out.println("here is");
             AdministratorDao adminDAO = getAdministratorDao(httpServletRequest);
 
 
@@ -34,6 +35,10 @@ public class DoctorRegistrationServlet extends HttpServlet {
                 httpServletRequest.setAttribute("message", "Request Was Sent To Administrator, Please Return After Some Time");
                 httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationFirstStage.jsp").forward(httpServletRequest, httpServletResponse);
             }
+
+        }
+
+        if(httpServletRequest.getParameter("register") != null){
 
         }
     }
