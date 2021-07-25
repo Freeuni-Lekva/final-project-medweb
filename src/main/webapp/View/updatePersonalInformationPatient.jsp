@@ -1,5 +1,5 @@
-<%@ page import="freeuni.edu.ge.Patient" %>
-<%@ page import="freeuni.edu.ge.AdministratorDao" %><%--
+<%@ page import="freeuni.edu.ge.Models.Patient" %>
+<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/25/2021

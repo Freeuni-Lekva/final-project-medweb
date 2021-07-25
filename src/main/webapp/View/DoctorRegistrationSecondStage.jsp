@@ -1,4 +1,4 @@
-<%@ page import="freeuni.edu.ge.Doctor" %>
+<%@ page import="freeuni.edu.ge.Models.Doctor" %>
 <html>
 <head>
 <title>Registration</title>

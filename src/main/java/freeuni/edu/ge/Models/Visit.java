@@ -1,4 +1,4 @@
-package freeuni.edu.ge;
+package freeuni.edu.ge.Models;
 
 import java.util.List;
 

@@ -1,4 +1,7 @@
-package freeuni.edu.ge;
+package freeuni.edu.ge.Controllers;
+
+import freeuni.edu.ge.DAO.PatientDAOInterface;
+import freeuni.edu.ge.Models.Patient;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

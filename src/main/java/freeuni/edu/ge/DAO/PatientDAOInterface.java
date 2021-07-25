@@ -1,4 +1,6 @@
-package freeuni.edu.ge;
+package freeuni.edu.ge.DAO;
+
+import freeuni.edu.ge.Models.Patient;
 
 import java.util.List;
 import java.util.Map;

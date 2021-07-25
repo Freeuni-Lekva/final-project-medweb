@@ -1,4 +1,6 @@
-package freeuni.edu.ge;
+package freeuni.edu.ge.Controllers;
+
+import freeuni.edu.ge.DAO.AdministratorDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
