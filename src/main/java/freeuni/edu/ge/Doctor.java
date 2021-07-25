@@ -1,5 +1,8 @@
 package freeuni.edu.ge;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Doctor {
     private String name;
     private String surname;
@@ -11,7 +14,7 @@ public class Doctor {
     private Doctor_Qualifications qualification;
     private String yearExperience;
     private String yearGraduation;
-
+    private List<Visit> visits;
 
     public enum DoctorSpecialities {
         Allergy_Immunology,
@@ -54,6 +57,7 @@ public class Doctor {
         this.qualification = Doctor_Qualifications.Not_Defined;
         this.yearGraduation = "Not Defined";
         this.yearExperience = "Not Defined";
+        visits = new ArrayList<>();
     }
 
 
@@ -103,6 +107,9 @@ public class Doctor {
     public Doctor_Qualifications getQualification(){return qualification;}
     public String getYearExperience() {return yearExperience;}
     public String getYearGraduation(){return yearGraduation;}
+    public List<Visit> getVisits(){
+        return visits;
+    }
 
     @Override
     public String toString() {

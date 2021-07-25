@@ -25,7 +25,7 @@ public class HomePageServlet extends HttpServlet {
             } else if(dao.checkIfItIsPatient(id, password)) {
                 httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + id);
             } else if(dao.checkIfItIsDoctor(id, password)) {
-                //httpServletResponse.sendRedirect("http://localhost:8080/ekimis servletis saxeli");
+                httpServletResponse.sendRedirect("http://localhost:8080/loginDc?id=" + id);
             } else {
                 httpServletRequest.setAttribute("message","ID or Password Is Incorrect!");
                 httpServletRequest.getRequestDispatcher("View/homePage.jsp").forward(httpServletRequest,httpServletResponse);

@@ -28,5 +28,16 @@
         <label>Mobile: </label> <%=doctor.getMobileNumber() %> </br>
     </p>
 
+<%--
+    <% if(!doctor.getVisits.isEmpty()) { %>
+        <ul>
+            <% List<Visits> visits = doctor.getVisits();
+                for(Visit visit : visits) { %>
+                    <li><%=visit.getPatientName()%> - doctor.getName()</li>
+            <%}%>
+        </ul>
+    <%}%>
+--%>
+
 </body>
 </html>
