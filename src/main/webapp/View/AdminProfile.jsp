@@ -1,6 +1,6 @@
 <%@ page import="java.util.Iterator" %>
-<%@ page import="freeuni.edu.ge.Request" %>
-<%@ page import="freeuni.edu.ge.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.Models.Request" %>
+<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
 <html>
 <head>
 

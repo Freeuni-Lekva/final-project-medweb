@@ -1,14 +1,16 @@
-package freeuni.edu.ge;
+package freeuni.edu.ge.Controllers;
 
 
-import java.util.*;
-import jdk.vm.ci.code.Register;
+import freeuni.edu.ge.DAO.AdministratorDao;
+import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.Patient;
+import freeuni.edu.ge.Models.Request;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class InMemoryAdmnDao implements AdministratorDao{
+public class InMemoryAdmnDao implements AdministratorDao {
     private List<Request> list;
     private List<Request> canRegister;
     private final String ID = "6000111223344";

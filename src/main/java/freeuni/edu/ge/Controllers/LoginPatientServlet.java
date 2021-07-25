@@ -1,4 +1,4 @@
-package freeuni.edu.ge;
+package freeuni.edu.ge.Controllers;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

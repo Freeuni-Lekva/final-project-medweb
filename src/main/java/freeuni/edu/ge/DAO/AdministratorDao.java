@@ -1,4 +1,8 @@
-package freeuni.edu.ge;
+package freeuni.edu.ge.DAO;
+
+import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.Patient;
+import freeuni.edu.ge.Models.Request;
 
 import java.util.Iterator;
 

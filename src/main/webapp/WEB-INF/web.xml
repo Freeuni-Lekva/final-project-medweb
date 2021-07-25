@@ -11,13 +11,13 @@
 
 
     <listener>
-        <listener-class>freeuni.edu.ge.ContextListener</listener-class>
+        <listener-class>freeuni.edu.ge.Listeners.ContextListener</listener-class>
     </listener>
 
 
     <servlet>
         <servlet-name>home-page</servlet-name>
-        <servlet-class>freeuni.edu.ge.HomePageServlet</servlet-class>
+        <servlet-class>freeuni.edu.ge.Controllers.HomePageServlet</servlet-class>
     </servlet>
 
 
@@ -28,7 +28,7 @@
 
     <servlet>
         <servlet-name>PatReg</servlet-name>
-        <servlet-class>freeuni.edu.ge.PatientRegistrationServlet</servlet-class>
+        <servlet-class>freeuni.edu.ge.Controllers.PatientRegistrationServlet</servlet-class>
     </servlet>
 
 
@@ -39,7 +39,7 @@
 
     <servlet>
         <servlet-name>DocReg</servlet-name>
-        <servlet-class>freeuni.edu.ge.DoctorRegistrationServlet</servlet-class>
+        <servlet-class>freeuni.edu.ge.Controllers.DoctorRegistrationServlet</servlet-class>
     </servlet>
 
 
@@ -51,7 +51,7 @@
 
     <servlet>
         <servlet-name>Admin</servlet-name>
-        <servlet-class>freeuni.edu.ge.AdminServlet</servlet-class>
+        <servlet-class>freeuni.edu.ge.Controllers.AdminServlet</servlet-class>
     </servlet>
 
 
@@ -63,7 +63,7 @@
 
     <servlet>
         <servlet-name>LoginPatient</servlet-name>
-        <servlet-class>freeuni.edu.ge.LoginPatientServlet</servlet-class>
+        <servlet-class>freeuni.edu.ge.Controllers.LoginPatientServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -73,7 +73,7 @@
 
     <servlet>
         <servlet-name>LoginDoctor</servlet-name>
-        <servlet-class>freeuni.edu.ge.LoginDoctorServlet</servlet-class>
+        <servlet-class>freeuni.edu.ge.Controllers.LoginDoctorServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
