@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class HomePageServlet extends HttpServlet {
@@ -22,6 +23,8 @@ public class HomePageServlet extends HttpServlet {
             if(dao.checkIfItIsAdministrator(id, password)) {
                 httpServletResponse.sendRedirect("http://localhost:8080/admin");
             } else if(dao.checkIfItIsPatient(id, password)) {
+                HttpSession session = httpServletRequest.getSession();
+                session.setAttribute("id", id);
                 httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + id);
             } else if(dao.checkIfItIsDoctor(id, password)) {
                 //httpServletResponse.sendRedirect("http://localhost:8080/ekimis servletis saxeli");
