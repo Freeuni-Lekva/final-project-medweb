@@ -48,6 +48,4 @@ public class Patient {
     public String getDiseases() {return diseases; }
     public String getAlergies() {return alergies; }
 
-
-
 }
