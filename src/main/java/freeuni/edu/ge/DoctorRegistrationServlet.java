@@ -1,5 +1,6 @@
 package freeuni.edu.ge;
 
+import javax.print.Doc;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,6 @@ public class DoctorRegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         if (httpServletRequest.getParameter("submit") != null) {
-            System.out.println("here is");
             AdministratorDao adminDAO = getAdministratorDao(httpServletRequest);
 
 

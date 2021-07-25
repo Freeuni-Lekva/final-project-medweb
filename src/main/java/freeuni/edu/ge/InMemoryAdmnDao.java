@@ -21,6 +21,7 @@ public class InMemoryAdmnDao implements AdministratorDao{
         list.add(new Request("tka","gg","324"));
         canRegister = new ArrayList<>();
         doctors = new ArrayList<>();
+        requestAnswer(Boolean.TRUE,"123");
     }
 
     @Override

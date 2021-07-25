@@ -6,11 +6,14 @@ public class Doctor {
     private String ID;
     private String password;
     private String city;
-    private String speciality;
+    private DoctorSpecialities speciality;
     private String mobileNumber;
+    private Doctor_Qualifications qualification;
+    private String yearExperience;
+    private String yearGraduation;
 
 
-    enum DoctorSpecialities {
+    public enum DoctorSpecialities {
         Allergy_Immunology,
         Anesthesiology,
         Dermatology,
@@ -33,6 +36,13 @@ public class Doctor {
         Urology
     }
 
+    public enum Doctor_Qualifications{
+        Medical_School,
+        Bachelor_Of_Medicine,
+        Master_Of_Medicine,
+        Doctor_Of_Medicine
+    }
+
     //for primary registration
     public Doctor(String name, String surname, String ID){
         this.name = name;
@@ -47,11 +57,21 @@ public class Doctor {
     public void setCity(String city){
         this.city = city;
     }
-    public void setSpeciality(String field){
+    public void setSpeciality(DoctorSpecialities field){
         this.speciality = field;
     }
     public void setMobileNumber(String mobileNumber){
         this.mobileNumber = mobileNumber;
+    }
+    public void setQualification(Doctor_Qualifications qualification){
+        this.qualification = qualification;
+    }
+    public void setYearExperience(String yearExperience){
+        this.yearExperience = yearExperience;
+    }
+
+    public void setYearGraduation(String yearGraduation){
+        this.yearGraduation = yearGraduation;
     }
 
     public String getName() {
@@ -68,10 +88,13 @@ public class Doctor {
     public String getCity() {
         return city;
     }
-    public String getSpeciality(){
+    public DoctorSpecialities getSpeciality(){
         return speciality;
     }
     public String getMobileNumber(){
         return mobileNumber;
     }
+    public Doctor_Qualifications getQualification(){return qualification;}
+    public String getYearExperience() {return yearExperience;}
+    public String getYearGraduation(){return yearGraduation;}
 }

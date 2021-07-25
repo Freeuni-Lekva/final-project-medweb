@@ -27,26 +27,26 @@ Doctor doc = (Doctor) request.getAttribute("doctor");
     <br>
     <label for = "speciality">Speciality: </label>
     <select name="speciality" id="speciality" required onfocus="this.size=5;" onblur="this.size = 1;" onchange="this.size=1; this.blur();">
-        <option>Allergy_Immunology</option>
-        <option>Anesthesiology</option>
-        <option>Dermatology</option>
-        <option>Diagnostic_Radiology</option>
-        <option>Emergency_Medicine</option>
-        <option>Family_Medicine</option>
-        <option>Internal_Medicine</option>
-        <option>Medical_Generics</option>
-        <option>Neurology</option>
-        <option>Nuclear_Medicine</option>
-        <option>Obstetrics_Gynecology</option>
-        <option>Ophthalmology</option>
-        <option>Pathology</option>
-        <option>Pediatrics</option>
-        <option>Physical_Medicine_And_Rehabilitation</option>
-        <option>Preventive_Medicine</option>
-        <option>Psychiatry</option>
-        <option>Radiation_Oncology</option>
-        <option>Surgery</option>
-        <option>Urology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Allergy_Immunology%>>Allergy_Immunology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Anesthesiology%>>Anesthesiology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Dermatology%>>Dermatology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Diagnostic_Radiology%>>Diagnostic_Radiology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Emergency_Medicine%>>Emergency_Medicine</option>
+        <option value = <%=Doctor.DoctorSpecialities.Family_Medicine%>>Family_Medicine</option>
+        <option value = <%=Doctor.DoctorSpecialities.Internal_Medicine%>>Internal_Medicine</option>
+        <option value = <%=Doctor.DoctorSpecialities.Medical_Generics%>>Medical_Generics</option>
+        <option value = <%=Doctor.DoctorSpecialities.Neurology%>>Neurology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Nuclear_Medicine%>>Nuclear_Medicine</option>
+        <option value = <%=Doctor.DoctorSpecialities.Obstetrics_Gynecology%>>Obstetrics_Gynecology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Ophthalmology%>>Ophthalmology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Pathology%>>Pathology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Pediatrics%>>Pediatrics</option>
+        <option value = <%=Doctor.DoctorSpecialities.Physical_Medicine_And_Rehabilitation%>>Physical_Medicine_And_Rehabilitation</option>
+        <option value = <%=Doctor.DoctorSpecialities.Preventive_Medicine%>>Preventive_Medicine</option>
+        <option value = <%=Doctor.DoctorSpecialities.Psychiatry%>>Psychiatry</option>
+        <option value = <%=Doctor.DoctorSpecialities.Radiation_Oncology%>>Radiation_Oncology</option>
+        <option value = <%=Doctor.DoctorSpecialities.Surgery%>>Surgery</option>
+        <option value = <%=Doctor.DoctorSpecialities.Urology%>>Urology</option>
     </select>
     <br>
     <label for = "city">City: </label>
@@ -54,8 +54,20 @@ Doctor doc = (Doctor) request.getAttribute("doctor");
     <br>
     <label for = "mobile">Mobile Number: </label>
     <input type = "text" name = "mobile" id = "mobile">
-
-
+    <br>
+    <label for = "qualification">Qualification: </label>
+    <select name="qualification" id="qualification" onfocus="this.size=3;" onblur="this.size = 1;" onchange="this.size=1; this.blur();">
+        <option value = <%=Doctor.Doctor_Qualifications.Medical_School %>>Medical_School</option>
+        <option value = <%=Doctor.Doctor_Qualifications.Bachelor_Of_Medicine %>>Bachelor_Of_Medicine</option>
+        <option value = <%=Doctor.Doctor_Qualifications.Master_Of_Medicine %>>Master_Of_Medicine</option>
+        <option value = <%=Doctor.Doctor_Qualifications.Doctor_Of_Medicine %>>Doctor_Of_Medicine</option>
+    </select>
+    <br>
+    <label for = "experience">Year of Experience: </label>
+    <input type = "text" name = "experience" id = "experience">
+    <br>
+    <label for = "graduation">Year of Graduation: </label>
+    <input type = "text" name = "graduation" id = "graduation">
 
     <br>
     <input type = "submit" name = "register" value = "Register">
