@@ -95,7 +95,19 @@ public class InMemoryAdmnDao implements AdministratorDao{
 
     @Override
     public void addDoctorPrimaryInformation(String name, String surname, String ID) {
-        doctors.add(new Doctor(name, surname, ID));
+            doctors.add(new Doctor(name, surname, ID));
     }
+
+    @Override
+    public void registrationFinished(Doctor doctor) {
+        Request save = null;
+        for(Request request : canRegister) {
+            if(request.getID().equals(doctor.getID())){
+                save = request;
+            }
+        }
+        canRegister.remove(save);
+    }
+
 
 }
