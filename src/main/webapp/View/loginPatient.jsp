@@ -11,7 +11,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id = (String) request.getAttribute("id");
-    //System.out.println(id);
     AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute("AdministratorDAO");
     Patient patient = dao.getPatientById(id);
 %>
@@ -24,13 +23,24 @@
     <h2>Personal Information</h2>
     <p>
         <label>Name: </label> <%=patient.getName() %> </br>
+
         <label>Surname: </label> <%=patient.getSurname() %> </br>
+
         <label>Date of birth: </label> <%=patient.getDateOfBirth().toString() %> </br>
+
         <label>sex: </label> <%=patient.getSex() %> </br>
+
         <label>City: </label> <%=patient.getCity() %> </br>
+
         <label>ID: </label> <%=patient.getID() %> </br>
+
         <label>Address: </label> <%=patient.getAddress() %> </br>
+
         <label>Mobile: </label> <%=patient.getMobileNumber() %> </br>
+
+        <form action="/loginPT" method="post">
+            <input type="submit" value = "Update Personal Information" name = "update">
+        </form>
     </p>
     
     <%--
