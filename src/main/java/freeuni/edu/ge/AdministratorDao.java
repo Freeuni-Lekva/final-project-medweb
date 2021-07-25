@@ -13,4 +13,6 @@ public interface AdministratorDao {
     boolean checkIfItIsDoctor(String ID, String password);
     void requestAnswer(boolean answer, String ID);
     boolean canDoctorRegister(String name, String surname, String ID);
+    void addDoctorPrimaryInformation(String name, String surname, String ID);
+    void registrationFinished(Doctor doctor);
 }

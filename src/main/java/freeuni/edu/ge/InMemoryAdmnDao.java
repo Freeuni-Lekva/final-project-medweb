@@ -13,12 +13,15 @@ public class InMemoryAdmnDao implements AdministratorDao{
     private List<Request> canRegister;
     private final String ID = "6000111223344";
     private final String Password = "chemikai";
+    private List<Doctor> doctors;
 
     public InMemoryAdmnDao(){
         list = new ArrayList<>();
         list.add(new Request("luka","kk","123"));
         list.add(new Request("tka","gg","324"));
         canRegister = new ArrayList<>();
+        doctors = new ArrayList<>();
+        requestAnswer(Boolean.TRUE,"123");
     }
 
     @Override
@@ -50,20 +53,16 @@ public class InMemoryAdmnDao implements AdministratorDao{
     }
 
     @Override
-    public Doctor getDoctorById(String id) {
-        Doctor doctor = new Doctor();
-        doctor.setName("Mr");
-        doctor.setSurname("Doctor");
-        doctor.setCity("Tbilisi");
-        doctor.setID("112");
-        doctor.setMobileNumber("50000000");
-        return doctor;
+    public Doctor getDoctorById(String ID) {
+        for(Doctor doc : doctors){
+            if(doc.getID().equals(ID)) return doc;
+        }
+        return null;
     }
 
     @Override
     public boolean checkIfItIsAdministrator(String ID, String password) {
-        return false;
-        //return ID.equals(this.ID)&&password.equals(this.Password);
+        return ID.equals(this.ID)&&password.equals(this.Password);
     }
 
     @Override
@@ -93,5 +92,22 @@ public class InMemoryAdmnDao implements AdministratorDao{
     public boolean canDoctorRegister(String name, String surname, String ID) {
         return canRegister.contains(new Request(name, surname, ID));
     }
+
+    @Override
+    public void addDoctorPrimaryInformation(String name, String surname, String ID) {
+            doctors.add(new Doctor(name, surname, ID));
+    }
+
+    @Override
+    public void registrationFinished(Doctor doctor) {
+        Request save = null;
+        for(Request request : canRegister) {
+            if(request.getID().equals(doctor.getID())){
+                save = request;
+            }
+        }
+        canRegister.remove(save);
+    }
+
 
 }
