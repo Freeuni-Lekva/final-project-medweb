@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+
 public class HomePageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
@@ -28,12 +29,14 @@ public class HomePageServlet extends HttpServlet {
                 httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + id);
             } else if(dao.checkIfItIsDoctor(id, password)) {
                 //httpServletResponse.sendRedirect("http://localhost:8080/ekimis servletis saxeli");
+            } else {
+                httpServletRequest.setAttribute("message","ID or Password Is Incorrect!");
+                httpServletRequest.getRequestDispatcher("View/homePage.jsp").forward(httpServletRequest,httpServletResponse);
             }
         }
 
-        //if username or password is incorrect: setAttribute message on request
-
     }
+
 
 
     private AdministratorDao getAdministratorDao(HttpServletRequest request){
