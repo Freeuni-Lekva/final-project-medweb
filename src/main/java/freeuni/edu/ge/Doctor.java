@@ -9,6 +9,17 @@ public class Doctor {
     private String field;
     private String mobileNumber;
 
+    public Doctor(){
+
+    }
+
+    //for primary registration
+    public Doctor(String name, String surname, String ID){
+        this.name = name;
+        this.surname = surname;
+        this.ID = ID;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
