@@ -40,7 +40,8 @@ public class Doctor {
         Medical_School,
         Bachelor_Of_Medicine,
         Master_Of_Medicine,
-        Doctor_Of_Medicine
+        Doctor_Of_Medicine,
+        Not_Defined
     }
 
     //for primary registration
@@ -48,6 +49,11 @@ public class Doctor {
         this.name = name;
         this.surname= surname;
         this.ID = ID;
+        this.city = "Not Defined";
+        this.mobileNumber = "Not Defined";
+        this.qualification = Doctor_Qualifications.Not_Defined;
+        this.yearGraduation = "Not Defined";
+        this.yearExperience = "Not Defined";
     }
 
 
@@ -97,4 +103,20 @@ public class Doctor {
     public Doctor_Qualifications getQualification(){return qualification;}
     public String getYearExperience() {return yearExperience;}
     public String getYearGraduation(){return yearGraduation;}
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", ID='" + ID + '\'' +
+                ", password='" + password + '\'' +
+                ", city='" + city + '\'' +
+                ", speciality=" + speciality +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", qualification=" + qualification +
+                ", yearExperience='" + yearExperience + '\'' +
+                ", yearGraduation='" + yearGraduation + '\'' +
+                '}';
+    }
 }

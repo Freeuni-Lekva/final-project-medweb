@@ -7,6 +7,10 @@
 
 <body>
 
+
+<% if(request.getAttribute("message") == null) { %>
+
+
 <%
 Doctor doc = (Doctor) request.getAttribute("doctor");
 %>
@@ -72,6 +76,12 @@ Doctor doc = (Doctor) request.getAttribute("doctor");
     <br>
     <input type = "submit" name = "register" value = "Register">
 
+<%} else {%>
+    <%=request.getAttribute("message")%>
+    <br>
+    <a href="/home">Back To Home</a>
+
+    <%}%>
 
 
 </form>
