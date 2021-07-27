@@ -1,6 +1,6 @@
 package freeuni.edu.ge.Listeners;
 
-import freeuni.edu.ge.Controllers.InMemoryAdmnDao;
+import freeuni.edu.ge.DAO.InMemoryAdmnDao;
 import freeuni.edu.ge.DAO.AdministratorDao;
 import freeuni.edu.ge.DAO.PatientDAO;
 import freeuni.edu.ge.DAO.PatientDAOInterface;
