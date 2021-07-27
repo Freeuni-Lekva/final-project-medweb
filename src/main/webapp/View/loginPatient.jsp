@@ -26,7 +26,7 @@
 
         <label>Surname: </label> <%=patient.getSurname() %> </br>
 
-        <label>Date of birth: </label> <%=patient.getDateOfBirth().toString() %> </br>
+        <label>Date of birth: </label> <%=patient.getDateOfBirth() %> </br>
 
         <label>sex: </label> <%=patient.getSex() %> </br>
 
@@ -39,7 +39,8 @@
         <label>Mobile: </label> <%=patient.getMobileNumber() %> </br>
 
         <form action="/loginPT" method="post">
-            <input type="submit" value = "Update Personal Information" name = "update">
+            <input type="submit" value = "Update Personal Information" name = "update"><br>
+            <input type="submit" value = "Log Out" name = "logOut">
         </form>
     </p>
     
