@@ -6,6 +6,7 @@ import freeuni.edu.ge.Helpers.HashUsingSHA1;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.*;
 
 public class Patient {
 
@@ -23,8 +24,24 @@ public class Patient {
     private Map<String, String> family;
     private Hash hash = new HashUsingSHA1();
 
+    private List<Visit> visits;
 
-    public Patient() { family = new HashMap<>(); }
+    public Patient() {
+        family = new HashMap<>();
+        visits = new ArrayList<>();
+        Visit visit = new Visit();
+        visit.setDoctorName("Valeri");
+        visit.setPatientId(ID);
+        visit.setDate("orshabati");
+        visit.setReason("kbilis mwvave tkivili");
+        Visit visit2 = new Visit();
+        visit2.setDoctorName("Eka");
+        visit2.setPatientId(ID);
+        visit2.setDate("samshabari");
+        visit2.setReason("kuchis gadanergva");
+        visits.add(visit);
+        visits.add(visit2);
+    }
 
     public void setName(String name) { this.name = name; }
     public void setSurname(String surname){ this.surname = surname; }
@@ -52,5 +69,18 @@ public class Patient {
     public Map<String, String> getFamily() {return family; }
     public String getDiseases() {return diseases; }
     public String getAlergies() {return alergies; }
+
+    public void bookVisit(Visit visit) {
+        visits.add(visit);
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public boolean hasVisits() {
+        return visits.isEmpty();
+    }
+
 
 }
