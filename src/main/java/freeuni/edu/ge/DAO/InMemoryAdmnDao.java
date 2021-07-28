@@ -1,11 +1,13 @@
 package freeuni.edu.ge.DAO;
 
 
-import freeuni.edu.ge.DAO.AdministratorDao;
+import freeuni.edu.ge.Helpers.Hash;
+import freeuni.edu.ge.Models.Administrator;
 import freeuni.edu.ge.Models.Doctor;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Request;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,10 +16,9 @@ import java.util.List;
 public class InMemoryAdmnDao implements AdministratorDao {
     private List<Request> list;
     private List<Request> canRegister;
-    private final String ID = "6000111223344";
-    private final String Password = "chemikai";
     private List<Doctor> doctors;
     private Map<String, Patient> patients;
+    private Administrator administrator = new Administrator();
 
 
     public InMemoryAdmnDao(){
@@ -42,22 +43,10 @@ public class InMemoryAdmnDao implements AdministratorDao {
 
     @Override
     public Patient getPatientById(String id) {
-        if(patients.containsKey(id)) return patients.get(id);
-        Patient p = new Patient();
-        p.setName("saxeli");
-        p.setAddress("rustaveli");
-        p.setCity("Tbilisi");
-       // p.setDateOfBirth(new Date(System.currentTimeMillis()));
-        p.setID(ID);
-        p.setSurname("gvari");
-        p.setSex("mamakacuri");
-        p.setMobileNumber("577777777");
-//        Map<String, String> family = (Map<String, String>) new ArrayList<>();
-//        family.put("giorgi", "kmari");
-//        family.put("eka", "shvili");
-//        p.setFamily(family);
-        patients.put(id, p);
-        return p;
+        for(String helper: patients.keySet()){
+            if(helper.equals(id)) return patients.get(helper);
+        }
+        return null;
     }
 
     public void setPatientOnId(String id, Patient patient) {
@@ -71,19 +60,37 @@ public class InMemoryAdmnDao implements AdministratorDao {
         return null;
     }
 
-    @Override
-    public boolean checkIfItIsAdministrator(String ID, String password) {
-        return ID.equals(this.ID)&&password.equals(this.Password);
+
+    public String returnAdministratorHashingPassword(String id){
+        return administrator.getPassword(id);
+
     }
 
     @Override
-    public boolean checkIfItIsPatient(String ID, String password) {
-        return true;
+    public boolean checkIfItIsAdministrator(String ID, String password, Hash hash) {
+        String hashedString = returnAdministratorHashingPassword(ID);
+        if(hashedString.equals("")) return false;
+        return returnAdministratorHashingPassword(ID).equals(hash.generateHash(password));
     }
 
     @Override
-    public boolean checkIfItIsDoctor(String ID, String password) {
-        return false;
+    public boolean checkIfItIsPatient(String ID, String password, Hash hash) {
+        return returnPatientHashingPassword(ID).equals(hash.generateHash(password));
+    }
+
+    public String returnPatientHashingPassword(String id){
+        Patient patient = getPatientById(id);
+        return patient.getPassword();
+    }
+
+    public String returnDoctorHashingPassword(String id){
+        Doctor doc = getDoctorById(id);
+        return doc.getPassword();
+    }
+
+    @Override
+    public boolean checkIfItIsDoctor(String ID, String password, Hash hash) {
+        return returnDoctorHashingPassword(ID).equals(hash.generateHash(password));
     }
 
     @Override
@@ -119,6 +126,4 @@ public class InMemoryAdmnDao implements AdministratorDao {
         }
         canRegister.remove(save);
     }
-
-
 }

@@ -1,5 +1,8 @@
 package freeuni.edu.ge.Models;
 
+import freeuni.edu.ge.Helpers.Hash;
+import freeuni.edu.ge.Helpers.HashUsingSHA1;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,13 +21,15 @@ public class Patient {
     private String diseases;
     private String alergies;
     private Map<String, String> family;
+    private Hash hash = new HashUsingSHA1();
+
 
     public Patient() { family = new HashMap<>(); }
 
     public void setName(String name) { this.name = name; }
     public void setSurname(String surname){ this.surname = surname; }
     public void setID(String ID) { this.ID = ID; }
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) { this.password = hash.generateHash(password); }
     public void setCity(String city) { this.city = city;}
     public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
     public void setSex (String sex) { this.sex=sex; }

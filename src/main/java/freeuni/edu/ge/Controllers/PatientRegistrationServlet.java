@@ -1,5 +1,6 @@
 package freeuni.edu.ge.Controllers;
 
+import freeuni.edu.ge.DAO.AdministratorDao;
 import freeuni.edu.ge.DAO.PatientDAOInterface;
 import freeuni.edu.ge.Models.Patient;
 
@@ -41,6 +42,7 @@ public class PatientRegistrationServlet extends HttpServlet {
             String alergies = httpServletRequest.getParameter("alergies");
 
         PatientDAOInterface base = getDAO(httpServletRequest);
+        AdministratorDao adminDao = getAdministratorDao(httpServletRequest);
         Map<String, String> map = base.getAllLoginAndPass();
             if (map.containsKey(id)) {
                 System.out.println("YES");
@@ -68,6 +70,7 @@ public class PatientRegistrationServlet extends HttpServlet {
                     family.put("mother", motherID);
                 }
                 base.addPatient(patient);
+                adminDao.setPatientOnId(id,patient);
                 httpServletRequest.getRequestDispatcher("/View/SuccessfulRegistered.jsp").forward(httpServletRequest, httpServletResponse);
 
             }
@@ -80,4 +83,7 @@ public class PatientRegistrationServlet extends HttpServlet {
         return returnDAO;
     }
 
+    private AdministratorDao getAdministratorDao(HttpServletRequest request){
+        return (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
+    }
 }

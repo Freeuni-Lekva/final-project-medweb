@@ -1,6 +1,8 @@
 package freeuni.edu.ge.Controllers;
 
 import freeuni.edu.ge.DAO.AdministratorDao;
+import freeuni.edu.ge.Helpers.Hash;
+import freeuni.edu.ge.Helpers.HashUsingSHA1;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,13 +25,14 @@ public class HomePageServlet extends HttpServlet {
             String password = httpServletRequest.getParameter("pass");
         //admin login
             AdministratorDao dao = getAdministratorDao(httpServletRequest);
-            if(dao.checkIfItIsAdministrator(id, password)) {
+            Hash hash = new HashUsingSHA1();
+            if(dao.checkIfItIsAdministrator(id, password, hash)) {
                 httpServletResponse.sendRedirect("http://localhost:8080/admin");
-            } else if(dao.checkIfItIsPatient(id, password)) {
+            } else if(dao.checkIfItIsPatient(id, password, hash)) {
                 HttpSession session = httpServletRequest.getSession();
                 session.setAttribute("id", id);
                 httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + id);
-            } else if(dao.checkIfItIsDoctor(id, password)) {
+            } else if(dao.checkIfItIsDoctor(id, password, hash)) {
                 httpServletResponse.sendRedirect("http://localhost:8080/loginDc?id=" + id);
             } else {
                 httpServletRequest.setAttribute("message","ID or Password Is Incorrect!");
