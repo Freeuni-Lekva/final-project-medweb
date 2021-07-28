@@ -12,6 +12,8 @@ public class Visit {
     private String date;
     private String reason;
 
+    public Visit() {}
+
     public Visit(String patientId, String doctorId, String reason, String date){
         this.patientId = patientId;
         this.doctorId = doctorId;
@@ -19,53 +21,53 @@ public class Visit {
         this.date = date;
     }
 
-    private String getPatientName(){
+    public String getPatientName(){
         return patientName;
     }
-    private String getPatientSurName(){
+    public String getPatientSurName(){
         return patientSurName;
     }
-    private String getDoctorName(){
+    public String getDoctorName(){
         return doctorName;
     }
-    private String getDoctorSurName(){
+    public String getDoctorSurName(){
         return doctorSurName;
     }
-    private String getPatientId(){
+    public String getPatientId(){
         return patientId;
     }
-    private String getDoctorId(){
+    public String getDoctorId(){
         return doctorId;
     }
-    private String getDate(){
+    public String getDate(){
         return date;
     }
-    private String getReason(){
+    public String getReason(){
         return reason;
     }
 
-    private void setPatientName(String name){
+    public void setPatientName(String name){
         this.patientName = name;
     }
-    private void setPatientSurName(String name){
+    public void setPatientSurName(String name){
         this.patientSurName = name;
     }
-    private void setDoctorName(String s){
+    public void setDoctorName(String s){
         this.doctorName = s;
     }
-    private void setDoctorSurName(String s){
+    public void setDoctorSurName(String s){
         this.doctorSurName = s;
     }
-    private void setPatientId(String s){
+    public void setPatientId(String s){
         this.patientId = s;
     }
-    private void setDoctorId(String s){
+    public void setDoctorId(String s){
         this.doctorId = s;
     }
-    private void setDate(String s){
+    public void setDate(String s){
         this.date = s;
     }
-    private void setReason(String s){
+    public void setReason(String s){
         this.reason = s;
     }
 }
