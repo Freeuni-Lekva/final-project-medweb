@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
 public class InMemoryAdmnDao implements AdministratorDao {
     private List<Request> list;
     private List<Request> canRegister;
@@ -19,6 +18,7 @@ public class InMemoryAdmnDao implements AdministratorDao {
     private final String Password = "chemikai";
     private List<Doctor> doctors;
     private Map<String, Patient> patients;
+
 
     public InMemoryAdmnDao(){
         list = new ArrayList<>();
@@ -60,12 +60,10 @@ public class InMemoryAdmnDao implements AdministratorDao {
         return p;
     }
 
-    @Override
     public void setPatientOnId(String id, Patient patient) {
         patients.put(id, patient);
     }
 
-    @Override
     public Doctor getDoctorById(String ID) {
         for(Doctor doc : doctors){
             if(doc.getID().equals(ID)) return doc;
