@@ -24,7 +24,9 @@
                 <option value=<%=specialty%>> <%=specialty%></option>
             <%}%>
         </select>
+
         <br><br>
+
         <label for="degree">Choose a degree:</label>
         <select name="degree" id="degree">
             <% for (Doctor.Doctor_Qualifications degree : Doctor.Doctor_Qualifications.values()) {%>
@@ -32,7 +34,8 @@
             <%}%>
         </select>
         <br><br>
-        <input type="submit" value="Get Doctors" name="submit">
+        <input type="submit" value="Submit" name="submit">
+        <p>Click the "Submit" button to filter doctors and get your options.</p>
     </form>
 
 </body>
