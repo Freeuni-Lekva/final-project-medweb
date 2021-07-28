@@ -31,8 +31,8 @@ public class Patient {
         visit2.setPatientId(ID);
         visit2.setDate("samshabari");
         visit2.setReason("kuchis gadanergva");
-        visits.add(visit2);
         visits.add(visit);
+        visits.add(visit2);
     }
 
     public void setName(String name) { this.name = name; }
