@@ -1,4 +1,4 @@
-package freeuni.edu.ge.Controllers;
+package freeuni.edu.ge.DAO;
 
 
 import freeuni.edu.ge.DAO.AdministratorDao;
