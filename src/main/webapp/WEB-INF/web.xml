@@ -81,4 +81,14 @@
         <url-pattern>/loginDc</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>BookDoctor</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.BookDoctorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BookDoctor</servlet-name>
+        <url-pattern>/bookDC</url-pattern>
+    </servlet-mapping>
+
 </web-app>
