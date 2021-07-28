@@ -19,4 +19,5 @@ public interface AdministratorDao {
     boolean canDoctorRegister(String name, String surname, String ID);
     void addDoctorPrimaryInformation(String name, String surname, String ID);
     void registrationFinished(Doctor doctor);
+    void setPatientOnId(String id, Patient patient);
 }

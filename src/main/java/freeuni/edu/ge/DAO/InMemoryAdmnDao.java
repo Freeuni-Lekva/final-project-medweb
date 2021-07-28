@@ -6,6 +6,7 @@ import freeuni.edu.ge.Models.Doctor;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Request;
 
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,6 +17,8 @@ public class InMemoryAdmnDao implements AdministratorDao {
     private final String ID = "6000111223344";
     private final String Password = "chemikai";
     private List<Doctor> doctors;
+    private Map<String, Patient> patients;
+
 
     public InMemoryAdmnDao(){
         list = new ArrayList<>();
@@ -23,6 +26,7 @@ public class InMemoryAdmnDao implements AdministratorDao {
         list.add(new Request("tka","gg","324"));
         canRegister = new ArrayList<>();
         doctors = new ArrayList<>();
+        patients = new HashMap<>();
         requestAnswer(Boolean.TRUE,"123");
     }
 
@@ -38,6 +42,7 @@ public class InMemoryAdmnDao implements AdministratorDao {
 
     @Override
     public Patient getPatientById(String id) {
+        if(patients.containsKey(id)) return patients.get(id);
         Patient p = new Patient();
         p.setName("saxeli");
         p.setAddress("rustaveli");
@@ -51,10 +56,14 @@ public class InMemoryAdmnDao implements AdministratorDao {
 //        family.put("giorgi", "kmari");
 //        family.put("eka", "shvili");
 //        p.setFamily(family);
+        patients.put(id, p);
         return p;
     }
 
-    @Override
+    public void setPatientOnId(String id, Patient patient) {
+        patients.put(id, patient);
+    }
+
     public Doctor getDoctorById(String ID) {
         for(Doctor doc : doctors){
             if(doc.getID().equals(ID)) return doc;
