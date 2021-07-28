@@ -1,6 +1,7 @@
 <%@ page import="freeuni.edu.ge.DAO.InMemoryAdmnDao" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %><%--
+<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.Models.Doctor" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/24/2021

@@ -1,5 +1,8 @@
 package freeuni.edu.ge.Models;
 
+import freeuni.edu.ge.Helpers.Hash;
+import freeuni.edu.ge.Helpers.HashUsingSHA1;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +18,7 @@ public class Doctor {
     private String yearExperience;
     private String yearGraduation;
     private List<Visit> visits;
+    private Hash hash = new HashUsingSHA1();
 
     public enum DoctorSpecialities {
         Allergy_Immunology,
@@ -62,7 +66,7 @@ public class Doctor {
 
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = hash.generateHash(password);
     }
     public void setCity(String city){
         this.city = city;
