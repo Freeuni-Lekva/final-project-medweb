@@ -75,22 +75,28 @@ public class InMemoryAdmnDao implements AdministratorDao {
 
     @Override
     public boolean checkIfItIsPatient(String ID, String password, Hash hash) {
-        return returnPatientHashingPassword(ID).equals(hash.generateHash(password));
+        String pass = returnPatientHashingPassword(ID);
+        if(pass.equals("")) return false;
+        return pass.equals(hash.generateHash(password));
     }
 
     public String returnPatientHashingPassword(String id){
         Patient patient = getPatientById(id);
+        if(patient == null) return "";
         return patient.getPassword();
     }
 
     public String returnDoctorHashingPassword(String id){
         Doctor doc = getDoctorById(id);
+        if(doc == null) return "";
         return doc.getPassword();
     }
 
     @Override
     public boolean checkIfItIsDoctor(String ID, String password, Hash hash) {
-        return returnDoctorHashingPassword(ID).equals(hash.generateHash(password));
+        String pass = returnDoctorHashingPassword(ID);
+        if(pass.equals("")) return false;
+        return pass.equals(hash.generateHash(password));
     }
 
     @Override

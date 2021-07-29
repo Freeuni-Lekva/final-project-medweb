@@ -56,3 +56,13 @@ new jsp
 ვისთან გადაამისამართოს, ექიმის სახელი, გვარი და მიზეზი თუ რატომ ამისამართებს.
 
 
+
+------------------------------------------------------------------------------------
+Third Step: Start Changing In memory DAO classes with SQL DAO classes
+
+in this step we need to write two tables: Doctor and Patient
+
+Variables (column number and names) fill be same as in Doctor class and
+Patient class. On this Stage Let's don't write interfaces and write only classes.
+Methods will be same as in: AdministratodDAO, PatientDAO, Doctor, Patient classes.
+
