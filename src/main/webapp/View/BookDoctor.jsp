@@ -1,5 +1,9 @@
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
-<%@ page import="javax.print.Doc" %><%--
+<%@ page import="javax.print.Doc" %>
+<%@ page import="java.util.List" %>
+<%@ page import="freeuni.edu.ge.DAO.DoctorDAO" %>
+<%@ page import="freeuni.edu.ge.Models.Patient" %>
+<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/28/2021
@@ -7,6 +11,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +21,9 @@
 
     <h1>Book Your Visit</h1>
 
-    <p>Select doctor from the drop-down list.</p>
+    <% if(request.getAttribute("doctors") == null) {%>
+
+    <p>Select your option from the drop-down list.</p>
     <form action="/bookDC" method="post">
         <label for="specialty">Choose a department:</label>
         <select name="specialty" id="specialty">
@@ -37,6 +44,21 @@
         <input type="submit" value="Submit" name="submit">
         <p>Click the "Submit" button to filter doctors and get your options.</p>
     </form>
+
+    <%} else {%>
+
+    <%
+        String id = (String) request.getAttribute("id");
+        AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute("AdministratorDAO");
+        Patient patient = dao.getPatientById(id);
+    %>
+
+    <p>Select doctor from the drop-down list.</p>
+
+        <label>Choose a department: ${specialty}</label> <br><br>
+        <label>Choose a degree: ${degree}</label>
+
+    <%}%>
 
 </body>
 </html>
