@@ -85,8 +85,12 @@ public class RequestDAO {
         addDoctorToCanRegisterTable(request.getName(),request.getSurname(),request.getID());
     }
 
-    public void removeFromCanRegisterTable(String ID){
-
+    public void removeFromCanRegisterTable(String ID) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+        String insertSQl = "Delete from canregister where ID = \""+ ID +"\"";
+        statement.executeUpdate(insertSQl);
     }
 
     public void addDoctorToCanRegisterTable(String name, String surname, String ID) throws SQLException {

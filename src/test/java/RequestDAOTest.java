@@ -150,5 +150,22 @@ public class RequestDAOTest {
     }
 
 
+    @Test
+    public void test7() throws SQLException {
+        RequestDAO dao = new RequestDAO(dataSource);
+        //in base
+        Request request1 = new Request("luka","kapanadze","60001156789");
+        Request request3 = new Request("medic","medicamenti","12341231212");
+
+        assertEquals(request1,dao.getRequestFromCanRegisterTableByID("60001156789"));
+        dao.removeFromCanRegisterTable("60001156789");
+        assertEquals(null,dao.getRequestFromCanRegisterTableByID("60001156789"));
+
+        assertEquals(request3,dao.getRequestFromCanRegisterTableByID("12341231212"));
+        dao.removeFromCanRegisterTable("12341231212");
+        assertEquals(null,dao.getRequestFromCanRegisterTableByID("12341231212"));
+    }
+
+
 
 }
