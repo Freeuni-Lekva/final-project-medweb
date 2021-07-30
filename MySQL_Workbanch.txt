@@ -1,0 +1,22 @@
+/*if exist use drop database*/
+
+drop database medweb;
+
+
+
+create database medweb;
+
+use medweb;
+
+
+
+CREATE table requests(
+	
+name varchar(40),
+    
+surname varchar(40),
+	
+ID varchar(40)
+
+
+);
