@@ -125,5 +125,30 @@ public class RequestDAOTest {
         assertEquals(request1,dao.getRequestFromCanRegisterTableByID("30001233445"));
         assertEquals(request2,dao.getRequestFromCanRegisterTableByID("60231256419"));
         assertEquals(true,dao.canDoctorRegister("Michael","Butler","30001233445"));
+
     }
+
+
+
+    //when doctor is accepted
+    @Test
+    public void test6() throws SQLException {
+        RequestDAO dao = new RequestDAO(dataSource);
+
+        //in base
+        Request request1 = new Request("luka","kapanadze","60001156789");
+        Request request2 = new Request("doctor","doctorashvil","10001112233");
+        Request request3 = new Request("medic","medicamenti","12341231212");
+
+        dao.requestAnswer(Boolean.TRUE,"12341231212");
+        dao.requestAnswer(Boolean.FALSE,"10001112233");
+        dao.requestAnswer(Boolean.TRUE,"60001156789");
+
+        assertEquals(request3,dao.getRequestFromCanRegisterTableByID("12341231212"));
+        assertEquals(null,dao.getRequestFromCanRegisterTableByID("10001112233"));
+        assertEquals(request1,dao.getRequestFromCanRegisterTableByID("60001156789"));
+    }
+
+
+
 }

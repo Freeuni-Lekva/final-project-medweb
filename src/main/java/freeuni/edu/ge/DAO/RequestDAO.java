@@ -71,8 +71,10 @@ public class RequestDAO {
         statement.executeUpdate(insertSQl);
     }
 
-    private void removeAndAddToCanRegisterTable(String ID){
-
+    private void removeAndAddToCanRegisterTable(String ID) throws SQLException {
+        Request request = getRequestByID(ID);
+        removeFromRequest(ID);
+        addDoctorToCanRegisterTable(request);
     }
 
     public boolean canDoctorRegister(String name, String surname, String ID) throws SQLException {
@@ -81,6 +83,10 @@ public class RequestDAO {
 
     public void addDoctorToCanRegisterTable(Request request) throws SQLException {
         addDoctorToCanRegisterTable(request.getName(),request.getSurname(),request.getID());
+    }
+
+    public void removeFromCanRegisterTable(String ID){
+
     }
 
     public void addDoctorToCanRegisterTable(String name, String surname, String ID) throws SQLException {
