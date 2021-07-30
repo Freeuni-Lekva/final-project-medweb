@@ -21,10 +21,12 @@ public class RequestDAO {
 
 
     public void addNewDoctorRegistrationRequest(String name, String surname, String ID) throws SQLException {
+        dataSource.restart();
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
         String insertSQl = "INSERT INTO requests (name, surname, ID) Values (\"" + name + "\", \"" + surname + "\", \"" + ID + "\")";
         statement.executeUpdate(insertSQl);
+
     }
 
     public void addNewDoctorRegistrationRequest(Request request) throws SQLException {
@@ -32,6 +34,7 @@ public class RequestDAO {
     }
 
     public Iterator<Request> getIterator() throws SQLException {
+        dataSource.restart();
         ArrayList<Request> listOfRequests = new ArrayList<>();
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
@@ -61,6 +64,7 @@ public class RequestDAO {
     }
 
     private void removeFromRequest(String ID) throws SQLException {
+        dataSource.restart();
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
         String insertSQl = "Delete from requests where ID = \""+ ID +"\"";
@@ -72,6 +76,7 @@ public class RequestDAO {
     }
 
     public String getNameById(String ID) throws SQLException {
+        dataSource.restart();
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
         String sql = "select name from requests where ID = \"" + ID + "\" ;";
@@ -84,6 +89,7 @@ public class RequestDAO {
     }
 
     public String getSurnameById(String ID) throws SQLException {
+        dataSource.restart();
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
         String sql = "select surname from requests where ID = \"" + ID + "\" ;";

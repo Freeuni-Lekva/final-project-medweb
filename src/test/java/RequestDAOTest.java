@@ -100,8 +100,10 @@ public class RequestDAOTest {
         assertEquals("",dao.getSurnameById("60001156789"));
 
         //add after remove
+
         dao.addNewDoctorRegistrationRequest(request1);
         assertEquals("luka",dao.getNameById("60001156789"));
         assertEquals("kapanadze",dao.getSurnameById("60001156789"));
+
     }
 }
