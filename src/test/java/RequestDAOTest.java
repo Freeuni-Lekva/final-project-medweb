@@ -1,4 +1,5 @@
 import freeuni.edu.ge.DAO.RequestDAO;
+import freeuni.edu.ge.Models.Request;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,8 +23,9 @@ public class RequestDAOTest {
     }
 
 
+    //about insert request in table
     @Test
-    public void simple1() throws SQLException {
+    public void test1() throws SQLException {
         RequestDAO dao = new RequestDAO(dataSource);
         String name = "luka";
         String surname = "kapanadze";
@@ -31,5 +33,17 @@ public class RequestDAOTest {
         dao.addNewDoctorRegistrationRequest(name,surname,ID);
         assertEquals(dao.getNameById(ID),name);
         assertEquals(dao.getSurnameById(ID),surname);
+    }
+
+
+    //get Request method check
+    @Test
+    public void test2() throws SQLException {
+        RequestDAO dao = new RequestDAO(dataSource);
+        String ID = "60001156789";
+        Request request = dao.getRequestByID(ID);
+        assertEquals(request.getID(), ID);
+        assertEquals(request.getName(), "luka");
+        assertEquals(request.getSurname(), "kapanadze");
     }
 }

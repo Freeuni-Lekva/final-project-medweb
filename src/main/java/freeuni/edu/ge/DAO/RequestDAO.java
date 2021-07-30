@@ -65,4 +65,10 @@ public class RequestDAO {
         }
         return res;
     }
+
+    public Request getRequestByID(String ID) throws SQLException {
+        String name = getNameById(ID);
+        String surname = getSurnameById(ID);
+        return new Request(name, surname, ID);
+    }
 }
