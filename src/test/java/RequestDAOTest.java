@@ -69,11 +69,12 @@ public class RequestDAOTest {
         Iterator<Request> it = dao.getIterator();
         //here we check also that, table size is exact 3
         for(int i = 0; i < 3; i++){
-            assertTrue(it.next().equals(toCheck.get(i)));
+            assertEquals(true,it.next().equals(toCheck.get(i)));
         }
+
 
         boolean isExactThreeSize = true;
         if(it.hasNext()) isExactThreeSize = false;
-        assertTrue(isExactThreeSize);
+        assertEquals(true,isExactThreeSize);
     }
 }

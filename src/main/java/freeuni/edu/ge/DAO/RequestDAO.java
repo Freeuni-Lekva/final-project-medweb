@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class RequestDAO {
@@ -30,8 +31,25 @@ public class RequestDAO {
         addNewDoctorRegistrationRequest(request.getName(),request.getSurname(),request.getID());
     }
 
-    public Iterator<Request> getIterator(){
-        return null;
+    public Iterator<Request> getIterator() throws SQLException {
+        ArrayList<Request> listOfRequests = new ArrayList<>();
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+        String sql = "select * from requests";
+        ResultSet results = statement.executeQuery(sql);
+        while(results.next()){
+            listOfRequests.add(convertToRequest(results));
+        }
+
+        Iterator<Request> it = listOfRequests.iterator();
+        return it;
+    }
+
+    private Request convertToRequest(ResultSet results) throws SQLException {
+        String name = results.getString("name");
+        String surname = results.getString("surname");
+        String ID = results.getString("ID");
+        return new Request(name,surname,ID);
     }
 
     public void requestAnswer(boolean answer, String ID){
