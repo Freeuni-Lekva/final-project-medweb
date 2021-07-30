@@ -52,12 +52,19 @@ public class RequestDAO {
         return new Request(name,surname,ID);
     }
 
-    public void requestAnswer(boolean answer, String ID){
-
+    public void requestAnswer(boolean answer, String ID) throws SQLException {
+        if(answer) {
+            removeAndAddToCanRegisterTable(ID);
+        } else {
+            removeFromRequest(ID);
+        }
     }
 
-    private void removeFromRequest(String ID){
-
+    private void removeFromRequest(String ID) throws SQLException {
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+        String insertSQl = "Delete from requests where ID = \""+ ID +"\"";
+        statement.executeUpdate(insertSQl);
     }
 
     private void removeAndAddToCanRegisterTable(String ID){

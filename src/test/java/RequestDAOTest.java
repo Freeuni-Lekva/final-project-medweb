@@ -77,4 +77,31 @@ public class RequestDAOTest {
         if(it.hasNext()) isExactThreeSize = false;
         assertEquals(true,isExactThreeSize);
     }
+
+
+
+
+    //checking remove from requests table method
+    @Test
+    public void test4() throws SQLException {
+        RequestDAO dao = new RequestDAO(dataSource);
+        dao.addNewDoctorRegistrationRequest("axali","doxtori","6000100203040");
+
+        assertEquals("axali",dao.getNameById("6000100203040"));
+        dao.requestAnswer(Boolean.FALSE,"6000100203040");
+        assertEquals("",dao.getNameById("6000100203040"));
+        //not Exists
+        dao.requestAnswer(Boolean.FALSE,"123455");
+
+
+        Request request1 = new Request("luka","kapanadze","60001156789");
+        dao.requestAnswer(Boolean.FALSE,"60001156789");
+        assertEquals("",dao.getNameById("60001156789"));
+        assertEquals("",dao.getSurnameById("60001156789"));
+
+        //add after remove
+        dao.addNewDoctorRegistrationRequest(request1);
+        assertEquals("luka",dao.getNameById("60001156789"));
+        assertEquals("kapanadze",dao.getSurnameById("60001156789"));
+    }
 }
