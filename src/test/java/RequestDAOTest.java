@@ -104,6 +104,26 @@ public class RequestDAOTest {
         dao.addNewDoctorRegistrationRequest(request1);
         assertEquals("luka",dao.getNameById("60001156789"));
         assertEquals("kapanadze",dao.getSurnameById("60001156789"));
+    }
 
+
+
+    //test about can register table insert. method - add new doctor in mentioned table.
+    @Test
+    public void test5() throws SQLException {
+        RequestDAO dao = new RequestDAO(dataSource);
+        Request request1 = new Request("Michael","Butler","30001233445");
+        Request request2 = new Request("Nicole","Bennett","60231256419");
+
+        assertEquals(null,dao.getRequestFromCanRegisterTableByID("30001233445"));
+        assertEquals(null,dao.getRequestFromCanRegisterTableByID("23232323232"));
+        assertEquals(false,dao.canDoctorRegister("Michael","Butler","30001233445"));
+
+        dao.addDoctorToCanRegisterTable(request1);
+        dao.addDoctorToCanRegisterTable(request2.getName(),request2.getSurname(),request2.getID());
+
+        assertEquals(request1,dao.getRequestFromCanRegisterTableByID("30001233445"));
+        assertEquals(request2,dao.getRequestFromCanRegisterTableByID("60231256419"));
+        assertEquals(true,dao.canDoctorRegister("Michael","Butler","30001233445"));
     }
 }

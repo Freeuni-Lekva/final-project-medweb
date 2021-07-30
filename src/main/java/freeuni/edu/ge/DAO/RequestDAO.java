@@ -75,6 +75,36 @@ public class RequestDAO {
 
     }
 
+    public boolean canDoctorRegister(String name, String surname, String ID) throws SQLException {
+        return getRequestFromCanRegisterTableByID(ID) != null;
+    }
+
+    public void addDoctorToCanRegisterTable(Request request) throws SQLException {
+        addDoctorToCanRegisterTable(request.getName(),request.getSurname(),request.getID());
+    }
+
+    public void addDoctorToCanRegisterTable(String name, String surname, String ID) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+        String insertSQl = "INSERT INTO canregister (name, surname, ID) Values (\"" + name + "\", \"" + surname + "\", \"" + ID + "\")";
+        statement.executeUpdate(insertSQl);
+    }
+
+    //method for tests
+    public Request getRequestFromCanRegisterTableByID(String ID) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+        String sql = "select * from canregister where ID = \"" + ID + "\" ;";
+        ResultSet result = statement.executeQuery(sql);
+        Request request = null;
+        while(result.next()){
+            request = convertToRequest(result);
+        }
+        return request;
+    }
+
     public String getNameById(String ID) throws SQLException {
         dataSource.restart();
         Connection connection = dataSource.getConnection();
