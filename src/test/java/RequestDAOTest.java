@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RequestDAOTest {
@@ -45,5 +49,31 @@ public class RequestDAOTest {
         assertEquals(request.getID(), ID);
         assertEquals(request.getName(), "luka");
         assertEquals(request.getSurname(), "kapanadze");
+    }
+
+    //Iterator test
+    @Test
+    public void test3() throws SQLException {
+        RequestDAO dao = new RequestDAO(dataSource);
+        Request request1 = new Request("luka","kapanadze","60001156789");
+        Request request2 = new Request("doctor","doctorashvil","10001112233");
+        Request request3 = new Request("medic","medicamenti","12341231212");
+        dao.addNewDoctorRegistrationRequest(request2);
+        dao.addNewDoctorRegistrationRequest(request3);
+        ArrayList<Request> toCheck = new ArrayList<>();
+
+        toCheck.add(request1);
+        toCheck.add(request2);
+        toCheck.add(request3);
+
+        Iterator<Request> it = dao.getIterator();
+        //here we check also that, table size is exact 3
+        for(int i = 0; i < 3; i++){
+            assertTrue(it.next().equals(toCheck.get(i)));
+        }
+
+        boolean isExactThreeSize = true;
+        if(it.hasNext()) isExactThreeSize = false;
+        assertTrue(isExactThreeSize);
     }
 }

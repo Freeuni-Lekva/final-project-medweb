@@ -26,6 +26,10 @@ public class RequestDAO {
         statement.executeUpdate(insertSQl);
     }
 
+    public void addNewDoctorRegistrationRequest(Request request) throws SQLException {
+        addNewDoctorRegistrationRequest(request.getName(),request.getSurname(),request.getID());
+    }
+
     public Iterator<Request> getIterator(){
         return null;
     }
