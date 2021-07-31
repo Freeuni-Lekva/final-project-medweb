@@ -24,13 +24,13 @@ public class DoctorsDAO implements DoctorDAO{
         doctors.put(doctor.getID(), doctor);
 
         Doctor doctor2 = new Doctor("murtazi", "kankava", "1222");
-        doctor2.setQualification(Doctor.Doctor_Qualifications.Bachelor_Of_Medicine);
+        doctor2.setQualification(Doctor.Doctor_Qualifications.Medical_School);
         doctor2.setSpeciality(Doctor.DoctorSpecialities.Allergy_Immunology);
         doctors.put(doctor2.getID(), doctor2);
 
         Doctor doctor3 = new Doctor("ekaterine", "meore", "1333");
         doctor3.setQualification(Doctor.Doctor_Qualifications.Medical_School);
-        doctor3.setSpeciality(Doctor.DoctorSpecialities.Anesthesiology);
+        doctor3.setSpeciality(Doctor.DoctorSpecialities.Allergy_Immunology);
         doctors.put(doctor3.getID(), doctor3);
 
         Doctor doctor4 = new Doctor("vasili", "lomachenko", "1555");

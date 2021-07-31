@@ -3,7 +3,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="freeuni.edu.ge.DAO.DoctorDAO" %>
 <%@ page import="freeuni.edu.ge.Models.Patient" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %><%--
+<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/28/2021
@@ -41,23 +42,32 @@
             <%}%>
         </select>
         <br><br>
-        <input type="submit" value="Submit" name="submit">
+        <input type="submit" value="Submit" name="filter">
         <p>Click the "Submit" button to filter doctors and get your options.</p>
     </form>
 
     <%} else {%>
 
-    <%
-        String id = (String) request.getAttribute("id");
-        AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute("AdministratorDAO");
-        Patient patient = dao.getPatientById(id);
-    %>
-
     <p>Select doctor from the drop-down list.</p>
 
         <label>Choose a department: ${specialty}</label> <br><br>
-        <label>Choose a degree: ${degree}</label>
+        <label>Choose a degree: ${degree}</label> <br><br>
 
+    <%
+        List<Doctor> doctors = (ArrayList<Doctor>) request.getAttribute("doctors");
+    %>
+
+    <form action="/bookDC" method="post">
+        <label for="doctor">Choose a doctor:</label>
+        <select name="doctor" id="doctor">
+            <% for (Doctor doctor : doctors) {%>
+                <option value=<%=doctor.getID()%>> <%=doctor.getName()%> <%=doctor.getSurname()%></option>
+            <%}%>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit" name="choose">
+        <p>Click the "Submit" button to choose a doctors.</p>
+    </form>
     <%}%>
 
 </body>
