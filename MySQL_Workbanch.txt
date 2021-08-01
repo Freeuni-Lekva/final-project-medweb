@@ -20,3 +20,14 @@ ID varchar(40)
 
 
 );
+
+CREATE table visits(
+
+patientId varchar(40) not null,
+
+doctorId varchar(40) not null,
+
+reason varchar(100),
+
+date varchar(40)
+);

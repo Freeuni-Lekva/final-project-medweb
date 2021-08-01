@@ -2,11 +2,16 @@ package freeuni.edu.ge.DAO;
 
 import freeuni.edu.ge.Models.Visit;
 
-import java.util.List;
+import java.sql.SQLException;
+import java.util.Iterator;
 
 public interface VisitDAO {
 
-    List<Visit> getVisitsByPatient(String patientId);
+    Iterator<Visit> getVisitsByPatient(String patientId) throws SQLException;
 
-    void addVisit(String patientId, String doctorId, String reason);
+    int addVisit(Visit visit) throws SQLException;
+
+    Visit getVisitByPatientAndDoctorId(String patientId, String doctorId);
+
+    void deleteVisitByPatientAndDoctorId(String patientId, String doctorId);
 }
