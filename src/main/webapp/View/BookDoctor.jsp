@@ -57,6 +57,7 @@
         List<Doctor> doctors = (ArrayList<Doctor>) request.getAttribute("doctors");
     %>
 
+    <% if(!doctors.isEmpty()) {%>
     <form action="/bookDC" method="post">
         <label for="doctor">Choose a doctor:</label>
         <select name="doctor" id="doctor">
@@ -66,9 +67,17 @@
         </select>
         <br><br>
         <input type="submit" value="Submit" name="choose">
-        <p>Click the "Submit" button to choose a doctors.</p>
+        <p>Click the "Submit" button to choose a doctors.</p> <br><br>
+
     </form>
+
+    <%} else {%>
+
+        <label>Doctors with current qualification and specialty does not exist.</label> <br><br>
     <%}%>
+    <%}%>
+
+    <a href="/loginPT"> Back To Profile </a>
 
 </body>
 </html>

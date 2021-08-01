@@ -37,7 +37,7 @@
 
         <li>Address: <input type="text" name="address" value = <%=patient.getAddress()%>></li>
 
-        <li>Mobile: <input type="number" name="mobile" value = <%=Integer.parseInt(patient.getMobileNumber())%>></li>
+        <li>Mobile: <input type="text" name="mobile" value = <%=patient.getMobileNumber()%>></li>
 
         </ul>
 
