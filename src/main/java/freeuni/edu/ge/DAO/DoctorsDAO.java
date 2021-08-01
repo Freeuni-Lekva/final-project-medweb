@@ -1,6 +1,7 @@
 package freeuni.edu.ge.DAO;
 
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.Patient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,5 +82,9 @@ public class DoctorsDAO implements DoctorDAO{
     @Override
     public Doctor getDoctorById(String id) {
         return doctors.get(id);
+    }
+
+    public void putDoctorById(String id, Doctor doctor) {
+        doctors.put(id, doctor);
     }
 }
