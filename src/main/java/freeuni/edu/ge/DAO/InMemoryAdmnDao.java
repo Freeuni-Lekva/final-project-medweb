@@ -7,7 +7,7 @@ import freeuni.edu.ge.Models.Doctor;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Request;
 
-import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Iterator;
