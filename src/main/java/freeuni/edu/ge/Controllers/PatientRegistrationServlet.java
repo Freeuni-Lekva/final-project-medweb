@@ -23,59 +23,101 @@ public class PatientRegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         boolean tmp = false;
         if(httpServletRequest.getParameter("add") != null) {
+            refilledExistFields(httpServletRequest, httpServletResponse);
             tmp = true;
             httpServletRequest.setAttribute("Optional", true);
             httpServletRequest.getRequestDispatcher("View/ForPatientRegistration.jsp").forward(httpServletRequest,httpServletResponse);
         }
-
         if(httpServletRequest.getParameter("submit") != null) {
-            String firstName = httpServletRequest.getParameter("fName");
-            String lastName = httpServletRequest.getParameter("lName");
-            String id = httpServletRequest.getParameter("ID");
-            String password = httpServletRequest.getParameter("password");
-            String date = httpServletRequest.getParameter("birthday");
-            String city = httpServletRequest.getParameter("city");
-            String sex = httpServletRequest.getParameter("sex");
-            String address = httpServletRequest.getParameter("address");
-            String mobileNumber = httpServletRequest.getParameter("mNumber");
-            String diseases = httpServletRequest.getParameter("diseases");
-            String alergies = httpServletRequest.getParameter("alergies");
-
-        PatientDAOInterface base = getDAO(httpServletRequest);
-        AdministratorDao adminDao = getAdministratorDao(httpServletRequest);
-        Map<String, String> map = base.getAllLoginAndPass();
-            if (map.containsKey(id)) {
-                System.out.println("YES");
-                httpServletRequest.setAttribute("Registered",true);
-                httpServletRequest.getRequestDispatcher("/View/ForPatientRegistration.jsp").forward(httpServletRequest, httpServletResponse);
-            } else {
-                Patient patient = new Patient();
-                patient.setName(firstName);
-                patient.setSurname(lastName);
-                patient.setID(id);
-                patient.setPassword(password);
-                patient.setDateOfBirth(date);
-                patient.setCity(city);
-                patient.setSex(sex);
-                patient.setAddress(address);
-                patient.setMobileNumber(mobileNumber);
-                patient.setDiseases(diseases);
-                patient.setAlergies(alergies);
-                Map<String, String> family = new HashMap<>();
-                if (tmp) {
-                    String fatherID = httpServletRequest.getParameter("fID");
-                    String motherID = httpServletRequest.getParameter("mID");
-
-                    family.put("father", fatherID);
-                    family.put("mother", motherID);
-                }
-                base.addPatient(patient);
-                adminDao.setPatientOnId(id,patient);
-                httpServletRequest.getRequestDispatcher("/View/SuccessfulRegistered.jsp").forward(httpServletRequest, httpServletResponse);
-
-            }
+            checkFilledFields(httpServletRequest, httpServletResponse, tmp);
         }
 
+    }
+
+    private void refilledExistFields(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        Patient patient = makePatientFromInformation(httpServletRequest,false);
+        httpServletRequest.setAttribute("fName", patient.getName());
+        httpServletRequest.setAttribute("lName", patient.getSurname());
+        httpServletRequest.setAttribute("ID", patient.getID());
+        if(patient.getPassword() != null) {
+            httpServletRequest.setAttribute("password",patient.getPassword());
+        } else {
+            httpServletRequest.setAttribute("password", "");
+        }
+        httpServletRequest.setAttribute("birthday", patient.getDateOfBirth());
+        httpServletRequest.setAttribute("city", patient.getCity());
+        httpServletRequest.setAttribute("sex", patient.getSex());
+        httpServletRequest.setAttribute("address", patient.getAddress());
+        httpServletRequest.setAttribute("mNumber", patient.getMobileNumber());
+        httpServletRequest.setAttribute("diseases", patient.getDiseases());
+        httpServletRequest.setAttribute("alergies", patient.getAlergies());
+    }
+
+    private void checkFilledFields(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, boolean tmp) throws ServletException, IOException {
+        if(ifEmptyNecessaryFields(httpServletRequest)){
+            String answer = "Fill ";
+            if (httpServletRequest.getParameter("fName") == "") {answer += "First Name Field, "; }
+            if (httpServletRequest.getParameter("lName")== "") { answer += "Last Name Field, "; }
+            if (httpServletRequest.getParameter("ID")== "") { answer += "ID Number Field,"; }
+            if (httpServletRequest.getParameter("password")== "") { answer += "Password Field, "; }
+            if (httpServletRequest.getParameter("mNumber")== "") {  answer += "Mobile Number Field."; }
+            refilledExistFields(httpServletRequest, httpServletResponse);
+            httpServletRequest.setAttribute("NotFilled", answer);
+            httpServletRequest.getRequestDispatcher("View/ForPatientRegistration.jsp").forward(httpServletRequest,httpServletResponse);
+        } else {
+            String id = httpServletRequest.getParameter("ID");
+            checkId(id, httpServletRequest, tmp, httpServletResponse);
+        }
+    }
+
+    private boolean ifEmptyNecessaryFields(HttpServletRequest httpServletRequest) {
+        if ((httpServletRequest.getParameter("fName") == "") ||
+                (httpServletRequest.getParameter("lName") == "") ||
+                (httpServletRequest.getParameter("ID") == "") ||
+                (httpServletRequest.getParameter("password") == "") ||
+                (httpServletRequest.getParameter("mNumber") == "")) {
+            return true;
+        }
+        return false;
+    }
+
+    private void checkId(String id, HttpServletRequest httpServletRequest, boolean tmp, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        AdministratorDao adminDao = getAdministratorDao(httpServletRequest);
+        PatientDAOInterface base = getDAO(httpServletRequest);
+        Map<String, String> map = base.getAllLoginAndPass();
+        if (map.containsKey(id)) {
+            httpServletRequest.setAttribute("Registered",true);
+            httpServletRequest.getRequestDispatcher("/View/ForPatientRegistration.jsp").forward(httpServletRequest, httpServletResponse);
+        } else {
+            Patient patient = makePatientFromInformation(httpServletRequest , tmp);
+            base.addPatient(patient);
+            adminDao.setPatientOnId(id,patient);
+            httpServletRequest.getRequestDispatcher("/View/SuccessfulRegistered.jsp").forward(httpServletRequest, httpServletResponse);
+        }
+    }
+
+
+    private Patient makePatientFromInformation(HttpServletRequest httpServletRequest, boolean tmp) {
+        Patient patient = new Patient();
+        patient.setName(httpServletRequest.getParameter("fName"));
+        patient.setSurname(httpServletRequest.getParameter("lName"));
+        patient.setID(httpServletRequest.getParameter("ID"));
+        patient.setPassword(httpServletRequest.getParameter("password"));
+        patient.setDateOfBirth(httpServletRequest.getParameter("birthday"));
+        patient.setCity(httpServletRequest.getParameter("city"));
+        patient.setSex(httpServletRequest.getParameter("sex"));
+        patient.setAddress(httpServletRequest.getParameter("address"));
+        patient.setMobileNumber(httpServletRequest.getParameter("mNumber"));
+        patient.setDiseases(httpServletRequest.getParameter("diseases"));
+        patient.setAlergies(httpServletRequest.getParameter("alergies"));
+        Map<String, String> family = new HashMap<>();
+        if (tmp) {
+            String fatherID = httpServletRequest.getParameter("fID");
+            String motherID = httpServletRequest.getParameter("mID");
+            family.put("father", fatherID);
+            family.put("mother", motherID);
+        }
+        return patient;
     }
 
     private PatientDAOInterface getDAO(HttpServletRequest httpServletRequest) {
