@@ -14,13 +14,17 @@ public class LoginPatientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        String id = httpServletRequest.getParameter("id");
+        HttpSession session = httpServletRequest.getSession();
+        String id = (String) session.getAttribute("id");
+
         httpServletRequest.setAttribute("id", id);
+
         sendTo(httpServletRequest, httpServletResponse, "View/loginPatient.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        System.out.println("postshi shemodis");
         HttpSession session = httpServletRequest.getSession();
         String id = (String) session.getAttribute("id");
         if(httpServletRequest.getParameter("update") != null) {
@@ -49,6 +53,7 @@ public class LoginPatientServlet extends HttpServlet {
         patient.setCity(httpServletRequest.getParameter("city"));
         patient.setID(httpServletRequest.getParameter("idNum"));
         patient.setAddress(httpServletRequest.getParameter("address"));
+        patient.setMobileNumber(httpServletRequest.getParameter("mobile"));
     }
 
     private void sendInUpdateSite(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, String id) throws ServletException, IOException {

@@ -1,3 +1,4 @@
+
 //patientSqlDAO
 
 CREATE TABLE patients (
@@ -28,4 +29,39 @@ CREATE TABLE doctors (
     Doctor_Qualifications VARCHAR(255),
     Experience VARCHAR(255),
     Graduation VARCHAR(255)
+    );
+
+/*if exist use drop database*/
+
+drop database medweb;
+
+
+
+create database medweb;
+
+use medweb;
+
+
+
+CREATE table requests(
+	
+name varchar(40),
+    
+surname varchar(40),
+	
+ID varchar(40)
+
+
+);
+
+CREATE table visits(
+
+patientId varchar(40) not null,
+
+doctorId varchar(40) not null,
+
+reason varchar(100),
+
+date varchar(40)
+
 );
