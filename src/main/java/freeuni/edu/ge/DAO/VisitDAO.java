@@ -11,7 +11,7 @@ public interface VisitDAO {
 
     int addVisit(Visit visit) throws SQLException;
 
-    Visit getVisitByPatientAndDoctorId(String patientId, String doctorId);
+    Visit getVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException;
 
-    void deleteVisitByPatientAndDoctorId(String patientId, String doctorId);
+    void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException;
 }

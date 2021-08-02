@@ -30,12 +30,11 @@ public class VisitsDAO implements VisitDAO{
 
     private Iterator<Visit> returnIterator(ResultSet resultSet) throws SQLException {
         List<Visit> result = new ArrayList<>();
-
         while(resultSet.next()) {
             result.add(new Visit(resultSet.getString("patientId"), resultSet.getString("doctorId"),
                     resultSet.getString("reason"), resultSet.getString("date")));
         }
-
+        if(result.isEmpty()) return null;
         return result.iterator();
     }
 
@@ -51,12 +50,23 @@ public class VisitsDAO implements VisitDAO{
     }
 
     @Override
-    public Visit getVisitByPatientAndDoctorId(String patientId, String doctorId) {
-        return null;
+    public Visit getVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM visits WHERE patientId = ? AND doctorId = ?");
+        statement.setString(1, patientId);
+        statement.setString(2, doctorId);
+        ResultSet resultSet = statement.executeQuery();
+        Iterator<Visit> result = returnIterator(resultSet);
+        if(result == null) return null;
+        return result.next();
     }
 
     @Override
-    public void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) {
-
+    public void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("DELETE FROM visits WHERE patientId = ? AND doctorId = ?");
+        statement.setString(1, patientId);
+        statement.setString(2, doctorId);
+        statement.executeUpdate();
     }
 }
