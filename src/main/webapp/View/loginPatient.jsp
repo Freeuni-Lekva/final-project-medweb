@@ -91,6 +91,7 @@
         <input type="submit" value = "Book New Visit" name = "book">
 
 
+
     <%--
     <% if(!patient.getFamily().isEmpty()) { %>
         <ul>
