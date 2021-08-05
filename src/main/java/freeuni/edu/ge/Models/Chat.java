@@ -18,7 +18,9 @@ public class Chat {
 
     @Override
     public String toString() {
-        return "";
+        StringWriter writer = new StringWriter();
+        Json.createWriter(writer).write(json);
+        return writer.toString();
     }
 
 }
