@@ -1,4 +1,6 @@
 package freeuni.edu.ge.EndPoint;
+import freeuni.edu.ge.Helpers.ChatDecoder;
+import freeuni.edu.ge.Helpers.ChatEncoder;
 import freeuni.edu.ge.Models.Chat;
 
 import javax.websocket.*;
@@ -10,9 +12,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 
-@ServerEndpoint(value = "/hello")
+@ServerEndpoint(value = "/hello", encoders = {ChatEncoder.class}, decoders = {ChatDecoder.class})
 public class ChatEndPoint {
-
 
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
 
@@ -28,7 +29,7 @@ public class ChatEndPoint {
 
 
     @OnMessage
-    public void BroadcastChat(String message, Session session) throws EncodeException, IOException {
+    public void BroadcastChat(Chat chat, Session session) throws EncodeException, IOException {
 
     }
 
