@@ -2,10 +2,7 @@ package freeuni.edu.ge.DAO;
 
 
 import freeuni.edu.ge.Helpers.Hash;
-import freeuni.edu.ge.Models.Administrator;
-import freeuni.edu.ge.Models.Doctor;
-import freeuni.edu.ge.Models.Patient;
-import freeuni.edu.ge.Models.Request;
+import freeuni.edu.ge.Models.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -64,6 +61,21 @@ public class InMemoryAdmnDao implements AdministratorDao {
     public String returnAdministratorHashingPassword(String id){
         return administrator.getPassword(id);
 
+    }
+
+    @Override
+    public Iterator<Visit> getVisitsIterator(String ID,String type) {
+        List<Visit> visits = new ArrayList<>();
+        Visit visit1 = new Visit("6000","6001","tavis tkivili","05/08/2021","Online");
+        visit1.setDoctorName("Michael");
+        Visit visit2 = new Visit("6000","6002","tavis tkivili","06/08/2021","Online");
+        visit2.setDoctorName("Sam");
+        Visit visit3 = new Visit("6000","6003","xelis tkivili","07/08/2021","Online");
+        visit3.setDoctorName("Ann");
+        visits.add(visit1);
+        visits.add(visit2);
+        visits.add(visit3);
+        return visits.iterator();
     }
 
     @Override

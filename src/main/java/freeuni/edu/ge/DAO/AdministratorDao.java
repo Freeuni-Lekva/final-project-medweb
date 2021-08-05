@@ -4,6 +4,7 @@ import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Models.Doctor;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Request;
+import freeuni.edu.ge.Models.Visit;
 
 import java.util.Iterator;
 
@@ -24,4 +25,5 @@ public interface AdministratorDao {
     String returnDoctorHashingPassword(String id);
     String returnPatientHashingPassword(String id);
     String returnAdministratorHashingPassword(String id);
+    Iterator<Visit> getVisitsIterator(String ID, String type);
 }
