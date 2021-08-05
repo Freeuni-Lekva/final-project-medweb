@@ -9,7 +9,9 @@ import java.io.IOException;
 public class ChatServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        System.out.println("POST patient ID:  " + httpServletRequest.getParameter("patient"));
-        System.out.println("doctor ID: " + httpServletRequest.getParameter("doctor"));
+        httpServletRequest.setAttribute("patientID",httpServletRequest.getParameter("patient"));
+        httpServletRequest.setAttribute("doctorID",httpServletRequest.getParameter("doctor"));
+
+        httpServletRequest.getRequestDispatcher("/View/Chat.jsp").forward(httpServletRequest, httpServletResponse);
     }
 }

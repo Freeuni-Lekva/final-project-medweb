@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 
-@ServerEndpoint(value = "/hello", encoders = {ChatEncoder.class}, decoders = {ChatDecoder.class})
+@ServerEndpoint(value = "/chatEndPoint", encoders = {ChatEncoder.class}, decoders = {ChatDecoder.class})
 public class ChatEndPoint {
 
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
