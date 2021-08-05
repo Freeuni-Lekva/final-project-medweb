@@ -165,7 +165,4 @@ public class RequestDAOTest {
         dao.removeFromCanRegisterTable("12341231212");
         assertEquals(null,dao.getRequestFromCanRegisterTableByID("12341231212"));
     }
-
-
-
 }
