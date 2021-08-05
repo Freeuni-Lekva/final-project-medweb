@@ -91,4 +91,13 @@
         <url-pattern>/bookDC</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>chat</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.ChatServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>chat</servlet-name>
+        <url-pattern>/chat</url-pattern>
+    </servlet-mapping>
 </web-app>

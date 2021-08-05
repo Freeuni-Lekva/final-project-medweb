@@ -11,10 +11,19 @@ public class Visit {
     private String doctorId;
     private String date;
     private String reason;
+    private String type; //online or physical
 
     public Visit() {}
 
     public Visit(String patientId, String doctorId, String reason, String date){
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.reason = reason;
+        this.date = date;
+    }
+
+    //old constructor is deletable
+    public Visit(String patientId, String doctorId, String reason, String date, String type){
         this.patientId = patientId;
         this.doctorId = doctorId;
         this.reason = reason;
@@ -45,6 +54,7 @@ public class Visit {
     public String getReason(){
         return reason;
     }
+    public String getType(){return type;}
 
     public void setPatientName(String name){
         this.patientName = name;
@@ -69,6 +79,9 @@ public class Visit {
     }
     public void setReason(String s){
         this.reason = s;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
 }
 
