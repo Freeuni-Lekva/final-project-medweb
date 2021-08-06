@@ -26,6 +26,7 @@ if(type.equals("patient")){
 <input type = "text" id = "messageText" size = "35"/>
 <iput type = "hidden" name = "name" id = "name" value = <%=name%> />
 <input type = "button" value = "Send" onclick="sendMessage();"/>
+<p id="output"></p>
 
 </body>
 </html>
