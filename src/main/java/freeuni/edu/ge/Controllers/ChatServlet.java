@@ -13,8 +13,8 @@ public class ChatServlet extends HttpServlet {
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         AdministratorDao dao = getAdministratorDao(httpServletRequest);
 
-        httpServletRequest.setAttribute("patientID",httpServletRequest.getParameter("patient")); //user type
-        httpServletRequest.setAttribute("doctorID",httpServletRequest.getParameter("doctor"));
+        httpServletRequest.setAttribute("senderID",httpServletRequest.getParameter("patient")); //user type
+        httpServletRequest.setAttribute("recipientID",httpServletRequest.getParameter("doctor"));
         httpServletRequest.setAttribute("user",dao.getPatientById(httpServletRequest.getParameter("patient")));
         httpServletRequest.setAttribute("type","patient");
 

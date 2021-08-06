@@ -25,6 +25,8 @@ if(type.equals("patient")){
 %>
 <input type = "text" id = "messageText" size = "35"/>
 <input type = "hidden" name = "userName" id = "userName" value = <%=name%> />
+<input type = "hidden" name = "recipient" id = "recipientID" value = <%=(String)request.getAttribute("recipientID")%> />
+<input type = "hidden" name = "sender" id = "senderID" value = <%=(String)request.getAttribute("senderID")%>/>
 <input type = "button" value = "Send" onclick="sendMessage();"/>
 <p id="output"></p>
 

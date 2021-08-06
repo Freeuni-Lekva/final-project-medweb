@@ -5,11 +5,12 @@
 function sendMessage(){
     const json = JSON.stringify({
         "name": document.getElementById("userName").value,
-        "message": document.getElementById("messageText").value
+        "message": document.getElementById("messageText").value,
+        "recipientID": document.getElementById("recipientID").value,
+        "senderID": document.getElementById("senderID").value
     });
     websocket.send(json);
     document.getElementById("messageText").value = "";
-
 }
 
 websocket.onerror = function(evt) { onError(evt) };
