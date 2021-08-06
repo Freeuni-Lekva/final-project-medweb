@@ -1,4 +1,5 @@
 package freeuni.edu.ge.EndPoint;
+
 import freeuni.edu.ge.Helpers.ChatDecoder;
 import freeuni.edu.ge.Helpers.ChatEncoder;
 import freeuni.edu.ge.Models.Chat;
@@ -12,7 +13,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 
-@ServerEndpoint(value = "/chatEndPoint", encoders = {ChatEncoder.class}, decoders = {ChatDecoder.class})
+@ServerEndpoint(value = "/chat/endpoint", encoders = {ChatEncoder.class}, decoders = {ChatDecoder.class})
 public class ChatEndPoint {
 
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
@@ -30,7 +31,10 @@ public class ChatEndPoint {
 
     @OnMessage
     public void BroadcastChat(Chat chat, Session session) throws EncodeException, IOException {
-
+        System.out.println("Broadcast Chat:  " + chat);
+        for(Session peer : peers){
+            peer.getBasicRemote().sendObject(chat);
+        }
     }
 
 }

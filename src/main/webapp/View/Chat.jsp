@@ -6,7 +6,8 @@
     <title>Chat</title>
 </head>
 
-<script type = "application/javascript" src = "/static/ForChat.js"></script>
+<script type = "application/javascript" src = "/static/ForChat.js">
+</script>
 <body>
 
 <textarea id = "messagesTextArea" readonly = "readonly" rows = "10" cols = "45"></textarea>
@@ -21,10 +22,9 @@ if(type.equals("patient")){
     Doctor doctor = (Doctor) request.getAttribute("user");
     name = doctor.getName();
 }
-
 %>
 <input type = "text" id = "messageText" size = "35"/>
-<iput type = "hidden" name = "name" id = "name" value = <%=name%> />
+<input type = "hidden" name = "userName" id = "userName" value = <%=name%> />
 <input type = "button" value = "Send" onclick="sendMessage();"/>
 <p id="output"></p>
 

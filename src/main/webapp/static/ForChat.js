@@ -1,15 +1,16 @@
 
+ var wsUri = "ws://" + document.location.host + document.location.pathname + "/endpoint";
+ var websocket = new WebSocket(wsUri);
+
 function sendMessage(){
     const json = JSON.stringify({
-        "name": document.getElementById("name").value,
+        "name": document.getElementById("userName").value,
         "message": document.getElementById("messageText").value
     });
     websocket.send(json);
     document.getElementById("messageText").value = "";
-}
 
-var wsUri = "ws://" + document.location.host + document.location.pathname + "chatEndPoint";
-var websocket = new WebSocket(wsUri);
+}
 
 websocket.onerror = function(evt) { onError(evt) };
 
