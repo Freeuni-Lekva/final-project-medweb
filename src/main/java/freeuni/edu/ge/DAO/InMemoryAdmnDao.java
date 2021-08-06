@@ -4,7 +4,7 @@ package freeuni.edu.ge.DAO;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Models.*;
 
-import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -83,7 +83,6 @@ public class Doctor {
     public void setYearExperience(String yearExperience){
         this.yearExperience = yearExperience;
     }
-
     public void setYearGraduation(String yearGraduation){
         this.yearGraduation = yearGraduation;
     }
