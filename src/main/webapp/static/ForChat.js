@@ -23,3 +23,10 @@ function writeToScreen(message) {
     output.innerHTML += message + "<br>";
 }
 
+websocket.onmessage = function processMessage(message){
+    const jsonData = JSON.parse(message.data);
+    if(jsonData.message != null) {
+        document.getElementById("messagesTextArea").value += jsonData.name+ ":  " + jsonData.message + "\n";
+    }
+}
+
