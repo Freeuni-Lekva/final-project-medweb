@@ -13,10 +13,21 @@ public class ChatServlet extends HttpServlet {
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         AdministratorDao dao = getAdministratorDao(httpServletRequest);
 
-        httpServletRequest.setAttribute("senderID",httpServletRequest.getParameter("patient")); //user type
-        httpServletRequest.setAttribute("recipientID",httpServletRequest.getParameter("doctor"));
-        httpServletRequest.setAttribute("user",dao.getPatientById(httpServletRequest.getParameter("patient")));
-        httpServletRequest.setAttribute("type","patient");
+        if(httpServletRequest.getParameter("tp").equals("p")){
+            httpServletRequest.setAttribute("senderID", httpServletRequest.getParameter("patient")); //user type
+            httpServletRequest.setAttribute("recipientID", httpServletRequest.getParameter("doctor"));
+            httpServletRequest.setAttribute("user", dao.getPatientById(httpServletRequest.getParameter("patient")));
+            httpServletRequest.setAttribute("type", "patient");
+            System.out.println("Patient");
+        }
+
+        if(httpServletRequest.getParameter("tp").equals("d")){
+            httpServletRequest.setAttribute("senderID", httpServletRequest.getParameter("doctor")); //user type
+            httpServletRequest.setAttribute("recipientID", httpServletRequest.getParameter("patient"));
+            httpServletRequest.setAttribute("user", dao.getDoctorById(httpServletRequest.getParameter("doctor")));
+            httpServletRequest.setAttribute("type", "doctor");
+            System.out.println("Doctor");
+        }
 
         httpServletRequest.getRequestDispatcher("/View/Chat.jsp").forward(httpServletRequest, httpServletResponse);
     }

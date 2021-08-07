@@ -1,7 +1,9 @@
 <%@ page import="freeuni.edu.ge.DAO.InMemoryAdmnDao" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
-<%@ page import="freeuni.edu.ge.Models.Doctor" %><%--
+<%@ page import="freeuni.edu.ge.Models.Doctor" %>
+<%@ page import="freeuni.edu.ge.Models.Visit" %>
+<%@ page import="java.util.Iterator" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/24/2021
@@ -39,6 +41,26 @@
         </ul>
     <%}%>
 --%>
+
+    <h2>Your Online Visits:</h2>
+
+    <ol>
+        <% AdministratorDao adminDao = (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
+            Iterator<Visit> it = adminDao.getVisitsIterator(doctor.getID(),"Online");
+            while(it.hasNext()) {
+                Visit visit = it.next();
+        %>
+        <form action = "/chat?tp=d" method = post>
+            <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+                <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
+                <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
+                <input type = "submit" value = "Open Chat">
+            </li> </br>
+        </form>
+        <%}%>
+    </ol>
+
+
 
 </body>
 </html>
