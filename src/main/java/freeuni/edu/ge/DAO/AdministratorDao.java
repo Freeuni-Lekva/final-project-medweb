@@ -22,6 +22,7 @@ public interface AdministratorDao {
     void addDoctorPrimaryInformation(String name, String surname, String ID);
     void registrationFinished(Doctor doctor);
     void setPatientOnId(String id, Patient patient);
+    void putDoctorById(String id, Doctor doctor);
     String returnDoctorHashingPassword(String id);
     String returnPatientHashingPassword(String id);
     String returnAdministratorHashingPassword(String id);
