@@ -18,7 +18,6 @@ public class ChatServlet extends HttpServlet {
             httpServletRequest.setAttribute("recipientID", httpServletRequest.getParameter("doctor"));
             httpServletRequest.setAttribute("user", dao.getPatientById(httpServletRequest.getParameter("patient")));
             httpServletRequest.setAttribute("type", "patient");
-            System.out.println("Patient");
         }
 
         if(httpServletRequest.getParameter("tp").equals("d")){
@@ -26,7 +25,6 @@ public class ChatServlet extends HttpServlet {
             httpServletRequest.setAttribute("recipientID", httpServletRequest.getParameter("patient"));
             httpServletRequest.setAttribute("user", dao.getDoctorById(httpServletRequest.getParameter("doctor")));
             httpServletRequest.setAttribute("type", "doctor");
-            System.out.println("Doctor");
         }
 
         httpServletRequest.getRequestDispatcher("/View/Chat.jsp").forward(httpServletRequest, httpServletResponse);

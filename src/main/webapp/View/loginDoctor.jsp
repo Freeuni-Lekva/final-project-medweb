@@ -45,6 +45,8 @@
     <h2>Your Online Visits:</h2>
 
     <ol>
+
+
         <% AdministratorDao adminDao = (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
             Iterator<Visit> it = adminDao.getVisitsIterator(doctor.getID(),"Online");
             while(it.hasNext()) {

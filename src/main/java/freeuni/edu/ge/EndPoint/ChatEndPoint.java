@@ -22,8 +22,12 @@ public class ChatEndPoint {
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
 
     @OnOpen
-    public void onOpen(final Session session, EndpointConfig endpointConfig) {
+    public void onOpen(final Session session, EndpointConfig endpointConfig) throws EncodeException, IOException {
         peers.add(session);
+        String toJson = "{\"name\": \"Program\", \"message\" : \"Please Type Something to Start Conversation\"}";
+        JsonObject jsonObject = Json.createReader(new StringReader(toJson)).readObject();
+        Chat chatTmp = new Chat(jsonObject);
+        session.getBasicRemote().sendObject(chatTmp);
     }
 
     @OnClose
@@ -35,11 +39,19 @@ public class ChatEndPoint {
     @OnMessage
     public void BroadcastChat(Chat chat, Session session) throws EncodeException, IOException {
         if(session.getUserProperties().get("id") == null){
-            session.getUserProperties().put("id",String.valueOf(chat.getJson().get("senderID")));
+            String senderId = chat.getJson().get("senderID").toString();
+            senderId = senderId.substring(1,senderId.length()-2);
+            session.getUserProperties().put("id",senderId);
         }
 
-        String recipientID = String.valueOf(chat.getJson().get("recipientID"));
+        String recipientID = chat.getJson().get("recipientID").toString();
+        recipientID = recipientID.substring(1,recipientID.length()-1);
 
+        String nameOfImage = chat.getJson().get("image").toString();
+        String parsedNameOfImage = nameOfImage.substring(1,nameOfImage.length()-2);
+        String path = getPath(parsedNameOfImage);
+
+        System.out.println("path");
         //view message to sender
         session.getBasicRemote().sendObject(chat);
 
@@ -58,5 +70,10 @@ public class ChatEndPoint {
             Chat chatTmp = new Chat(jsonObject);
             session.getBasicRemote().sendObject(chatTmp);
         }
+    }
+
+    private String getPath(String parsedNameOfImage) {
+        String head = "resources/ToSendInChat/";
+        return head+parsedNameOfImage;
     }
 }

@@ -10,9 +10,6 @@
 </script>
 <body>
 
-<textarea id = "messagesTextArea" readonly = "readonly" rows = "10" cols = "45"></textarea>
-<br>
-
 <%  String type =(String)request.getAttribute("type");
 String name = "";
 if(type.equals("patient")){
@@ -23,12 +20,34 @@ if(type.equals("patient")){
     name = doctor.getName();
 }
 %>
-<input type = "text" id = "messageText" size = "35"/>
-<input type = "hidden" name = "userName" id = "userName" value = <%=name%> />
-<input type = "hidden" name = "recipient" id = "recipientID" value = <%=(String)request.getAttribute("recipientID")%> />
-<input type = "hidden" name = "sender" id = "senderID" value = <%=(String)request.getAttribute("senderID")%>/>
-<input type = "button" value = "Send" onclick="sendMessage();"/>
-<p id="output"></p>
+    <input type = "hidden" name = "userName" id = "userName" value = <%=name%> />
+    <input type = "hidden" name = "recipient" id = "recipientID" value = <%=(String)request.getAttribute("recipientID")%> />
+    <input type = "hidden" name = "sender" id = "senderID" value = <%=(String)request.getAttribute("senderID")%>/>
+<br>
+
+<%--Try New Chat Scrollbar--%>
+
+<div style="overflow-y: scroll; height: 200px; width:300px; overflow-x: hidden; background: transparent;">
+        Hello World
+    <br>
+        Hello World
+    <br>
+        Hello World
+    <br>
+        Hello World
+    <br>
+    Hello World
+    <br>
+    Hello Worldddddddds dsdefefef asddasfefef qfwfewfef fefefef
+    <br>
+    Hello World
+    <br>
+</div>
+
+    <input type = "text" id = "messageText" size = "35"/>
+    <input type = "button" value = "Send" onclick="sendMessage();"/>
+    <input type="file" accept="image/*" id="file-input" />
+
 
 </body>
 </html>
