@@ -47,11 +47,10 @@ public class ChatEndPoint {
         String recipientID = chat.getJson().get("recipientID").toString();
         recipientID = recipientID.substring(1,recipientID.length()-1);
 
-        String nameOfImage = chat.getJson().get("image").toString();
-        String parsedNameOfImage = nameOfImage.substring(1,nameOfImage.length()-2);
-        String path = getPath(parsedNameOfImage);
+//        String nameOfImage = chat.getJson().get("image").toString();
+//        String parsedNameOfImage = nameOfImage.substring(1,nameOfImage.length()-2);
+//        String path = getPath(parsedNameOfImage);
 
-        System.out.println("path");
         //view message to sender
         session.getBasicRemote().sendObject(chat);
 

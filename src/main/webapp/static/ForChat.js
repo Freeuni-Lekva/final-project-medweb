@@ -32,15 +32,24 @@ function writeToScreen(message) {
     output.innerHTML += message + "<br>";
 }
 
+const messages = document.getElementById("messages");
+
 websocket.onmessage = function processMessage(message){
     const jsonData = JSON.parse(message.data);
+    alert("hereis");
     if(jsonData.message != null) {
-        document.getElementById("messagesTextArea").value += jsonData.name+ ":  " + jsonData.message + "\n";
+        appendMessage(jsonData.name+ ":  " + jsonData.message + "\n");
     }
 }
 
-document.getElementById("file-input").addEventListener("change",(e)=>saveInformation(e.target.files));
+ function appendMessage(message){
 
+    const messages = document.getElementById("messages");
+    let node = document.createElement("DIV");
+    node.innerHTML = message;
+    node.classList.add("message");
+    messages.appendChild(node);
+}
 
     // function saveInformation(fileList){
     //
@@ -61,18 +70,9 @@ document.getElementById("file-input").addEventListener("change",(e)=>saveInforma
     //     }
     // }
 
-
-    function myFunction(){
-        getMessages();
-    }
-
-
-
     //new Chat trying
 
 
-//  const messages = document.getElementById("messages");
-//
 // function getMessages(){
 //     let shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
 //     appendMessage();
@@ -82,11 +82,6 @@ document.getElementById("file-input").addEventListener("change",(e)=>saveInforma
 //     }
 // }
 //
-// function appendMessage(){
-//     const message = document.getElementsByClassName('message')[0];
-//     const newMessage = message.cloneNode(true);
-//     messages.appendChild(newMessage);
-// }
 //
 // function scrollToBottom() {
 //      messages.scrollTop = messages.scrollHeight;
