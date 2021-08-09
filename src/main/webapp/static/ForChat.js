@@ -5,7 +5,10 @@
 
 function sendMessage(){
     let imageName = document.getElementById("file-input").value;
-    let imageNameParsed = imageName.substr(12);
+    var imageNameParsed = imageName.substr(12);
+    if(imageName === ""){
+        imageNameParsed = "No Image";
+    }
 
     const json = JSON.stringify({
         "name": document.getElementById("userName").value,
@@ -34,9 +37,15 @@ function writeToScreen(message) {
 
 const messages = document.getElementById("messages");
 
-websocket.onmessage = function processMessage(message){
+ websocket.onmessage = function processMessage(message){
+    let noImage = "No Image";
     const jsonData = JSON.parse(message.data);
-    alert("hereis");
+
+    if(jsonData.image && jsonData.image !== noImage){
+        let imagePath = returnImagePath(jsonData.image);
+
+    }
+
     if(jsonData.message != null) {
         appendMessage(jsonData.name+ ":  " + jsonData.message + "\n");
     }
@@ -49,6 +58,12 @@ websocket.onmessage = function processMessage(message){
     node.innerHTML = message;
     node.classList.add("message");
     messages.appendChild(node);
+}
+
+function returnImagePath(image){
+     let head = "resources/ToSendInChat/";
+     let fullPath = head + image;
+     return fullPath;
 }
 
     // function saveInformation(fileList){

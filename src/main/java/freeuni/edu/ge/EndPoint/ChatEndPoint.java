@@ -47,10 +47,6 @@ public class ChatEndPoint {
         String recipientID = chat.getJson().get("recipientID").toString();
         recipientID = recipientID.substring(1,recipientID.length()-1);
 
-//        String nameOfImage = chat.getJson().get("image").toString();
-//        String parsedNameOfImage = nameOfImage.substring(1,nameOfImage.length()-2);
-//        String path = getPath(parsedNameOfImage);
-
         //view message to sender
         session.getBasicRemote().sendObject(chat);
 
@@ -71,8 +67,4 @@ public class ChatEndPoint {
         }
     }
 
-    private String getPath(String parsedNameOfImage) {
-        String head = "resources/ToSendInChat/";
-        return head+parsedNameOfImage;
-    }
 }
