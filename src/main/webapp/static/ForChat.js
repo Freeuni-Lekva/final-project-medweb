@@ -42,15 +42,15 @@ function writeToScreen(message) {
      let noImage = "No Image";
     const jsonData = JSON.parse(message.data);
 
-    if(jsonData.image && jsonData.image !== noImage){
-        let imagePath = returnImagePath(jsonData.image);
-
-    }
 
     if(jsonData.message != null) {
         appendMessage(jsonData.name+ ":  " + jsonData.message + "\n");
     }
 
+    if(jsonData.image && jsonData.image !== noImage){
+        let imagePath = returnImagePath(jsonData.image);
+        appendImage(imagePath);
+    }
         messages.scrollTop = messages.scrollHeight;
 }
 
@@ -59,6 +59,15 @@ function writeToScreen(message) {
     let node = document.createElement("DIV");
     node.innerHTML = message;
     node.classList.add("message");
+    messages.appendChild(node);
+}
+
+function appendImage(imagePath){
+    const messages = document.getElementById("messages");
+    let node = document.createElement("IMG");
+    node.src = imagePath;
+    node.width = "100";
+    node.height = "100";
     messages.appendChild(node);
 }
 
