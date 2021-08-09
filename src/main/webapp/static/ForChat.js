@@ -35,10 +35,11 @@ function writeToScreen(message) {
     output.innerHTML += message + "<br>";
 }
 
-const messages = document.getElementById("messages");
 
  websocket.onmessage = function processMessage(message){
-    let noImage = "No Image";
+     const messages = document.getElementById("messages");
+
+     let noImage = "No Image";
     const jsonData = JSON.parse(message.data);
 
     if(jsonData.image && jsonData.image !== noImage){
@@ -49,10 +50,11 @@ const messages = document.getElementById("messages");
     if(jsonData.message != null) {
         appendMessage(jsonData.name+ ":  " + jsonData.message + "\n");
     }
+
+        messages.scrollTop = messages.scrollHeight;
 }
 
  function appendMessage(message){
-
     const messages = document.getElementById("messages");
     let node = document.createElement("DIV");
     node.innerHTML = message;
@@ -66,43 +68,7 @@ function returnImagePath(image){
      return fullPath;
 }
 
-    // function saveInformation(fileList){
-    //
-    //     let file = null;
-    //     alert("shemovida");
-    //     for(let i = 0; i < fileList.length; i++){
-    //         if(fileList[i].type.match(/^image\//)){
-    //             file = fileList[i];
-    //             break;
-    //         }
-    //     }
-    //
-    //     alert("change");
-    //     alert(file.name);
-    //     alert("change2");
-    //     if(file != null){
-    //         document.getElementById("imgSaver").src = URL.createObjectURL(file);
-    //     }
-    // }
-
-    //new Chat trying
 
 
-// function getMessages(){
-//     let shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
-//     appendMessage();
-//
-//     if(!shouldScroll){
-//         scrollToBottom();
-//     }
-// }
-//
-//
-// function scrollToBottom() {
-//      messages.scrollTop = messages.scrollHeight;
-// }
-//
-//  scrollToBottom();
-//
-//
-//  setInterval(getMessages, 100);
+
+

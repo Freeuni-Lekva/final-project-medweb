@@ -28,20 +28,7 @@ if(type.equals("patient")){
 <%--Try New Chat Scrollbar--%>
 
 <div id = "messages" style="overflow-y: scroll; height: 200px; width:300px; overflow-x: hidden; background: transparent;">
-        Hello World
-    <br>
-        Hello World
-    <br>
-        Hello World
-    <br>
-        Hello World
-    <br>
-    Hello World
-    <br>
-    Hello Worldddddddds dsdefefef asddasfefef qfwfewfef fefefef
-    <br>
-    Hello World
-    <br>
+
 </div>
 
     <input type = "text" id = "messageText" size = "35"/>
