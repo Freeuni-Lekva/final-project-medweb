@@ -67,10 +67,12 @@ public class DoctorRegistrationServlet extends HttpServlet {
             if(check(httpServletRequest.getParameter("graduation"))) doc.setYearGraduation(httpServletRequest.getParameter("graduation"));
 
             adminDAO.registrationFinished(doc);
+
             httpServletRequest.setAttribute("message","Registration Successfully Completed!");
             httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationSecondStage.jsp").forward(httpServletRequest, httpServletResponse);
         }
     }
+
 
     private boolean check(Object obj){
         return obj != null;

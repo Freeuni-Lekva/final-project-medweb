@@ -12,6 +12,7 @@ public class ContextListener implements ServletContextListener {
         AdministratorDao adminDAO = new InMemoryAdmnDao();
         PatientDAOInterface patientDao = new PatientDAO();
         DoctorDAO doctorDAO = new DoctorsDAO();
+
         servletContextEvent.getServletContext().setAttribute("PatientsBase", patientDao);
         servletContextEvent.getServletContext().setAttribute("AdministratorDAO",adminDAO);
         servletContextEvent.getServletContext().setAttribute("DoctorsDAO", doctorDAO);
