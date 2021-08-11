@@ -26,7 +26,7 @@ function sendMessage(){
 websocket.onerror = function(evt) { onError(evt) };
 
 function onError(evt) {
-    writeToScreen('<span style="color: #aa0d0d;">ERROR:</span> ' + evt.data);
+    writeToScreen('<span style="color: #c10808;">ERROR:</span> ' + evt.data);
 }
 
 const output = document.getElementById("output");

@@ -12,11 +12,15 @@
 
 <%  String type =(String)request.getAttribute("type");
 String name = "";
+String head = "http://localhost:8080/";
+String urlToForward = "";
 if(type.equals("patient")){
     Patient patient = (Patient)request.getAttribute("user");
+    urlToForward =head +  "loginPT";
     name = patient.getName();
 } else {
     Doctor doctor = (Doctor) request.getAttribute("user");
+    urlToForward =head+ "loginDc";
     name = doctor.getName();
 }
 %>
@@ -34,7 +38,12 @@ if(type.equals("patient")){
     <input type = "text" id = "messageText" size = "35"/>
     <input type = "button" value = "Send" onclick="sendMessage();"/>
     <input type="file" accept="image/*" id="file-input" />
+<br>
 
+<form action =<%=urlToForward%> method="get">
+    <input type = "submit" value="Return To Profile">
+    <input type="hidden" name = "id" value=<%=(String)request.getAttribute("senderID")%>>
+</form>
 
 </body>
 </html>
