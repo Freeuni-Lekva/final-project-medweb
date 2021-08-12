@@ -1,3 +1,36 @@
+
+//patientSqlDAO
+
+CREATE TABLE patients (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    ID_NUMBER VARCHAR(255) UNIQUE,
+    Password VARCHAR(255),
+    City VARCHAR(255),
+    Birth_Date VARCHAR(255),
+    Sex VARCHAR(255),
+    Address VARCHAR(255),
+    Mobile_Number VARCHAR(255),
+    Diseases VARCHAR(255),
+    Alergies VARCHAR(255)
+);
+
+//doctorSqlDAO
+CREATE TABLE doctors (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    ID_NUMBER VARCHAR(255) UNIQUE,
+    Password VARCHAR(255),
+    City VARCHAR(255),
+    Doctor_Specialities VARCHAR(255),
+    Mobile_Number VARCHAR(255),
+    Doctor_Qualifications VARCHAR(255),
+    Experience VARCHAR(255),
+    Graduation VARCHAR(255)
+    );
+
 /*if exist use drop database*/
 
 drop database medweb;
@@ -30,4 +63,5 @@ doctorId varchar(40) not null,
 reason varchar(100),
 
 date varchar(40)
+
 );

@@ -21,7 +21,7 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        AdministratorCommands dao = getAdministratorDao(httpServletRequest);
+        AdministratorDao adminDAO = getAdministratorDao(httpServletRequest);
         String ID = httpServletRequest.getParameter("hidden");
 
             if (httpServletRequest.getParameter("accept"+ID) != null) {

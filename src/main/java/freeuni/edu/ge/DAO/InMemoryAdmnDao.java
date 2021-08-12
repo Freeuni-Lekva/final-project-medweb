@@ -4,7 +4,7 @@ package freeuni.edu.ge.DAO;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Models.*;
 
-import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,8 +13,8 @@ import java.util.List;
 public class InMemoryAdmnDao implements AdministratorDao {
     private List<Request> list;
     private List<Request> canRegister;
-    private List<Doctor> doctors;
     private Map<String, Patient> patients;
+    private Map<String, Doctor> doctors;
     private Administrator administrator = new Administrator();
 
 
@@ -23,7 +23,7 @@ public class InMemoryAdmnDao implements AdministratorDao {
         list.add(new Request("luka","kk","123"));
         list.add(new Request("tka","gg","324"));
         canRegister = new ArrayList<>();
-        doctors = new ArrayList<>();
+        doctors = new HashMap<>();
         patients = new HashMap<>();
         requestAnswer(Boolean.TRUE,"123");
     }
@@ -50,9 +50,13 @@ public class InMemoryAdmnDao implements AdministratorDao {
         patients.put(id, patient);
     }
 
+    public void putDoctorById(String id, Doctor doctor) {
+        doctors.put(id, doctor);
+    }
+
     public Doctor getDoctorById(String ID) {
-        for(Doctor doc : doctors){
-            if(doc.getID().equals(ID)) return doc;
+        for(String doc : doctors.keySet()){
+            if(doc.equals(ID)) return doctors.get(doc);
         }
         return null;
     }
@@ -139,7 +143,8 @@ public class InMemoryAdmnDao implements AdministratorDao {
 
     @Override
     public void addDoctorPrimaryInformation(String name, String surname, String ID) {
-            doctors.add(new Doctor(name, surname, ID));
+        Doctor doctor = new Doctor(name, surname, ID);
+        doctors.put(doctor.getID(), doctor);
     }
 
     @Override

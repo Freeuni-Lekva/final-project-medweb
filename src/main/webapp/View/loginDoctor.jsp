@@ -26,9 +26,17 @@
     <p>
         <label>Name: </label> <%=doctor.getName() %> </br>
         <label>Surname: </label> <%=doctor.getSurname() %> </br>
+        <label>Speciality: </label> <%=doctor.getSpeciality() %> </br>
+        <label>Qualification: </label> <%=doctor.getQualification() %> </br>
+        <label>Experience: </label> <%=doctor.getYearExperience() %> </br>
         <label>City: </label> <%=doctor.getCity() %> </br>
         <label>ID: </label> <%=doctor.getID() %> </br>
         <label>Mobile: </label> <%=doctor.getMobileNumber() %> </br>
+
+        <form action="/loginDc" method="post">
+                    <input type="submit" value = "Log Out" name = "logOut">
+                    <input type="submit" value = "Edit Info" name = "edit">
+                </form>
     </p>
 
 <%--
