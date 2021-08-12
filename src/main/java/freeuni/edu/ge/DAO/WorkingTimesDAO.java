@@ -56,6 +56,8 @@ public class WorkingTimesDAO implements  WorkingTimesDAOInterface{
 
     @Override
     public void reserveDoctor(Doctor doctor, Date date, Time time) {
-        //TODO
+        Map<Date, List<Time>> doctorWorkingTimes = reservedDoctors.get(doctor.getID());
+        List<Time> doctorEachDayTimes = doctorWorkingTimes.get(date);
+        doctorEachDayTimes.remove(doctorEachDayTimes.indexOf(time));
     }
 }
