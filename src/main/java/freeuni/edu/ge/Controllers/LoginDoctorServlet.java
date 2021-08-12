@@ -15,6 +15,7 @@ public class LoginDoctorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        System.out.println("Here is gamovida");
         String id = httpServletRequest.getParameter("id");
         httpServletRequest.setAttribute("id", id);
         httpServletRequest.getRequestDispatcher("View/loginDoctor.jsp").forward(httpServletRequest,httpServletResponse);
