@@ -13,5 +13,5 @@ public interface GeneralCommands {
 
     boolean checkIfItIsAdministrator(String ID, String password, Hash hash);
     boolean checkIfItIsPatient(String ID, String password, Hash hash) throws SQLException;
-    boolean checkIfItIsDoctor(String ID, String password, Hash hash);
+    boolean checkIfItIsDoctor(String ID, String password, Hash hash) throws SQLException;
 }
