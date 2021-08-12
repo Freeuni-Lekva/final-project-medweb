@@ -7,10 +7,11 @@ import java.sql.SQLException;
 
 public class GeneralCommandsSQL implements GeneralCommands{
     private RequestDAO requestDAO;
-    private DoctorDAO doctorDAO;
+    private DoctorSqlDAO doctorDAO;
 
     public GeneralCommandsSQL(BasicDataSource dataSource){
         requestDAO = new RequestDAO(dataSource);
+        doctorDAO = new DoctorSqlDAO(dataSource);
     }
 
     @Override

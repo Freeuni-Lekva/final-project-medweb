@@ -27,9 +27,9 @@ public class DoctorRegistrationServlet extends HttpServlet {
             String ID = httpServletRequest.getParameter("ID");
 
             if (adminDAO.canDoctorRegister(name, surname, ID)) {
-                if(adminDAO.getDoctorById(ID) == null){
-                    adminDAO.addDoctorPrimaryInformation(name,surname,ID);
-                }
+//                if(adminDAO.getDoctorById(ID) == null){
+//                    adminDAO.addDoctorPrimaryInformation(name,surname,ID);
+//                }
                 httpServletRequest.setAttribute("doctor",adminDAO.getDoctorById(ID));
                 httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationSecondStage.jsp").forward(httpServletRequest, httpServletResponse);
             } else {
@@ -41,7 +41,9 @@ public class DoctorRegistrationServlet extends HttpServlet {
         }
 
         if(httpServletRequest.getParameter("register") != null){
-            Doctor doc = adminDAO.getDoctorById(httpServletRequest.getParameter("ID"));
+//            Doctor doc = adminDAO.getDoctorById(httpServletRequest.getParameter("ID"));
+            Doctor doc = new Doctor(httpServletRequest.getParameter("username"),httpServletRequest.getParameter("surname"),httpServletRequest.getParameter("ID"));
+
             doc.setPassword(httpServletRequest.getParameter("pass"));
             String docSpeciality = httpServletRequest.getParameter("speciality");
             for(Doctor.DoctorSpecialities speciality : Doctor.DoctorSpecialities.values()) {
