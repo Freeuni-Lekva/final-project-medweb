@@ -6,7 +6,7 @@ import java.sql.Time;
 import java.util.Date;
 
 public interface WorkingTimesDAOInterface {
-    public void addDoctor(Doctor doctor);
+    public  void addDoctor(Doctor doctor);
     public void updateBase();
     public void reserveDoctor(Doctor doctor, Date date, Time time);
 
