@@ -25,21 +25,21 @@
 
     <h2>Personal Information</h2>
     <p>
-        <label>Name: </label> <%=patient.getName() %> </br>
+        <label>Name: </label> <%=patient.getName() %> <br>
 
-        <label>Surname: </label> <%=patient.getSurname() %> </br>
+        <label>Surname: </label> <%=patient.getSurname() %> <br>
 
-        <label>Date of birth: </label> <%=patient.getDateOfBirth() %> </br>
+        <label>Date of birth: </label> <%=patient.getDateOfBirth() %> <br>
 
-        <label>sex: </label> <%=patient.getSex() %> </br>
+        <label>sex: </label> <%=patient.getSex() %> <br>
 
-        <label>City: </label> <%=patient.getCity() %> </br>
+        <label>City: </label> <%=patient.getCity() %> <br>
 
-        <label>ID: </label> <%=patient.getID() %> </br>
+        <label>ID: </label> <%=patient.getID() %> <br>
 
-        <label>Address: </label> <%=patient.getAddress() %> </br>
+        <label>Address: </label> <%=patient.getAddress() %> <br>
 
-        <label>Mobile: </label> <%=patient.getMobileNumber() %> </br>
+        <label>Mobile: </label> <%=patient.getMobileNumber() %> <br>
 
         <form action="/loginPT" method="post">
             <input type="submit" value = "Update Personal Information" name = "update"><br>
@@ -71,11 +71,11 @@
 
     <ol>
         <% AdministratorDao adminDao = (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
-            Iterator<Visit> it = adminDao.getVisitsIterator("6000","Online");
+            Iterator<Visit> it = adminDao.getVisitsIterator(patient.getID(),"Online");
             while(it.hasNext()) {
             Visit visit = it.next();
         %>
-        <form action = "/chat" method = post>
+        <form action = "/chat?tp=p" method = post>
             <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >

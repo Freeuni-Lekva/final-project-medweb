@@ -69,17 +69,25 @@ public class InMemoryAdmnDao implements AdministratorDao {
 
     @Override
     public Iterator<Visit> getVisitsIterator(String ID,String type) {
-        List<Visit> visits = new ArrayList<>();
-        Visit visit1 = new Visit("6000","6001","tavis tkivili","05/08/2021","Online");
-        visit1.setDoctorName("Michael");
-        Visit visit2 = new Visit("6000","6002","tavis tkivili","06/08/2021","Online");
-        visit2.setDoctorName("Sam");
-        Visit visit3 = new Visit("6000","6003","xelis tkivili","07/08/2021","Online");
-        visit3.setDoctorName("Ann");
-        visits.add(visit1);
-        visits.add(visit2);
-        visits.add(visit3);
-        return visits.iterator();
+        if(ID.equals("6000")) {
+            List<Visit> visits = new ArrayList<>();
+            Visit visit1 = new Visit("6000", "6001", "tavis tkivili", "05/08/2021", "Online");
+            visit1.setDoctorName("Michael");
+            Visit visit2 = new Visit("6000", "6002", "tavis tkivili", "06/08/2021", "Online");
+            visit2.setDoctorName("Sam");
+            Visit visit3 = new Visit("6000", "6003", "xelis tkivili", "07/08/2021", "Online");
+            visit3.setDoctorName("Ann");
+            visits.add(visit1);
+            visits.add(visit2);
+            visits.add(visit3);
+            return visits.iterator();
+        } else {
+            List<Visit> visits = new ArrayList<>();
+            Visit visit2 = new Visit("6000", "6002", "tavis tkivili", "06/08/2021", "Online");
+            visit2.setDoctorName("Sam");
+            visits.add(visit2);
+            return visits.iterator();
+        }
     }
 
     @Override
