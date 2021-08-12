@@ -19,23 +19,19 @@ public class GeneralCommandsSQL implements GeneralCommands{
         return requestDAO.canDoctorRegister(name,surname,ID);
     }
 
-    @Override
-    public void addDoctorPrimaryInformation(String name, String surname, String ID) {
 
+    @Override
+    public Doctor getDoctorById(String id) throws SQLException {
+        return doctorDAO.getDoctorByIdNumber(id);
     }
 
     @Override
-    public Doctor getDoctorById(String id) {
-        return null;
+    public void addNewDoctorRegistrationRequest(String name, String surname, String ID) throws SQLException {
+        requestDAO.addNewDoctorRegistrationRequest(name,surname,ID);
     }
 
     @Override
-    public void addNewDoctorRegistrationRequest(String name, String surname, String ID) {
-
-    }
-
-    @Override
-    public void registrationFinished(Doctor doctor) {
-
+    public void registrationFinished(Doctor doctor) throws SQLException {
+        doctorDAO.addDoctor(doctor);
     }
 }
