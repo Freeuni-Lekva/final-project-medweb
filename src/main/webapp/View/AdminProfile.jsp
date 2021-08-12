@@ -2,6 +2,7 @@
 <%@ page import="freeuni.edu.ge.Models.Request" %>
 <%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
 <%@ page import="freeuni.edu.ge.DAO.AdministratorCommands" %>
+<%@ page import="freeuni.edu.ge.DAO.AdminCommandsSQL" %>
 <html>
 <head>
 
@@ -14,7 +15,7 @@
 
 <%
     HttpSession adminSession = request.getSession();
-    AdministratorCommands dao = (AdministratorCommands)adminSession.getAttribute("DAO");
+    AdministratorCommands dao = (AdminCommandsSQL) adminSession.getAttribute("DAO");
     Iterator<Request> it = dao.getIterator();
     while(it.hasNext()) {
         Request next = it.next();

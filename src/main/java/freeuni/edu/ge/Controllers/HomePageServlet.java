@@ -1,9 +1,6 @@
 package freeuni.edu.ge.Controllers;
 
-import freeuni.edu.ge.DAO.AdminCommandsSQL;
-import freeuni.edu.ge.DAO.AdministratorCommands;
-import freeuni.edu.ge.DAO.AdministratorDao;
-import freeuni.edu.ge.DAO.GeneralCommands;
+import freeuni.edu.ge.DAO.*;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Helpers.HashUsingSHA1;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -20,8 +17,10 @@ import java.sql.SQLException;
 public class HomePageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        setGeneralDaoOnSession(httpServletRequest);
         httpServletRequest.getRequestDispatcher("View/homePage.jsp").forward(httpServletRequest,httpServletResponse);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
@@ -65,6 +64,15 @@ public class HomePageServlet extends HttpServlet {
 
 
     private GeneralCommands getGeneralDao(HttpServletRequest request){
-        return (GeneralCommands) request.getSession().getAttribute("DAO");
+        GeneralCommands dao = (GeneralCommandsSQL) request.getSession().getAttribute("DAO");
+        return dao;
+    }
+
+
+    private void setGeneralDaoOnSession(HttpServletRequest httpServletRequest) {
+        HttpSession session = httpServletRequest.getSession();
+        BasicDataSource dataSource = (BasicDataSource) httpServletRequest.getServletContext().getAttribute("dataSource");
+        GeneralCommands dao = new GeneralCommandsSQL(dataSource);
+        session.setAttribute("DAO",dao);
     }
 }

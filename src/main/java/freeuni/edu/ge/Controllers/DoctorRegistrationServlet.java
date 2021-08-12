@@ -2,6 +2,7 @@ package freeuni.edu.ge.Controllers;
 
 
 import freeuni.edu.ge.DAO.GeneralCommands;
+import freeuni.edu.ge.DAO.GeneralCommandsSQL;
 import freeuni.edu.ge.Models.Doctor;
 
 import javax.servlet.ServletException;
@@ -33,7 +34,9 @@ public class DoctorRegistrationServlet extends HttpServlet {
     //                if(adminDAO.getDoctorById(ID) == null){
     //                    adminDAO.addDoctorPrimaryInformation(name,surname,ID);
     //                }
-                    httpServletRequest.setAttribute("doctor",dao.getDoctorById(ID));
+
+                    Doctor doc = new Doctor(name,surname,ID);
+                    httpServletRequest.setAttribute("doctor",doc);
                     httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationSecondStage.jsp").forward(httpServletRequest, httpServletResponse);
                 } else {
                     dao.addNewDoctorRegistrationRequest(name, surname, ID);
@@ -91,6 +94,7 @@ public class DoctorRegistrationServlet extends HttpServlet {
     }
 
     private GeneralCommands getAdministratorDao(HttpServletRequest request){
-        return (GeneralCommands) request.getSession().getAttribute("DAO");
+        GeneralCommands dao = (GeneralCommandsSQL)request.getSession().getAttribute("DAO");
+        return dao;
     }
 }
