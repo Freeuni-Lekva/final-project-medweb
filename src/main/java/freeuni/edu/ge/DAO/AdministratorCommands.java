@@ -8,6 +8,4 @@ import java.util.Iterator;
 public interface AdministratorCommands {
     Iterator<Request> getIterator() throws SQLException;
     void requestAnswer(boolean answer, String ID) throws SQLException;
-    void addDoctorToCanRegisterTable(Request request) throws SQLException;
-    void addDoctorToCanRegisterTable(String name, String surname, String ID) throws SQLException;
 }

@@ -24,14 +24,4 @@ public class AdminCommandsSQL implements AdministratorCommands{
     public void requestAnswer(boolean answer, String ID) throws SQLException {
         requestDAO.requestAnswer(answer,ID);
     }
-
-    @Override
-    public void addDoctorToCanRegisterTable(Request request) throws SQLException {
-        requestDAO.addDoctorToCanRegisterTable(request);
-    }
-
-    @Override
-    public void addDoctorToCanRegisterTable(String name, String surname, String ID) throws SQLException {
-        requestDAO.addDoctorToCanRegisterTable(name,surname,ID);
-    }
 }
