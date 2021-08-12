@@ -152,4 +152,17 @@ public class DoctorSqlDAO {
 
         return doctor;
     }
+
+    public String getPass(String id) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("select Password from doctors where ID_NUMBER = ?;");
+        statement.setString(1, id);
+        ResultSet result = statement.executeQuery();
+        while(result.next()){
+            return result.getString("Password");
+        }
+
+        return "";
+    }
 }
