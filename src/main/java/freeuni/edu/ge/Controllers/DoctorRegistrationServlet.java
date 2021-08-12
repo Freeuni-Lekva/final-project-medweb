@@ -1,6 +1,7 @@
 package freeuni.edu.ge.Controllers;
 
 import freeuni.edu.ge.DAO.AdministratorDao;
+import freeuni.edu.ge.DAO.GeneralCommands;
 import freeuni.edu.ge.Models.Doctor;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class DoctorRegistrationServlet extends HttpServlet {
 
@@ -18,7 +20,7 @@ public class DoctorRegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        AdministratorDao adminDAO = getAdministratorDao(httpServletRequest);
+        GeneralCommands dao = getAdministratorDao(httpServletRequest);
         if (httpServletRequest.getParameter("submit") != null) {
 
 
@@ -26,16 +28,20 @@ public class DoctorRegistrationServlet extends HttpServlet {
             String surname = httpServletRequest.getParameter("surname");
             String ID = httpServletRequest.getParameter("ID");
 
-            if (adminDAO.canDoctorRegister(name, surname, ID)) {
-//                if(adminDAO.getDoctorById(ID) == null){
-//                    adminDAO.addDoctorPrimaryInformation(name,surname,ID);
-//                }
-                httpServletRequest.setAttribute("doctor",adminDAO.getDoctorById(ID));
-                httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationSecondStage.jsp").forward(httpServletRequest, httpServletResponse);
-            } else {
-                adminDAO.addNewDoctorRegistrationRequest(name, surname, ID);
-                httpServletRequest.setAttribute("message", "Request Was Sent To Administrator, Please Return After Some Time");
-                httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationFirstStage.jsp").forward(httpServletRequest, httpServletResponse);
+            try {
+                if (dao.canDoctorRegister(name, surname, ID)) {
+    //                if(adminDAO.getDoctorById(ID) == null){
+    //                    adminDAO.addDoctorPrimaryInformation(name,surname,ID);
+    //                }
+                    httpServletRequest.setAttribute("doctor",dao.getDoctorById(ID));
+                    httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationSecondStage.jsp").forward(httpServletRequest, httpServletResponse);
+                } else {
+                    dao.addNewDoctorRegistrationRequest(name, surname, ID);
+                    httpServletRequest.setAttribute("message", "Request Was Sent To Administrator, Please Return After Some Time");
+                    httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationFirstStage.jsp").forward(httpServletRequest, httpServletResponse);
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
 
         }
@@ -68,7 +74,11 @@ public class DoctorRegistrationServlet extends HttpServlet {
             if(check(httpServletRequest.getParameter("experience"))) doc.setYearExperience(httpServletRequest.getParameter("experience"));
             if(check(httpServletRequest.getParameter("graduation"))) doc.setYearGraduation(httpServletRequest.getParameter("graduation"));
 
-            adminDAO.registrationFinished(doc);
+            try {
+                dao.registrationFinished(doc);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
 
             httpServletRequest.setAttribute("message","Registration Successfully Completed!");
             httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationSecondStage.jsp").forward(httpServletRequest, httpServletResponse);
@@ -80,7 +90,7 @@ public class DoctorRegistrationServlet extends HttpServlet {
         return obj != null;
     }
 
-    private AdministratorDao getAdministratorDao(HttpServletRequest request){
-        return (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
+    private GeneralCommands getAdministratorDao(HttpServletRequest request){
+        return (GeneralCommands) request.getSession().getAttribute("DAO");
     }
 }
