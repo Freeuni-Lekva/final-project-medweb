@@ -11,14 +11,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class VisitsDAO implements VisitDAO{
+public class VisitsDAO {
     private BasicDataSource dataSource;
 
     public VisitsDAO(BasicDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    @Override
     public Iterator<Visit> getVisitsByPatient(String patientId) throws SQLException {
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement("Select * From visits where patientId = ?");
@@ -38,7 +37,6 @@ public class VisitsDAO implements VisitDAO{
         return result.iterator();
     }
 
-    @Override
     public int addVisit(Visit visit) throws SQLException {
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement("INSERT INTO visits VALUES (?, ?, ?, ?)");
@@ -49,7 +47,6 @@ public class VisitsDAO implements VisitDAO{
         return statement.executeUpdate();
     }
 
-    @Override
     public Visit getVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM visits WHERE patientId = ? AND doctorId = ?");
@@ -61,12 +58,16 @@ public class VisitsDAO implements VisitDAO{
         return result.next();
     }
 
-    @Override
     public void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement("DELETE FROM visits WHERE patientId = ? AND doctorId = ?");
         statement.setString(1, patientId);
         statement.setString(2, doctorId);
         statement.executeUpdate();
+    }
+
+    //needs implementation
+    public Iterator<Visit> getDoctorVisitsIterator(String ID, String type){
+        return null;
     }
 }

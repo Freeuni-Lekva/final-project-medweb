@@ -1,21 +1,11 @@
-import freeuni.edu.ge.DAO.RequestDAO;
-import freeuni.edu.ge.DAO.VisitDAO;
 import freeuni.edu.ge.DAO.VisitsDAO;
-import freeuni.edu.ge.Models.Request;
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-
-import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 
@@ -32,7 +22,7 @@ public class TestVisitsDAO {
 
     @Test
     public void testAddingVisits() throws SQLException {
-        VisitDAO visitDAO = new VisitsDAO(dataSource);
+        VisitsDAO visitDAO = new VisitsDAO(dataSource);
         Visit visit = new Visit("11111", "22222", "kbilis tkivili", "26 maisi");
         int result = visitDAO.addVisit(visit);
         assertEquals(1, result);
@@ -40,7 +30,7 @@ public class TestVisitsDAO {
 
     @Test
     public void testGetVisits() throws SQLException {
-        VisitDAO visitDAO = new VisitsDAO(dataSource);
+        VisitsDAO visitDAO = new VisitsDAO(dataSource);
         Visit visit = new Visit("11111", "22222", "kbilis tkivili", "26 maisi");
         visitDAO.addVisit(visit);
 
@@ -50,7 +40,7 @@ public class TestVisitsDAO {
 
     @Test
     public void testSearchVisits() throws SQLException {
-        VisitDAO visitDAO = new VisitsDAO(dataSource);
+        VisitsDAO visitDAO = new VisitsDAO(dataSource);
         visitDAO.addVisit(new Visit("11111", "22222", "kbilis tkivili", "26 maisi"));
         visitDAO.addVisit(new Visit("5555", "6666", "fexi", "dekemeberi"));
         visitDAO.addVisit(new Visit("1212", "34343", "muceli", "12 marti"));
@@ -64,7 +54,7 @@ public class TestVisitsDAO {
 
     @Test
     public void testDeleteVisit() throws SQLException {
-        VisitDAO visitDAO = new VisitsDAO(dataSource);
+        VisitsDAO visitDAO = new VisitsDAO(dataSource);
         visitDAO.addVisit(new Visit("11111", "22222", "kbilis tkivili", "26 maisi"));
         visitDAO.addVisit(new Visit("5555", "6666", "fexi", "dekemeberi"));
 
