@@ -1,6 +1,7 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="freeuni.edu.ge.Models.Request" %>
 <%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.AdministratorCommands" %>
 <html>
 <head>
 
@@ -12,7 +13,8 @@
 <h4>See Doctor Registration Requests:</h4>
 
 <%
-    AdministratorDao dao = (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
+    HttpSession adminSession = request.getSession();
+    AdministratorCommands dao = (AdministratorCommands)adminSession.getAttribute("DAO");
     Iterator<Request> it = dao.getIterator();
     while(it.hasNext()) {
         Request next = it.next();
