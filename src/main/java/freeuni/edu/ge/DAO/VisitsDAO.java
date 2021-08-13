@@ -66,8 +66,15 @@ public class VisitsDAO {
         statement.executeUpdate();
     }
 
-    //needs implementation
-    public Iterator<Visit> getDoctorVisitsIterator(String ID, String type){
-        return null;
+    //not full implementation, needs visits type change.
+    public Iterator<Visit> getDoctorVisitsIterator(String ID, String type) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM visits WHERE doctorId = ?");
+
+        statement.setString(1,ID);
+        ResultSet resultSet = statement.executeQuery();
+
+        return returnIterator(resultSet);
     }
 }

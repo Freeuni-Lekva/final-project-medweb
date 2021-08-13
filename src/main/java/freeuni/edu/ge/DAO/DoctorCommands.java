@@ -8,6 +8,6 @@ import java.util.Iterator;
 
 public interface DoctorCommands {
     Doctor getDoctorById(String id) throws SQLException;
-    Iterator<Visit> getDoctorVisitsIterator(String ID, String type);
+    Iterator<Visit> getDoctorVisitsIterator(String ID, String type) throws SQLException;
     void updateInfo(Doctor doctor) throws SQLException;
 }

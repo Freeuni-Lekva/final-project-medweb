@@ -22,7 +22,7 @@ public class DoctorCommandsSQL implements DoctorCommands{
     }
 
     @Override
-    public Iterator<Visit> getDoctorVisitsIterator(String ID, String type) {
+    public Iterator<Visit> getDoctorVisitsIterator(String ID, String type) throws SQLException {
         return visitsDAO.getDoctorVisitsIterator(ID,type);
     }
 
