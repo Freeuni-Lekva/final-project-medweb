@@ -65,3 +65,24 @@ reason varchar(100),
 date varchar(40)
 
 );
+
+
+
+    Working Time SQL.
+
+create database medweb;
+use medweb;
+
+CREATE table DoctorWorkTimes(
+	ID varchar(40),
+    Dates Date not null,
+    Ten boolean,
+    Eleven boolean,
+    Twelve boolean,
+    Thirteen boolean,
+    Fourteen boolean,
+    Fifteen boolean,
+    Sixteen boolean,
+    Seventeen boolean
+);
+
