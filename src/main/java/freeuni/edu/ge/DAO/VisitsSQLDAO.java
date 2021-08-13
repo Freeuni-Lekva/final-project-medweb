@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class VisitsDAO {
+public class VisitsSQLDAO {
     private BasicDataSource dataSource;
 
-    public VisitsDAO(BasicDataSource dataSource) {
+    public VisitsSQLDAO(BasicDataSource dataSource) {
         this.dataSource = dataSource;
     }
 

@@ -9,11 +9,11 @@ import java.util.Iterator;
 
 public class DoctorCommandsSQL implements DoctorCommands{
     private DoctorSqlDAO doctorDAO;
-    private VisitsDAO visitsDAO;
+    private VisitsSQLDAO visitsDAO;
 
     public DoctorCommandsSQL(BasicDataSource dataSource){
         doctorDAO = new DoctorSqlDAO(dataSource);
-        visitsDAO = new VisitsDAO(dataSource);
+        visitsDAO = new VisitsSQLDAO(dataSource);
     }
 
     @Override
