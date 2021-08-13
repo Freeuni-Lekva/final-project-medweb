@@ -1,5 +1,11 @@
 
-//patientSqlDAO
+/*if exist use drop database*/
+
+drop database medweb;
+create database medweb;
+use medweb;
+
+
 
 CREATE TABLE patients (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -16,7 +22,12 @@ CREATE TABLE patients (
     Alergies VARCHAR(255)
 );
 
-//doctorSqlDAO
+INSERT INTO patients (FirstName, LastName, ID_NUMBER, Password, City, Birth_Date, Sex, Address, Mobile_Number, Diseases, Alergies)
+Values ("Joey","Cox","92277337523","pass12!","Tbilisi","1990","Man","Tsereteli Avenue","555123456","Bronxiti","Noshpa, Analgini"),
+("Johnny","Hicks","22558334440","abcd99efg","Kutaisi","1999","Man","Chavchavadze Avenue","555002340","NO","Mtveri"),
+("Danna","Peterson","71381483501","dannaPet1","Barumi","1995","Woman","Vazha-Pshavela Street","599461200","Diabeti","NO");
+
+
 CREATE TABLE doctors (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     FirstName VARCHAR(255) NOT NULL,
@@ -31,37 +42,36 @@ CREATE TABLE doctors (
     Graduation VARCHAR(255)
     );
 
-/*if exist use drop database*/
-
-drop database medweb;
-
-
-
-create database medweb;
-
-use medweb;
-
+INSERT INTO doctors (FirstName, LastName, ID_Number, Password, City, Doctor_Specialities, Mobile_Number, Doctor_Qualifications, Experience, Graduation) values
+("Carolina","Watkins","53747946213","CarWat!1","Tbilisi","Dermatology","555676712","Doctor_Of_Medicine","10","2009"),
+("Katelynn","Jenkins","49316498372","hardPP1","Tbilisi","Surgery","555562443","Master_Of_Medicine","25","1990"),
+("Gerald","Bryant","47073781326","gerB1Bryant","Kutaisi","Diagnostic_Radiology","567090912","Doctor_Of_Medicine","15","2000");
 
 
 CREATE table requests(
-	
 name varchar(40),
-    
 surname varchar(40),
-	
 ID varchar(40)
-
-
 );
 
+/*insert some users in table*/
+INSERT INTO requests (name, surname, ID) Values ("Aidan","Butler", "62013272244"),
+("Teresa", "Butler", "50073832440"),("Harold","Simmons","93085955571"), ("Ashley","FloreS","69875786301");
+
+
+/*if exist use drop table*/
+drop table canregister;
+CREATE table canregister(
+	name varchar(40),
+    surname varchar(40),
+	ID varchar(40)
+);
+
+
 CREATE table visits(
-
 patientId varchar(40) not null,
-
 doctorId varchar(40) not null,
-
 reason varchar(100),
-
-date varchar(40)
-
+date varchar(40),
+type varchar(40)
 );
