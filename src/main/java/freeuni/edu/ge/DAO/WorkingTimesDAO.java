@@ -6,14 +6,15 @@ import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class WorkingTimesDAO implements  WorkingTimesDAOInterface{
+public class WorkingTimesDAO {
+        //implements  WorkingTimesDAOInterface{
     private static Map<String, Map<Date, List<Time>>> reservedDoctors = new HashMap<>();
     private static Map<String, List<Date>> eachDoctorWorkingDates = new HashMap<>();
 
     private static final int NEXT_DAYS = 8;
     private static final int WORK_START_TIME = 10;
 
-    @Override
+//    @Override
     public void addDoctor(Doctor doctor) {
         LocalDateTime localDateTime = LocalDateTime.now();
         Date now = new Date(localDateTime.getYear(), localDateTime.getMonthValue()-1, localDateTime.getDayOfMonth());
@@ -54,7 +55,7 @@ public class WorkingTimesDAO implements  WorkingTimesDAOInterface{
         return dayGraphic;
     }
 
-    @Override
+//    @Override
     public void updateBase() {
         updateWorkingTimesMap();
         updateReservedDoctors();
@@ -151,7 +152,7 @@ public class WorkingTimesDAO implements  WorkingTimesDAOInterface{
         }
     }
 
-    @Override
+//    @Override
     public void reserveDoctor(Doctor doctor, Date date, Time time) {
         Map<Date, List<Time>> doctorWorkingTimes = reservedDoctors.get(doctor.getID());
         List<Time> doctorEachDayTimes = doctorWorkingTimes.get(date);
