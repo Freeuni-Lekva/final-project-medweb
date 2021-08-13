@@ -23,9 +23,9 @@ CREATE TABLE patients (
 );
 
 INSERT INTO patients (FirstName, LastName, ID_NUMBER, Password, City, Birth_Date, Sex, Address, Mobile_Number, Diseases, Alergies)
-Values ("Joey","Cox","92277337523","pass12!","Tbilisi","1990","Man","Tsereteli Avenue","555123456","Bronxiti","Noshpa, Analgini"),
-("Johnny","Hicks","22558334440","abcd99efg","Kutaisi","1999","Man","Chavchavadze Avenue","555002340","NO","Mtveri"),
-("Danna","Peterson","71381483501","dannaPet1","Barumi","1995","Woman","Vazha-Pshavela Street","599461200","Diabeti","NO");
+Values ("Joey","Cox","92277337523","5948656b4fa912aa083450661215ca3fe101ba6d","Tbilisi","1990","Man","Tsereteli Avenue","555123456","Bronxiti","Noshpa, Analgini"),
+("Johnny","Hicks","22558334440","3afc06b8cc6b77845e5df1eacdf21eea20a6fcd9","Kutaisi","1999","Man","Chavchavadze Avenue","555002340","NO","Mtveri"),
+("Danna","Peterson","71381483501","1a2f00e6aa3b7012238cdce4595a43a317a8e63f","Batumi","1995","Woman","Vazha-Pshavela Street","599461200","Diabeti","NO");
 
 
 CREATE TABLE doctors (
@@ -43,9 +43,9 @@ CREATE TABLE doctors (
     );
 
 INSERT INTO doctors (FirstName, LastName, ID_Number, Password, City, Doctor_Specialities, Mobile_Number, Doctor_Qualifications, Experience, Graduation) values
-("Carolina","Watkins","53747946213","CarWat!1","Tbilisi","Dermatology","555676712","Doctor_Of_Medicine","10","2009"),
-("Katelynn","Jenkins","49316498372","hardPP1","Tbilisi","Surgery","555562443","Master_Of_Medicine","25","1990"),
-("Gerald","Bryant","47073781326","gerB1Bryant","Kutaisi","Diagnostic_Radiology","567090912","Doctor_Of_Medicine","15","2000");
+("Carolina","Watkins","53747946213","6b703c441647c3756d2bea96bf13630fca52df02","Tbilisi","Dermatology","555676712","Doctor_Of_Medicine","10","2009"),
+("Katelynn","Jenkins","49316498372","8bbe158fbf9af4f97b9e7093c46bda059892cd22","Tbilisi","Surgery","555562443","Master_Of_Medicine","25","1990"),
+("Gerald","Bryant","47073781326","56655c2873e0dede162c7f7dcbd6ece9bdec6e2b","Kutaisi","Diagnostic_Radiology","567090912","Doctor_Of_Medicine","15","2000");
 
 
 CREATE table requests(
@@ -75,3 +75,7 @@ reason varchar(100),
 date varchar(40),
 type varchar(40)
 );
+
+INSERT INTO visits (patientId, doctorId, reason, date, type) Values
+("92277337523","53747946213","Gamonayari","2021-08-18","Online"),
+("92277337523","49316498372","Gamonazardi","2021-08-17","Physical");
