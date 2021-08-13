@@ -35,22 +35,41 @@ public class PatientRegistrationServlet extends HttpServlet {
     }
 
     private void refilledExistFields(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        Patient patient = makePatientFromInformation(httpServletRequest,false);
-        httpServletRequest.setAttribute("fName", patient.getName());
-        httpServletRequest.setAttribute("lName", patient.getSurname());
-        httpServletRequest.setAttribute("ID", patient.getID());
-        if(patient.getPassword() != null) {
-            httpServletRequest.setAttribute("password",patient.getPassword());
-        } else {
-            httpServletRequest.setAttribute("password", "");
+ //       Patient patient = makePatientFromInformation(httpServletRequest,false);
+        httpServletRequest.setAttribute("fName", httpServletRequest.getParameter("fName"));
+        httpServletRequest.setAttribute("lName", httpServletRequest.getParameter("lName"));
+        httpServletRequest.setAttribute("ID", httpServletRequest.getParameter("ID"));
+        httpServletRequest.setAttribute("password", httpServletRequest.getParameter("password"));
+        httpServletRequest.setAttribute("birthday", httpServletRequest.getParameter("birthday"));
+        httpServletRequest.setAttribute("city", httpServletRequest.getParameter("city"));
+        httpServletRequest.setAttribute("sex", httpServletRequest.getParameter("sex"));
+        httpServletRequest.setAttribute("address", httpServletRequest.getParameter("address"));
+        httpServletRequest.setAttribute("mNumber", httpServletRequest.getParameter("mNumber"));
+        httpServletRequest.setAttribute("diseases", httpServletRequest.getParameter("diseases"));
+        httpServletRequest.setAttribute("alergies", httpServletRequest.getParameter("alergies"));
+    }
+
+    private Patient makePatientFromInformation(HttpServletRequest httpServletRequest, boolean tmp) {
+        Patient patient = new Patient();
+        patient.setName(httpServletRequest.getParameter("fName"));
+        patient.setSurname(httpServletRequest.getParameter("lName"));
+        patient.setID(httpServletRequest.getParameter("ID"));
+        patient.setPassword(httpServletRequest.getParameter("password"));
+        patient.setDateOfBirth(httpServletRequest.getParameter("birthday"));
+        patient.setCity(httpServletRequest.getParameter("city"));
+        patient.setSex(httpServletRequest.getParameter("sex"));
+        patient.setAddress(httpServletRequest.getParameter("address"));
+        patient.setMobileNumber(httpServletRequest.getParameter("mNumber"));
+        patient.setDiseases(httpServletRequest.getParameter("diseases"));
+        patient.setAlergies(httpServletRequest.getParameter("alergies"));
+        Map<String, String> family = new HashMap<>();
+        if (tmp) {
+            String fatherID = httpServletRequest.getParameter("fID");
+            String motherID = httpServletRequest.getParameter("mID");
+            family.put("father", fatherID);
+            family.put("mother", motherID);
         }
-        httpServletRequest.setAttribute("birthday", patient.getDateOfBirth());
-        httpServletRequest.setAttribute("city", patient.getCity());
-        httpServletRequest.setAttribute("sex", patient.getSex());
-        httpServletRequest.setAttribute("address", patient.getAddress());
-        httpServletRequest.setAttribute("mNumber", patient.getMobileNumber());
-        httpServletRequest.setAttribute("diseases", patient.getDiseases());
-        httpServletRequest.setAttribute("alergies", patient.getAlergies());
+        return patient;
     }
 
     private void checkFilledFields(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, boolean tmp) throws ServletException, IOException {
@@ -94,30 +113,6 @@ public class PatientRegistrationServlet extends HttpServlet {
             adminDao.setPatientOnId(id,patient);
             httpServletRequest.getRequestDispatcher("/View/SuccessfulRegistered.jsp").forward(httpServletRequest, httpServletResponse);
         }
-    }
-
-
-    private Patient makePatientFromInformation(HttpServletRequest httpServletRequest, boolean tmp) {
-        Patient patient = new Patient();
-        patient.setName(httpServletRequest.getParameter("fName"));
-        patient.setSurname(httpServletRequest.getParameter("lName"));
-        patient.setID(httpServletRequest.getParameter("ID"));
-        patient.setPassword(httpServletRequest.getParameter("password"));
-        patient.setDateOfBirth(httpServletRequest.getParameter("birthday"));
-        patient.setCity(httpServletRequest.getParameter("city"));
-        patient.setSex(httpServletRequest.getParameter("sex"));
-        patient.setAddress(httpServletRequest.getParameter("address"));
-        patient.setMobileNumber(httpServletRequest.getParameter("mNumber"));
-        patient.setDiseases(httpServletRequest.getParameter("diseases"));
-        patient.setAlergies(httpServletRequest.getParameter("alergies"));
-        Map<String, String> family = new HashMap<>();
-        if (tmp) {
-            String fatherID = httpServletRequest.getParameter("fID");
-            String motherID = httpServletRequest.getParameter("mID");
-            family.put("father", fatherID);
-            family.put("mother", motherID);
-        }
-        return patient;
     }
 
     private PatientDAOInterface getDAO(HttpServletRequest httpServletRequest) {

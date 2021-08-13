@@ -1,6 +1,7 @@
 package freeuni.edu.ge.Controllers;
 
 import freeuni.edu.ge.DAO.AdministratorDao;
+import freeuni.edu.ge.DAO.WorkingTimesDAOInterface;
 import freeuni.edu.ge.Models.Doctor;
 
 import javax.servlet.ServletException;
@@ -67,10 +68,12 @@ public class DoctorRegistrationServlet extends HttpServlet {
             if(check(httpServletRequest.getParameter("graduation"))) doc.setYearGraduation(httpServletRequest.getParameter("graduation"));
 
             adminDAO.registrationFinished(doc);
+
             httpServletRequest.setAttribute("message","Registration Successfully Completed!");
             httpServletRequest.getRequestDispatcher("/View/DoctorRegistrationSecondStage.jsp").forward(httpServletRequest, httpServletResponse);
         }
     }
+
 
     private boolean check(Object obj){
         return obj != null;
