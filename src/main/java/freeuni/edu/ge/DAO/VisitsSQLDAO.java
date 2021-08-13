@@ -31,7 +31,7 @@ public class VisitsSQLDAO {
         List<Visit> result = new ArrayList<>();
         while(resultSet.next()) {
             result.add(new Visit(resultSet.getString("patientId"), resultSet.getString("doctorId"),
-                    resultSet.getString("reason"), resultSet.getString("date")));
+                    resultSet.getString("reason"), resultSet.getString("date"), resultSet.getString("type")));
         }
         if(result.isEmpty()) return null;
         return result.iterator();
@@ -39,11 +39,12 @@ public class VisitsSQLDAO {
 
     public int addVisit(Visit visit) throws SQLException {
         Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO visits VALUES (?, ?, ?, ?)");
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO visits VALUES (?, ?, ?, ?,?)");
         statement.setString(1, visit.getPatientId());
         statement.setString(2, visit.getDoctorId());
         statement.setString(3, visit.getReason());
         statement.setString(4, visit.getDate());
+        statement.setString(5,visit.getType());
         return statement.executeUpdate();
     }
 
@@ -70,9 +71,9 @@ public class VisitsSQLDAO {
     public Iterator<Visit> getDoctorVisitsIterator(String ID, String type) throws SQLException {
         dataSource.restart();
         Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM visits WHERE doctorId = ?");
-
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM visits WHERE doctorId = ? AND type = ?");
         statement.setString(1,ID);
+        statement.setString(2,type);
         ResultSet resultSet = statement.executeQuery();
 
         return returnIterator(resultSet);

@@ -117,4 +117,41 @@ public class TestVisitsDAO {
             if(countTmp > 2)assertTrue(Boolean.FALSE);
         }
     }
+
+
+    @Test
+    public void VisitsTypeTests() throws SQLException {
+        VisitsSQLDAO dao = new VisitsSQLDAO(dataSource);
+
+        Visit visit1 = new Visit("489010491","12389358","motentiloba","2021-08-13","Physical");
+        Visit visit2 = new Visit("489010492","12389358","motentiloba","2021-08-13","Online");
+
+        dao.addVisit(visit1);
+        dao.addVisit(visit2);
+
+        Iterator<Visit> it = dao.getDoctorVisitsIterator("12389358","Online");
+
+        int count = 0;
+        while(it.hasNext()){
+            count++;
+            Visit result = it.next();
+            assertTrue(result.equals(visit2));
+            if(count > 1)assertTrue(Boolean.FALSE);
+        }
+
+        Iterator<Visit> it1 = dao.getDoctorVisitsIterator("12389358","Physical");
+
+        count = 0;
+        while(it1.hasNext()){
+            count++;
+            Visit result = it1.next();
+            assertTrue(result.equals(visit1));
+            if(count > 1)assertTrue(Boolean.FALSE);
+        }
+
+        Visit visit3 = new Visit("12313523512","34562341211","tavis tkivili","2021-10-12","Online");
+        dao.addVisit(visit3);
+        Iterator<Visit> it2 = dao.getDoctorVisitsIterator("34562341211","Physical");
+        assertTrue(it2 == null);
+    }
 }
