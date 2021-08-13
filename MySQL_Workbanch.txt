@@ -65,3 +65,14 @@ reason varchar(100),
 date varchar(40)
 
 );
+
+CREATE table DoctorTimes(
+id INT PRIMARY KEY AUTO_INCREMENT,
+
+doctorId varchar(40) not null, #foreign key
+
+
+date varchar(40)
+
+);
+
