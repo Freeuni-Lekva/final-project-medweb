@@ -13,6 +13,9 @@
     <listener>
         <listener-class>freeuni.edu.ge.Listeners.ContextListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>freeuni.edu.ge.Listeners.SessionListener</listener-class>
+    </listener>
 
 
     <servlet>
