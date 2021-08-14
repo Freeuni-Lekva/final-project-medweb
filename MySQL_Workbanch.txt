@@ -22,6 +22,7 @@ CREATE TABLE patients (
     Alergies VARCHAR(255)
 );
 
+/*joe pass - pass12!; Johnny - abcd99efg; Danna - dannaPet1*/
 INSERT INTO patients (FirstName, LastName, ID_NUMBER, Password, City, Birth_Date, Sex, Address, Mobile_Number, Diseases, Alergies)
 Values ("Joey","Cox","92277337523","5948656b4fa912aa083450661215ca3fe101ba6d","Tbilisi","1990","Man","Tsereteli Avenue","555123456","Bronxiti","Noshpa, Analgini"),
 ("Johnny","Hicks","22558334440","3afc06b8cc6b77845e5df1eacdf21eea20a6fcd9","Kutaisi","1999","Man","Chavchavadze Avenue","555002340","NO","Mtveri"),
@@ -42,6 +43,7 @@ CREATE TABLE doctors (
     Graduation VARCHAR(255)
     );
 
+/*Carolina - CarWat!1; Katelynn - hardPP1; Gerald - gerB1Bryant*/
 INSERT INTO doctors (FirstName, LastName, ID_Number, Password, City, Doctor_Specialities, Mobile_Number, Doctor_Qualifications, Experience, Graduation) values
 ("Carolina","Watkins","53747946213","6b703c441647c3756d2bea96bf13630fca52df02","Tbilisi","Dermatology","555676712","Doctor_Of_Medicine","10","2009"),
 ("Katelynn","Jenkins","49316498372","8bbe158fbf9af4f97b9e7093c46bda059892cd22","Tbilisi","Surgery","555562443","Master_Of_Medicine","25","1990"),
