@@ -59,15 +59,72 @@
 
     <% if(!doctors.isEmpty()) {%>
     <form action="/bookDC" method="post">
-        <label for="doctor">Choose a doctor:</label>
-        <select name="doctor" id="doctor">
-            <% for (Doctor doctor : doctors) {%>
-                <option value=<%=doctor.getID()%>> <%=doctor.getName()%> <%=doctor.getSurname()%></option>
-            <%}%>
-        </select>
+
         <br><br>
-        <input type="submit" value="Submit" name="choose">
+
+
+
+
+        <table bgcolor="lightgray" border="5" width="60%" cellpadding="5" cellspacing="0.5" color="blue" >
+            <tr>
+
+                <th colspan ="3" bgcolor="#999999"><br>
+
+
+                    <div align="Center" > <font face="verdana" size="5" color="white"> Choose Time </font>
+                    </div>
+                </th>
+            </tr>
+
+            <tr>
+                <td>
+                    <select name="doctor" >
+                        <% for (Doctor doctor : doctors) {%>
+                        <option value=<%=doctor.getID()%>> <%=doctor.getName()%> <%=doctor.getSurname()%></option>
+                        <%}%>
+                    </select>
+                </td>
+                <td>
+                    <input type="radio" id="10:00 - 11:00" name="date" value="10:00 - 11:00">
+                    <label for="10:00 - 11:00">10:00 - 11:00</label><br>
+
+                    <input type="radio" id="11:00 - 12:00" name="date" value="11:00 - 12:00">
+                    <label for="11:00 - 12:00">11:00 - 12:00</label><br>
+
+                    <input type="radio" id="12:00 - 13:00" name="date" value="12:00 - 13:00">
+                    <label for="12:00 - 13:00">12:00 - 13:00</label><br>
+
+                    <input type="radio" id="13:00 - 14:00" name="date" value="13:00 - 14:00">
+                    <label for="13:00 - 14:00">13:00 - 14:00</label><br>
+
+                    <input type="radio" id="14:00 - 15:00" name="date" value="14:00 - 15:00">
+                    <label for="14:00 - 15:00">14:00 - 15:00</label><br>
+
+                    <input type="radio" id="15:00 - 16:00" name="date" value="15:00 - 16:00">
+                    <label for="15:00 - 16:00">15:00 - 16:00</label><br>
+
+                    <input type="radio" id="16:00 - 17:00" name="date" value="16:00 - 17:00">
+                    <label for="16:00 - 17:00">16:00 - 17:00</label><br>
+
+                    <input type="radio" id="17:00 - 18:00" name="date" value="17:00 - 18:00">
+                    <label for="17:00 - 18:00">17:00 - 18:00</label><br>
+
+                    <input type="radio" id="18:00 - 19:00" name="date" value="18:00 - 19:00">
+                    <label for="18:00 - 19:00">18:00 - 19:00</label><br>
+
+                    <input type="radio" id="19:00 - 20:00" name="date" value="19:00 - 20:00">
+                    <label for="19:00 - 20:00">19:00 - 20:00</label><br>
+
+            </tr>
+
+        </table>
+
+        <tr>  <tr>
+        <br> <br>
+
         <p>Click the "Submit" button to choose a doctors.</p> <br><br>
+
+        <input type="submit" value="Submit" name="choose">
 
     </form>
 
