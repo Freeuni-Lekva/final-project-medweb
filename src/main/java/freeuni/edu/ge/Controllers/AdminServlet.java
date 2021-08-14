@@ -21,7 +21,7 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        AdministratorDao adminDAO = getAdministratorDao(httpServletRequest);
+        AdministratorCommands dao = getAdministratorDao(httpServletRequest);
         String ID = httpServletRequest.getParameter("hidden");
 
             if (httpServletRequest.getParameter("accept"+ID) != null) {
@@ -40,6 +40,7 @@ public class AdminServlet extends HttpServlet {
                 }
             }
             httpServletRequest.getRequestDispatcher("/View/AdminProfile.jsp").forward(httpServletRequest, httpServletResponse);
+
     }
 
     private AdministratorCommands getAdministratorDao(HttpServletRequest request){

@@ -1,6 +1,7 @@
 package freeuni.edu.ge.Models;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Visit {
     private String patientName;
@@ -28,20 +29,11 @@ public class Visit {
         this.doctorId = doctorId;
         this.reason = reason;
         this.date = date;
+        this.type = type;
     }
 
-    public String getPatientName(){
-        return patientName;
-    }
-    public String getPatientSurName(){
-        return patientSurName;
-    }
-    public String getDoctorName(){
-        return doctorName;
-    }
-    public String getDoctorSurName(){
-        return doctorSurName;
-    }
+
+
     public String getPatientId(){
         return patientId;
     }
@@ -56,23 +48,12 @@ public class Visit {
     }
     public String getType(){return type;}
 
-    public void setPatientName(String name){
-        this.patientName = name;
-    }
-    public void setPatientSurName(String name){
-        this.patientSurName = name;
-    }
+
     public void setDoctorName(String s){
         this.doctorName = s;
     }
-    public void setDoctorSurName(String s){
-        this.doctorSurName = s;
-    }
     public void setPatientId(String s){
         this.patientId = s;
-    }
-    public void setDoctorId(String s){
-        this.doctorId = s;
     }
     public void setDate(String s){
         this.date = s;
@@ -82,6 +63,31 @@ public class Visit {
     }
     public void setType(String type) {
         this.type = type;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Visit visit = (Visit) o;
+        return Objects.equals(patientId, visit.patientId) && Objects.equals(doctorId, visit.doctorId) && Objects.equals(date, visit.date) && Objects.equals(reason, visit.reason) && Objects.equals(type, visit.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(patientId, doctorId, date, reason, type);
+    }
+
+    @Override
+    public String toString() {
+        return "Visit{" +
+                "patientId='" + patientId + '\'' +
+                ", doctorId='" + doctorId + '\'' +
+                ", date='" + date + '\'' +
+                ", reason='" + reason + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
 
