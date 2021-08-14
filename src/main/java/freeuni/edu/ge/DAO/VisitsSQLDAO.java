@@ -11,14 +11,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class VisitsDAO implements VisitDAO{
+public class VisitsSQLDAO {
     private BasicDataSource dataSource;
 
-    public VisitsDAO(BasicDataSource dataSource) {
+    public VisitsSQLDAO(BasicDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    @Override
     public Iterator<Visit> getVisitsByPatient(String patientId) throws SQLException {
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement("Select * From visits where patientId = ?");
@@ -32,24 +31,23 @@ public class VisitsDAO implements VisitDAO{
         List<Visit> result = new ArrayList<>();
         while(resultSet.next()) {
             result.add(new Visit(resultSet.getString("patientId"), resultSet.getString("doctorId"),
-                    resultSet.getString("reason"), resultSet.getString("date")));
+                    resultSet.getString("reason"), resultSet.getString("date"), resultSet.getString("type")));
         }
         if(result.isEmpty()) return null;
         return result.iterator();
     }
 
-    @Override
     public int addVisit(Visit visit) throws SQLException {
         Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO visits VALUES (?, ?, ?, ?)");
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO visits VALUES (?, ?, ?, ?,?)");
         statement.setString(1, visit.getPatientId());
         statement.setString(2, visit.getDoctorId());
         statement.setString(3, visit.getReason());
         statement.setString(4, visit.getDate());
+        statement.setString(5,visit.getType());
         return statement.executeUpdate();
     }
 
-    @Override
     public Visit getVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM visits WHERE patientId = ? AND doctorId = ?");
@@ -61,12 +59,23 @@ public class VisitsDAO implements VisitDAO{
         return result.next();
     }
 
-    @Override
     public void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement("DELETE FROM visits WHERE patientId = ? AND doctorId = ?");
         statement.setString(1, patientId);
         statement.setString(2, doctorId);
         statement.executeUpdate();
+    }
+
+    //not full implementation, needs visits type change.
+    public Iterator<Visit> getDoctorVisitsIterator(String ID, String type) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM visits WHERE doctorId = ? AND type = ?");
+        statement.setString(1,ID);
+        statement.setString(2,type);
+        ResultSet resultSet = statement.executeQuery();
+
+        return returnIterator(resultSet);
     }
 }

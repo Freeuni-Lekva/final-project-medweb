@@ -1,7 +1,6 @@
 package freeuni.edu.ge.DAO;
 
 import freeuni.edu.ge.Models.Doctor;
-import freeuni.edu.ge.Models.Patient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,6 +64,9 @@ public class DoctorsDAO implements DoctorDAO{
                 result.add(doctor);
             }
         }
+
+        result.add(new Doctor("luka", "kapanadze", "56"));
+        
         return result;
     }
 

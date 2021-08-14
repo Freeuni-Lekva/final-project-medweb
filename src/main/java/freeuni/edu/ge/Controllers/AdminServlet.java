@@ -1,5 +1,6 @@
 package freeuni.edu.ge.Controllers;
 
+import freeuni.edu.ge.DAO.AdministratorCommands;
 import freeuni.edu.ge.DAO.AdministratorDao;
 
 import javax.servlet.ServletException;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AdminServlet extends HttpServlet {
 
@@ -19,21 +21,30 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        AdministratorDao adminDAO = getAdministratorDao(httpServletRequest);
+        AdministratorCommands dao = getAdministratorDao(httpServletRequest);
         String ID = httpServletRequest.getParameter("hidden");
 
             if (httpServletRequest.getParameter("accept"+ID) != null) {
-                adminDAO.requestAnswer(Boolean.TRUE, ID);
+                try {
+                    dao.requestAnswer(Boolean.TRUE, ID);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
 
             if (httpServletRequest.getParameter("reject"+ID) != null) {
-                adminDAO.requestAnswer(Boolean.FALSE, ID);
+                try {
+                    dao.requestAnswer(Boolean.FALSE, ID);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
             httpServletRequest.getRequestDispatcher("/View/AdminProfile.jsp").forward(httpServletRequest, httpServletResponse);
+
     }
 
-    private AdministratorDao getAdministratorDao(HttpServletRequest request){
-        return (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
+    private AdministratorCommands getAdministratorDao(HttpServletRequest request){
+        return (AdministratorCommands)request.getSession().getAttribute("DAO");
     }
 
 }

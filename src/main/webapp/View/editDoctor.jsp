@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id = (String) request.getAttribute("id");
-    Doctor doctor = (Doctor)request.getAttribute("doctor");
 %>
 <html>
 <head>
