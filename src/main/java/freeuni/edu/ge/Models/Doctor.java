@@ -40,7 +40,8 @@ public class Doctor {
         Psychiatry,
         Radiation_Oncology,
         Surgery,
-        Urology
+        Urology,
+        Not_Defined
     }
 
     public enum Doctor_Qualifications{
@@ -61,6 +62,7 @@ public class Doctor {
         this.qualification = Doctor_Qualifications.Not_Defined;
         this.yearGraduation = "Not Defined";
         this.yearExperience = "Not Defined";
+        this.speciality = DoctorSpecialities.Not_Defined;
         visits = new ArrayList<>();
     }
 
@@ -68,6 +70,7 @@ public class Doctor {
     public void setPassword(String password) {
         this.password = hash.generateHash(password);
     }
+    public void setHashedPassword(String password){this.password = password;}
     public void setCity(String city){
         this.city = city;
     }
@@ -99,6 +102,9 @@ public class Doctor {
         return password;
     }
     public String getCity() {
+        System.out.println("city");
+        System.out.println(city);
+
         return city;
     }
     public DoctorSpecialities getSpeciality(){

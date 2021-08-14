@@ -83,18 +83,22 @@ public class DoctorSqlDAO {
 
     //remove doctor
     public void removeDoctor(Doctor doctor) throws SQLException {
+        removeDoctor(doctor.getID());
+    }
+
+    public void removeDoctor(String ID) throws SQLException {
         dataSource.restart();
         try {
             Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement("delete from doctors where ID_NUMBER = ?;");
-            statement.setString(1, doctor.getID());
+            statement.setString(1, ID);
             statement.executeUpdate();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
+
     //error aqvs
     public boolean updateDoctorInfo(Doctor doctor) throws SQLException {
         dataSource.restart();
@@ -129,6 +133,7 @@ public class DoctorSqlDAO {
 
     private Doctor convertToDoctor(ResultSet resultSet) throws SQLException {
         Doctor doctor = new Doctor(resultSet.getString("FirstName"), resultSet.getString("LastName"), resultSet.getString("ID_NUMBER"));
+        doctor.setHashedPassword(resultSet.getString("Password"));
         doctor.setCity(resultSet.getString("City"));
         doctor.setMobileNumber(resultSet.getString("Mobile_Number"));
         doctor.setYearExperience(resultSet.getString("Experience"));
@@ -151,5 +156,18 @@ public class DoctorSqlDAO {
         }
 
         return doctor;
+    }
+
+    public String getPass(String id) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("select Password from doctors where ID_NUMBER = ?;");
+        statement.setString(1, id);
+        ResultSet result = statement.executeQuery();
+        while(result.next()){
+            return result.getString("Password");
+        }
+
+        return "";
     }
 }

@@ -3,7 +3,9 @@
 <%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
 <%@ page import="freeuni.edu.ge.Models.Visit" %>
-<%@ page import="java.util.Iterator" %><%--
+<%@ page import="java.util.Iterator" %>
+<%@ page import="freeuni.edu.ge.DAO.DoctorCommands" %>
+<%@ page import="freeuni.edu.ge.DAO.DoctorCommandsSQL" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/24/2021
@@ -13,7 +15,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id = (String) request.getAttribute("id");
-    AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute("AdministratorDAO");
+    DoctorCommands dao = (DoctorCommandsSQL) request.getSession().getAttribute("DAO");
     Doctor doctor = dao.getDoctorById(id);
 %>
 <html>
@@ -24,44 +26,62 @@
 
     <h2>Personal Information</h2>
     <p>
-        <label>Name: </label> <%=doctor.getName() %> </br>
-        <label>Surname: </label> <%=doctor.getSurname() %> </br>
-        <label>Speciality: </label> <%=doctor.getSpeciality() %> </br>
-        <label>Qualification: </label> <%=doctor.getQualification() %> </br>
-        <label>Experience: </label> <%=doctor.getYearExperience() %> </br>
-        <label>City: </label> <%=doctor.getCity() %> </br>
-        <label>ID: </label> <%=doctor.getID() %> </br>
-        <label>Mobile: </label> <%=doctor.getMobileNumber() %> </br>
+        <label>Name: </label> <%=doctor.getName() %> <br>
+        <label>Surname: </label> <%=doctor.getSurname() %> <br>
+        <label>Speciality: </label> <%=doctor.getSpeciality() %> <br>
+        <label>Qualification: </label> <%=doctor.getQualification() %> <br>
+        <label>Experience: </label> <%=doctor.getYearExperience() %> <br>
+        <label>City: </label> <%=doctor.getCity() %> <br>
+        <label>ID: </label> <%=doctor.getID() %> <br>
+        <label>Mobile: </label> <%=doctor.getMobileNumber() %> <br>
 
         <form action="/loginDc" method="post">
                     <input type="submit" value = "Log Out" name = "logOut">
                     <input type="submit" value = "Edit Info" name = "edit">
+                    <input type = "hidden" name = "id" value = <%=doctor.getID()%>>
                 </form>
     </p>
 
 <%--
     <% if(!doctor.getVisits.isEmpty()) { %>
+    <h2>Visits:</h2>
         <ul>
-            <% List<Visits> visits = doctor.getVisits();
+            <% List<Visit> visits = doctor.getVisits();
                 for(Visit visit : visits) { %>
-                    <li><%=visit.getPatientName()%> - doctor.getName()</li>
+                <form action = "/loginDc" method = "post" >
+                    <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+                        <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
+                        <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
+                        <input type = "submit" value = "Finish" name = "finish">
+                    </li> </br>
+                </form>
             <%}%>
         </ul>
     <%}%>
 --%>
 
+    <h2>Your Physical Visits:</h2>
+
+    <ol>
+            <%
+            Iterator<Visit> itP = dao.getDoctorVisitsIterator(doctor.getID(),"Physical");
+            while(itP.hasNext()) {
+                Visit visit = itP.next();
+        %>
+                <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+
+    <%}%>
+
     <h2>Your Online Visits:</h2>
 
     <ol>
-
-
-        <% AdministratorDao adminDao = (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
-            Iterator<Visit> it = adminDao.getVisitsIterator(doctor.getID(),"Online");
+        <%
+            Iterator<Visit> it = dao.getDoctorVisitsIterator(doctor.getID(),"Online");
             while(it.hasNext()) {
                 Visit visit = it.next();
         %>
         <form action = "/chat?tp=d" method = post>
-            <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+            <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
                 <input type = "submit" value = "Open Chat">

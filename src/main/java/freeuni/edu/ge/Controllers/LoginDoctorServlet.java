@@ -22,19 +22,21 @@ public class LoginDoctorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        HttpSession session = httpServletRequest.getSession();
-        String id = (String) session.getAttribute("id");
+        String id = httpServletRequest.getParameter("id");
         if(httpServletRequest.getParameter("logOut") != null) {
             httpServletResponse.sendRedirect("http://localhost:8080/home");
         } else if(httpServletRequest.getParameter("edit") != null) {
             httpServletRequest.setAttribute("id", id);
+            AdministratorDao dao = (AdministratorDao) httpServletRequest.getServletContext().getAttribute("AdministratorDAO");
+            Doctor doctor = dao.getDoctorById(id);
+            httpServletRequest.setAttribute("doctor", doctor);
             httpServletRequest.getRequestDispatcher("View/editDoctor.jsp").forward(httpServletRequest,httpServletResponse);
         } else {
-            update(httpServletRequest, httpServletResponse, session, id);
+            update(httpServletRequest, httpServletResponse, id);
         }
     }
 
-    private void update(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, HttpSession session, String id) throws ServletException, IOException {
+    private void update(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,String id) throws ServletException, IOException {
         AdministratorDao dao = (AdministratorDao) httpServletRequest.getServletContext().getAttribute("AdministratorDAO");
         Doctor doctor = dao.getDoctorById(id);
         doctor.setCity(httpServletRequest.getParameter("city"));
@@ -42,7 +44,6 @@ public class LoginDoctorServlet extends HttpServlet {
         doctor.setMobileNumber(httpServletRequest.getParameter("mobile"));
         //doctor.setQualification(httpServletRequest.getParameter("qualification"));
         doctor.setYearExperience(httpServletRequest.getParameter("yearExperience"));
-        session.setAttribute("id", id);
         httpServletRequest.setAttribute("id", id);
         dao.putDoctorById(id, doctor);
         httpServletRequest.getRequestDispatcher("View/loginDoctor.jsp").forward(httpServletRequest,httpServletResponse);

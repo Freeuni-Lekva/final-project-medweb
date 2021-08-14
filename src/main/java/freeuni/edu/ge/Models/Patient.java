@@ -47,6 +47,7 @@ public class Patient {
     public void setSurname(String surname){ this.surname = surname; }
     public void setID(String ID) { this.ID = ID; }
     public void setPassword(String password) { this.password = hash.generateHash(password); }
+    public void setHashedPassword(String password){this.password = password;}
     public void setCity(String city) { this.city = city;}
     public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
     public void setSex (String sex) { this.sex=sex; }

@@ -1,10 +1,9 @@
 <%@ page import="freeuni.edu.ge.Models.Patient" %>
-<%@ page import="freeuni.edu.ge.DAO.InMemoryAdmnDao" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
 <%@ page import="freeuni.edu.ge.Models.Visit" %>
 <%@ page import="freeuni.edu.ge.Models.Administrator" %>
-<%@ page import="java.util.Iterator" %><%--
+<%@ page import="java.util.Iterator" %>
+<%@ page import="freeuni.edu.ge.DAO.*" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/24/2021
@@ -14,7 +13,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id = (String) request.getAttribute("id");
-    AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute("AdministratorDAO");
+    PatientCommands dao = (PatientCommandsSQL) request.getSession().getAttribute("DAO");
     Patient patient = dao.getPatientById(id);
 %>
 <html>
@@ -25,7 +24,12 @@
 
     <h2>Personal Information</h2>
     <p>
+
+
+        
+
         <label>Name: </label> <%=patient.getName() %> <br>
+
 
         <label>Surname: </label> <%=patient.getSurname() %> <br>
 
@@ -47,7 +51,7 @@
         </form>
     </p>
 
-    <% if(patient.hasVisits()) {%>
+    <% if(!dao.hasVisits(id,"Online")&&!dao.hasVisits(id,"Physical")) {%>
 
         <h2>Currently You have no visits booked!</h2>
 
@@ -56,27 +60,25 @@
         <h2>Your Physical Visits:</h2>
 
         <ol>
-            <% for(Visit visit : patient.getVisits()) { %>
-                <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %></li> </br>
+            <% Iterator<Visit> itP = dao.getPatientVisitsIterator(id,"Physical");
+            while(itP.hasNext()){
+            Visit visit = itP.next();%>
+                <li>Doctor: <%=dao.getDoctorById(visit.getDoctorId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %></li> </br>
             <%}%>
         </ol>
-
-        <form action="/bookDC" method="post">
-            <input type="submit" value = "Book New Visit" name = "book">
-        </form>
 
     <%}%>
 
     <h2>Your Online Visits:</h2>
 
     <ol>
-        <% AdministratorDao adminDao = (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
-            Iterator<Visit> it = adminDao.getVisitsIterator(patient.getID(),"Online");
-            while(it.hasNext()) {
-            Visit visit = it.next();
+        <%
+            Iterator<Visit> itO = dao.getPatientVisitsIterator(patient.getID(),"Online");
+            while(itO.hasNext()) {
+            Visit visit = itO.next();
         %>
         <form action = "/chat?tp=p" method = post>
-            <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+            <li>Doctor: <%=dao.getDoctorById(visit.getDoctorId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
                 <input type = "submit" value = "Open Chat">
@@ -86,9 +88,9 @@
     </ol>
 
 
-    <%-- needs to be declired (form action url) --%>
-    <form action="/bookDC" method="post">
-        <input type="submit" value = "Book New Visit" name = "book">
+        <form action="/bookDC" method="post">
+            <input type="submit" value = "Book New Visit" name = "book">
+        </form>
 
 
 

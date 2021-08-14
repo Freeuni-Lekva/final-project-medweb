@@ -1,5 +1,7 @@
 <%@ page import="freeuni.edu.ge.Models.Patient" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %><%--
+<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.PatientCommandsSQL" %>
+<%@ page import="freeuni.edu.ge.DAO.PatientCommands" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/25/2021
@@ -9,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id = (String) request.getAttribute("id");
-    AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute("AdministratorDAO");
+    PatientCommands dao = (PatientCommandsSQL) request.getSession().getAttribute("DAO");
     Patient patient = dao.getPatientById(id);
 %>
 <html>
@@ -23,9 +25,9 @@
     <form action = "/loginPT" method = "POST">
         <ul>
 
-        <li>Name: <input type="text" name="name" value = <%=patient.getName()%>></li>
+        <li>Name: <input type="text" name="name" value = <%=patient.getName()%> readonly></li>
 
-        <li>Surname: <input type="text" name="surname" value = <%=patient.getSurname()%>></li>
+        <li>Surname: <input type="text" name="surname" value = <%=patient.getSurname()%> readonly></li>
 
         <li>Date of Birth: <input type="date" name="birthdate" value = <%=patient.getDateOfBirth()%>></li>
 
@@ -33,7 +35,7 @@
 
         <li>City: <input type="text" name="city" value = <%=patient.getCity()%>></li>
 
-        <li>ID: <input type="text" name="idNum" value = <%=patient.getID()%>></li>
+        <li>ID: <input type="text" name="idNum" value = <%=patient.getID()%> readonly></li>
 
         <li>Address: <input type="text" name="address" value = <%=patient.getAddress()%>></li>
 
