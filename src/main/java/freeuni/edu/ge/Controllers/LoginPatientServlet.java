@@ -24,7 +24,6 @@ public class LoginPatientServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        System.out.println("postshi shemodis");
         HttpSession session = httpServletRequest.getSession();
         String id = (String) session.getAttribute("id");
         if(httpServletRequest.getParameter("update") != null) {

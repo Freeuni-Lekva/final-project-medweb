@@ -61,10 +61,6 @@
             <%}%>
         </ol>
 
-        <form action="/bookDC" method="post">
-            <input type="submit" value = "Book New Visit" name = "book">
-        </form>
-
     <%}%>
 
     <h2>Your Online Visits:</h2>
@@ -86,9 +82,9 @@
     </ol>
 
 
-    <%-- needs to be declired (form action url) --%>
-    <form action="/bookDC" method="post">
-        <input type="submit" value = "Book New Visit" name = "book">
+        <form action="/bookDC" method="post">
+            <input type="submit" value = "Book New Visit" name = "book">
+        </form>
 
 
 
