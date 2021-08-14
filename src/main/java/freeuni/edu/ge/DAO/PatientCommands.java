@@ -15,4 +15,5 @@ public interface PatientCommands {
     void addPatient(Patient patient) throws SQLException;
     boolean contains(Patient patient) throws SQLException;
     boolean contains(String ID) throws SQLException;
+    boolean updatePatientInfo(Patient patient) throws SQLException;
 }

@@ -48,7 +48,7 @@ public class LoginPatientServlet extends HttpServlet {
         updatePatient(patient, httpServletRequest);
         session.setAttribute("id", id);
         httpServletRequest.setAttribute("id", id);
-        dao.addPatient(patient);
+        dao.updatePatientInfo(patient);
         sendTo(httpServletRequest, httpServletResponse, "View/loginPatient.jsp");
     }
 

@@ -55,4 +55,9 @@ public class PatientCommandsSQL implements PatientCommands{
     public boolean contains(String ID) throws SQLException {
         return patientDAO.getPatientByIdNumber(ID) != null;
     }
+
+    @Override
+    public boolean updatePatientInfo(Patient patient) throws SQLException {
+        return patientDAO.updatePatientInfo(patient);
+    }
 }
