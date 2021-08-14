@@ -148,8 +148,17 @@ public class PatientSqlDAO {
         return patient;
     }
 
-    //checkifItispatient
-    //check if it is doctor
-    //adddoctor  addpatient
+    public String getPass(String id) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("select Password from patients where ID_NUMBER = ?;");
+        statement.setString(1, id);
+        ResultSet result = statement.executeQuery();
+        while(result.next()){
+            return result.getString("Password");
+        }
+
+        return "";
+    }
 
 }

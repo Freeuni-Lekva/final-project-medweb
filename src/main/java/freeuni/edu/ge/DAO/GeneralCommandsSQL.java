@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class GeneralCommandsSQL implements GeneralCommands{
     private RequestDAO requestDAO;
     private DoctorSqlDAO doctorDAO;
+    private PatientSqlDAO patientDAO;
 
     public GeneralCommandsSQL(BasicDataSource dataSource){
         requestDAO = new RequestDAO(dataSource);
@@ -48,6 +49,7 @@ public class GeneralCommandsSQL implements GeneralCommands{
 
     @Override
     public boolean checkIfItIsPatient(String ID, String password, Hash hash) {
+
         return false;
     }
 
