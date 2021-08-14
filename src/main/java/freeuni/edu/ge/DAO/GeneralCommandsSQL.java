@@ -48,7 +48,7 @@ public class GeneralCommandsSQL implements GeneralCommands{
 
     @Override
     public boolean checkIfItIsPatient(String ID, String password, Hash hash) {
-        return false;
+        return true;
     }
 
     @Override

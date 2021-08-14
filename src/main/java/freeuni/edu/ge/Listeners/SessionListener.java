@@ -13,7 +13,7 @@ public class SessionListener implements HttpSessionListener {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
         dataSource.setUsername("root");
-        dataSource.setPassword("lukakapa1213");
+        dataSource.setPassword("misho99tedy");
         GeneralCommands dao = new GeneralCommandsSQL(dataSource);
         httpSessionEvent.getSession().setAttribute("DAO",dao);
     }
