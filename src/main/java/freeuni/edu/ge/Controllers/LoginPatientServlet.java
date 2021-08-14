@@ -45,9 +45,11 @@ public class LoginPatientServlet extends HttpServlet {
     private void updatePatientInformation(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, HttpSession session, String id) throws ServletException, IOException, SQLException {
         PatientCommands dao = (PatientCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
         Patient patient = dao.getPatientById(id);
+        System.out.println("Pass:  " + patient.getPassword());
         updatePatient(patient, httpServletRequest);
         session.setAttribute("id", id);
         httpServletRequest.setAttribute("id", id);
+        System.out.println("Pass:  " + patient.getPassword());
         dao.updatePatientInfo(patient);
         sendTo(httpServletRequest, httpServletResponse, "View/loginPatient.jsp");
     }

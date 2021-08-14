@@ -138,6 +138,7 @@ public class PatientSqlDAO {
         patient.setName(resultSet.getString("FirstName"));
         patient.setSurname(resultSet.getString("LastName"));
         patient.setID(resultSet.getString("ID_NUMBER"));
+        patient.setHashedPassword(resultSet.getString("Password"));
         patient.setCity(resultSet.getString("City"));
         patient.setDateOfBirth(resultSet.getString( "Birth_Date"));
         patient.setSex(resultSet.getString("Sex"));
@@ -155,6 +156,7 @@ public class PatientSqlDAO {
         statement.setString(1, id);
         ResultSet result = statement.executeQuery();
         while(result.next()){
+            System.out.println("here is");
             return result.getString("Password");
         }
 
