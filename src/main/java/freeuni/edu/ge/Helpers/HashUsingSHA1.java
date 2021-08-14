@@ -29,10 +29,4 @@ public class HashUsingSHA1 implements Hash{
         return "";
     }
 
-    public static void main(String[] args) {
-        HashUsingSHA1 hash = new HashUsingSHA1();
-        System.out.println(hash.generateHash("CarWat!1"));
-        System.out.println(hash.generateHash("hardPP1"));
-        System.out.println(hash.generateHash("gerB1Bryant"));
-    }
 }

@@ -48,9 +48,10 @@ public class GeneralCommandsSQL implements GeneralCommands{
     }
 
     @Override
-    public boolean checkIfItIsPatient(String ID, String password, Hash hash) {
-
-        return false;
+    public boolean checkIfItIsPatient(String ID, String password, Hash hash) throws SQLException {
+        String pass = patientDAO.getPass(ID);
+        if(pass.equals("")) return false;
+        return pass.equals(hash.generateHash(password));
     }
 
     @Override
