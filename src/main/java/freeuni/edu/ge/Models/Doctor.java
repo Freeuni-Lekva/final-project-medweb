@@ -102,6 +102,9 @@ public class Doctor {
         return password;
     }
     public String getCity() {
+        System.out.println("city");
+        System.out.println(city);
+
         return city;
     }
     public DoctorSpecialities getSpeciality(){

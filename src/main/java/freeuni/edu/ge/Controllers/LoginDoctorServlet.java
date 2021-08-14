@@ -27,6 +27,9 @@ public class LoginDoctorServlet extends HttpServlet {
             httpServletResponse.sendRedirect("http://localhost:8080/home");
         } else if(httpServletRequest.getParameter("edit") != null) {
             httpServletRequest.setAttribute("id", id);
+            AdministratorDao dao = (AdministratorDao) httpServletRequest.getServletContext().getAttribute("AdministratorDAO");
+            Doctor doctor = dao.getDoctorById(id);
+            httpServletRequest.setAttribute("doctor", doctor);
             httpServletRequest.getRequestDispatcher("View/editDoctor.jsp").forward(httpServletRequest,httpServletResponse);
         } else {
             update(httpServletRequest, httpServletResponse, id);

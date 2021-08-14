@@ -24,7 +24,6 @@
     <form action = "/loginDc" method = "POST">
         <ul>
 
-
         <li>City: <input type="text" name="city" value = <%=doctor.getCity()%>></li>
 
         <li>ID: <input type="text" name="id" readonly value = <%=doctor.getID()%>></li>

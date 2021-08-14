@@ -40,6 +40,7 @@ public class AdminServlet extends HttpServlet {
                 }
             }
             httpServletRequest.getRequestDispatcher("/View/AdminProfile.jsp").forward(httpServletRequest, httpServletResponse);
+
     }
 
     private AdministratorCommands getAdministratorDao(HttpServletRequest request){

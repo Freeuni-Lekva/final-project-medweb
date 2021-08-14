@@ -58,7 +58,10 @@ public class InMemoryAdmnDao implements AdministratorDao {
         for(String doc : doctors.keySet()){
             if(doc.equals(ID)) return doctors.get(doc);
         }
-        return null;
+        System.out.println("test");
+        Doctor doctor = new Doctor("luka", "kk", "123");
+        doctor.setCity("Tbilisi");
+        return doctor;
     }
 
 
@@ -156,5 +159,6 @@ public class InMemoryAdmnDao implements AdministratorDao {
             }
         }
         canRegister.remove(save);
+        putDoctorById(doctor.getID(), doctor);
     }
 }

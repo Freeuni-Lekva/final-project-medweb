@@ -25,9 +25,9 @@
     <form action = "/loginPT" method = "POST">
         <ul>
 
-        <li>Name: <input type="text" name="name" value = <%=patient.getName()%>></li>
+        <li>Name: <input type="text" name="name" value = <%=patient.getName()%> readonly></li>
 
-        <li>Surname: <input type="text" name="surname" value = <%=patient.getSurname()%>></li>
+        <li>Surname: <input type="text" name="surname" value = <%=patient.getSurname()%> readonly></li>
 
         <li>Date of Birth: <input type="date" name="birthdate" value = <%=patient.getDateOfBirth()%>></li>
 
@@ -35,7 +35,7 @@
 
         <li>City: <input type="text" name="city" value = <%=patient.getCity()%>></li>
 
-        <li>ID: <input type="text" name="idNum" value = <%=patient.getID()%>></li>
+        <li>ID: <input type="text" name="idNum" value = <%=patient.getID()%> readonly></li>
 
         <li>Address: <input type="text" name="address" value = <%=patient.getAddress()%>></li>
 
