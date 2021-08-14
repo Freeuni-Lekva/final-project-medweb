@@ -1,5 +1,6 @@
 package freeuni.edu.ge.DAO;
 
+import freeuni.edu.ge.Models.Doctor;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -11,11 +12,13 @@ public class PatientCommandsSQL implements PatientCommands{
     private BasicDataSource dataSource;
     private VisitsSQLDAO visitsDAO;
     private PatientSqlDAO patientDAO;
+    private DoctorSqlDAO doctorDAO;
 
     public PatientCommandsSQL(BasicDataSource dataSource){
         this.dataSource = dataSource;
         visitsDAO = new VisitsSQLDAO(dataSource);
         patientDAO = new PatientSqlDAO(dataSource);
+        doctorDAO = new DoctorSqlDAO(dataSource);
     }
 
     @Override
@@ -31,5 +34,10 @@ public class PatientCommandsSQL implements PatientCommands{
     @Override
     public Iterator<Visit> getPatientVisitsIterator(String ID, String type) throws SQLException {
         return visitsDAO.getPatientVisitsIterator(ID,type);
+    }
+
+    @Override
+    public Doctor getDoctorById(String id) throws SQLException {
+        return doctorDAO.getDoctorByIdNumber(id);
     }
 }
