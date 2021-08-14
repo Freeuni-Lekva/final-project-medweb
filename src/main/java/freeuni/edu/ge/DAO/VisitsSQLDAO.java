@@ -33,7 +33,7 @@ public class VisitsSQLDAO {
             result.add(new Visit(resultSet.getString("patientId"), resultSet.getString("doctorId"),
                     resultSet.getString("reason"), resultSet.getString("date"), resultSet.getString("type")));
         }
-        if(result.isEmpty()) return null;
+//        if(result.isEmpty()) return null;
         return result.iterator();
     }
 

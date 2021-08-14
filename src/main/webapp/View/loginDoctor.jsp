@@ -52,11 +52,21 @@
     <%}%>
 --%>
 
+    <h2>Your Physical Visits:</h2>
+
+    <ol>
+            <%
+            Iterator<Visit> itP = dao.getDoctorVisitsIterator(doctor.getID(),"Physical");
+            while(itP.hasNext()) {
+                Visit visit = itP.next();
+        %>
+                <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+
+    <%}%>
+
     <h2>Your Online Visits:</h2>
 
     <ol>
-
-
         <%
             Iterator<Visit> it = dao.getDoctorVisitsIterator(doctor.getID(),"Online");
             while(it.hasNext()) {

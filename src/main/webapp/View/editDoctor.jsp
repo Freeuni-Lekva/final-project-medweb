@@ -1,5 +1,7 @@
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %><%--
+<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.DoctorCommands" %>
+<%@ page import="freeuni.edu.ge.DAO.DoctorCommandsSQL" %><%--
   Created by IntelliJ IDEA.
   User: User
 
@@ -8,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id = (String) request.getAttribute("id");
-    AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute("AdministratorDAO");
+    DoctorCommands dao = (DoctorCommandsSQL) request.getSession().getAttribute("DAO");
     Doctor doctor = dao.getDoctorById(id);
 %>
 <html>
