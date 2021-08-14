@@ -3,7 +3,9 @@
 <%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
 <%@ page import="freeuni.edu.ge.Models.Visit" %>
-<%@ page import="java.util.Iterator" %><%--
+<%@ page import="java.util.Iterator" %>
+<%@ page import="freeuni.edu.ge.DAO.DoctorCommands" %>
+<%@ page import="freeuni.edu.ge.DAO.DoctorCommandsSQL" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/24/2021
@@ -13,7 +15,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id = (String) request.getAttribute("id");
-    AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute("AdministratorDAO");
+    DoctorCommands dao = (DoctorCommandsSQL) request.getServletContext().getAttribute("DAO");
     Doctor doctor = dao.getDoctorById(id);
 %>
 <html>
@@ -55,13 +57,13 @@
     <ol>
 
 
-        <% AdministratorDao adminDao = (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
-            Iterator<Visit> it = adminDao.getVisitsIterator(doctor.getID(),"Online");
+        <%
+            Iterator<Visit> it = dao.getDoctorVisitsIterator(doctor.getID(),"Online");
             while(it.hasNext()) {
                 Visit visit = it.next();
         %>
         <form action = "/chat?tp=d" method = post>
-            <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+            <li>Doctor: <%=dao.getDoctorById(visit.getDoctorId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
                 <input type = "submit" value = "Open Chat">
