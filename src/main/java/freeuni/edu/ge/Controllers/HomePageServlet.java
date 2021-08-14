@@ -31,10 +31,7 @@ public class HomePageServlet extends HttpServlet {
             GeneralCommands dao = getGeneralDao(httpServletRequest);
             Hash hash = new HashUsingSHA1();
             if(dao.checkIfItIsAdministrator(id, password, hash)) {
-                HttpSession session = httpServletRequest.getSession();
-                BasicDataSource dataSource = (BasicDataSource) httpServletRequest.getServletContext().getAttribute("dataSource");
-                AdministratorCommands administratorCommands = new AdminCommandsSQL(dataSource);
-                session.setAttribute("DAO",administratorCommands);
+                setAdministratorDaoOnSession(httpServletRequest);
                 httpServletResponse.sendRedirect("http://localhost:8080/admin");
             } else {
                 try {
@@ -45,6 +42,7 @@ public class HomePageServlet extends HttpServlet {
                     } else {
                         try {
                             if(dao.checkIfItIsDoctor(id, password, hash)) {
+                                setDoctorDaoOnSession(httpServletRequest);
                                 httpServletResponse.sendRedirect("http://localhost:8080/loginDc?id=" + id);
                             } else {
                                 httpServletRequest.setAttribute("message","ID or Password Is Incorrect!");
@@ -74,5 +72,19 @@ public class HomePageServlet extends HttpServlet {
         BasicDataSource dataSource = (BasicDataSource) httpServletRequest.getServletContext().getAttribute("dataSource");
         GeneralCommands dao = new GeneralCommandsSQL(dataSource);
         session.setAttribute("DAO",dao);
+    }
+
+    private void setDoctorDaoOnSession(HttpServletRequest httpServletRequest){
+        HttpSession session = httpServletRequest.getSession();
+        BasicDataSource dataSource = (BasicDataSource) httpServletRequest.getServletContext().getAttribute("dataSource");
+        DoctorCommands dao = new DoctorCommandsSQL(dataSource);
+        session.setAttribute("DAO",dao);
+    }
+
+    private void setAdministratorDaoOnSession(HttpServletRequest httpServletRequest){
+        HttpSession session = httpServletRequest.getSession();
+        BasicDataSource dataSource = (BasicDataSource) httpServletRequest.getServletContext().getAttribute("dataSource");
+        AdministratorCommands administratorCommands = new AdminCommandsSQL(dataSource);
+        session.setAttribute("DAO",administratorCommands);
     }
 }
