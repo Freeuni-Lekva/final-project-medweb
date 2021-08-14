@@ -78,4 +78,15 @@ public class VisitsSQLDAO {
 
         return returnIterator(resultSet);
     }
+
+    public Iterator<Visit> getPatientVisitsIterator(String ID, String type) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM visits WHERE patientId = ? AND type = ?");
+        statement.setString(1,ID);
+        statement.setString(2,type);
+        ResultSet resultSet = statement.executeQuery();
+
+        return returnIterator(resultSet);
+    }
 }
