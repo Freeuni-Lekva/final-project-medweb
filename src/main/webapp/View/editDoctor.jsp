@@ -8,8 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id = (String) request.getAttribute("id");
-    AdministratorDao dao = (AdministratorDao) request.getServletContext().getAttribute();
-    Doctor doctor = dao.getDoctorById(id);
+    Doctor doctor = (Doctor)request.getAttribute("doctor");
 %>
 <html>
 <head>
@@ -21,7 +20,6 @@
 
     <form action = "/loginDc" method = "POST">
         <ul>
-
 
         <li>City: <input type="text" name="city" value = <%=doctor.getCity()%>></li>
 
