@@ -89,4 +89,8 @@ public class VisitsSQLDAO {
 
         return returnIterator(resultSet);
     }
+
+    public boolean hasVisits(String id, String type) throws SQLException {
+        return getPatientVisitsIterator(id,type) != null;
+    }
 }
