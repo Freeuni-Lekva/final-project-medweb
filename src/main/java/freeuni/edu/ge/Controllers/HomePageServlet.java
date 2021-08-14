@@ -36,8 +36,8 @@ public class HomePageServlet extends HttpServlet {
             } else {
                 try {
                     if(dao.checkIfItIsPatient(id, password, hash)) {
-                        HttpSession session = httpServletRequest.getSession();
-                        session.setAttribute("id", id);
+                        //HttpSession session = httpServletRequest.getSession();
+                        //session.setAttribute("id", id);
                         httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + id);
                     } else {
                         try {

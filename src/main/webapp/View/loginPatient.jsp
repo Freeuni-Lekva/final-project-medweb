@@ -57,7 +57,7 @@
 
         <ol>
             <% for(Visit visit : patient.getVisits()) { %>
-                <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %></li> </br>
+                <li>Doctor: <%=visit.getDoctorId() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %></li> </br>
             <%}%>
         </ol>
 
@@ -76,7 +76,7 @@
             Visit visit = it.next();
         %>
         <form action = "/chat?tp=p" method = post>
-            <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+            <li>Doctor: <%=visit.getDoctorId() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
                 <input type = "submit" value = "Open Chat">

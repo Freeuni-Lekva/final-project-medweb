@@ -131,6 +131,15 @@ public class PatientSqlDAO {
         return false;
     }
 
+    public String getPatientIndex(String id) throws SQLException {
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("Select * FROM patients where ID_NUMBER = ?;");
+        statement.setString(1, id);
+        ResultSet resultSet = statement.executeQuery();
+        if(resultSet == null) return null;
+        return resultSet.getString("id");
+    }
+
 
 
     private Patient convertToPatient(ResultSet resultSet) throws SQLException {

@@ -14,10 +14,15 @@ public class LoginPatientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        String id = httpServletRequest.getParameter("id");
         HttpSession session = httpServletRequest.getSession();
-        String id = (String) session.getAttribute("id");
+
+        if(id == null) {
+            id = (String) session.getAttribute("id");
+        }
 
         httpServletRequest.setAttribute("id", id);
+        session.setAttribute("id", id);
 
         sendTo(httpServletRequest, httpServletResponse, "View/loginPatient.jsp");
     }
