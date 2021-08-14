@@ -15,7 +15,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id = (String) request.getAttribute("id");
-    DoctorCommands dao = (DoctorCommandsSQL) request.getServletContext().getAttribute("DAO");
+    DoctorCommands dao = (DoctorCommandsSQL) request.getSession().getAttribute("DAO");
     Doctor doctor = dao.getDoctorById(id);
 %>
 <html>
