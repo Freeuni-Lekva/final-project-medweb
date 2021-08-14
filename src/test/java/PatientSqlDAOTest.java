@@ -14,12 +14,15 @@ public class PatientSqlDAOTest {
 
     private BasicDataSource dataSource = new BasicDataSource();
 
+    String PASSWORD = "datoiesimon1!";
+    String USER = "root";
+
 
     @BeforeEach
     public void init(){
         dataSource.setUrl("jdbc:mysql://localhost:3306/medWeb");
-        dataSource.setUsername("root");
-        dataSource.setPassword("datoiesimon1!");
+        dataSource.setUsername(USER);
+        dataSource.setPassword(PASSWORD);
 
     }
 

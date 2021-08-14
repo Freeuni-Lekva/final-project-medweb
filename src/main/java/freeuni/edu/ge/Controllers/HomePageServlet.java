@@ -1,8 +1,11 @@
 package freeuni.edu.ge.Controllers;
 
+import freeuni.edu.ge.DAO.AdminCommandsSQL;
+import freeuni.edu.ge.DAO.AdministratorCommands;
 import freeuni.edu.ge.DAO.AdministratorDao;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Helpers.HashUsingSHA1;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +30,10 @@ public class HomePageServlet extends HttpServlet {
             AdministratorDao dao = getAdministratorDao(httpServletRequest);
             Hash hash = new HashUsingSHA1();
             if(dao.checkIfItIsAdministrator(id, password, hash)) {
+                HttpSession session = httpServletRequest.getSession();
+                BasicDataSource dataSource = (BasicDataSource) httpServletRequest.getServletContext().getAttribute("dataSource");
+                AdministratorCommands administratorCommands = new AdminCommandsSQL(dataSource);
+                session.setAttribute("DAO",administratorCommands);
                 httpServletResponse.sendRedirect("http://localhost:8080/admin");
             } else if(dao.checkIfItIsPatient(id, password, hash)) {
                 HttpSession session = httpServletRequest.getSession();
@@ -39,7 +46,6 @@ public class HomePageServlet extends HttpServlet {
                 httpServletRequest.getRequestDispatcher("View/homePage.jsp").forward(httpServletRequest,httpServletResponse);
             }
         }
-
     }
 
 

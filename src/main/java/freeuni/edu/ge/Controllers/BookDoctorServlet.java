@@ -74,6 +74,7 @@ public class BookDoctorServlet extends HttpServlet {
         sendTo(httpServletRequest, httpServletResponse, "View/BookDoctor.jsp");
     }
 
+
     private void sendTo(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, String address) throws ServletException, IOException {
         httpServletRequest.getRequestDispatcher(address).forward(httpServletRequest,httpServletResponse);
     }

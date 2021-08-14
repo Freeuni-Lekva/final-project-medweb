@@ -1,23 +1,14 @@
-import freeuni.edu.ge.DAO.RequestDAO;
 import freeuni.edu.ge.DAO.VisitDAO;
 import freeuni.edu.ge.DAO.VisitsDAO;
-import freeuni.edu.ge.Models.Request;
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
-import java.sql.SQLException;
-
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestVisitsDAO {
 

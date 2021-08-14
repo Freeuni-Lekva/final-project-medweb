@@ -3,7 +3,6 @@ package freeuni.edu.ge.DAO;
 import freeuni.edu.ge.Models.Request;
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +19,7 @@ public class RequestDAO {
     }
 
 
+    //Doctor command
     public void addNewDoctorRegistrationRequest(String name, String surname, String ID) throws SQLException {
         dataSource.restart();
         Connection connection = dataSource.getConnection();
@@ -29,10 +29,12 @@ public class RequestDAO {
 
     }
 
+    //Doctor command
     public void addNewDoctorRegistrationRequest(Request request) throws SQLException {
         addNewDoctorRegistrationRequest(request.getName(),request.getSurname(),request.getID());
     }
 
+    //Administrator command
     public Iterator<Request> getIterator() throws SQLException {
         dataSource.restart();
         ArrayList<Request> listOfRequests = new ArrayList<>();
@@ -55,6 +57,7 @@ public class RequestDAO {
         return new Request(name,surname,ID);
     }
 
+    //Administrator command
     public void requestAnswer(boolean answer, String ID) throws SQLException {
         if(answer) {
             removeAndAddToCanRegisterTable(ID);
@@ -77,14 +80,17 @@ public class RequestDAO {
         addDoctorToCanRegisterTable(request);
     }
 
+    //Doctor command
     public boolean canDoctorRegister(String name, String surname, String ID) throws SQLException {
         return getRequestFromCanRegisterTableByID(ID) != null;
     }
 
+    //Administrator command
     public void addDoctorToCanRegisterTable(Request request) throws SQLException {
         addDoctorToCanRegisterTable(request.getName(),request.getSurname(),request.getID());
     }
 
+    //Doctor command
     public void removeFromCanRegisterTable(String ID) throws SQLException {
         dataSource.restart();
         Connection connection = dataSource.getConnection();
@@ -93,6 +99,7 @@ public class RequestDAO {
         statement.executeUpdate(insertSQl);
     }
 
+    //Administrator command
     public void addDoctorToCanRegisterTable(String name, String surname, String ID) throws SQLException {
         dataSource.restart();
         Connection connection = dataSource.getConnection();
