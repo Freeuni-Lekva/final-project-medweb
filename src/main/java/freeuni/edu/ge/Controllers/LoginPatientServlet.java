@@ -56,7 +56,7 @@ public class LoginPatientServlet extends HttpServlet {
         patient.setName(httpServletRequest.getParameter("name"));
         patient.setSurname(httpServletRequest.getParameter("surname"));
         patient.setSex(httpServletRequest.getParameter("sex"));
-        patient.setCity(httpServletRequest.getParameter("city"));
+        patient.setCity(httpServletRequest.getParameter("city") );
         patient.setID(httpServletRequest.getParameter("idNum"));
         patient.setAddress(httpServletRequest.getParameter("address"));
         patient.setMobileNumber(httpServletRequest.getParameter("mobile"));

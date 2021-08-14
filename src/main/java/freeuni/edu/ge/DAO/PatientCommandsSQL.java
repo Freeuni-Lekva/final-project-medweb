@@ -45,4 +45,14 @@ public class PatientCommandsSQL implements PatientCommands{
     public void addPatient(Patient patient) throws SQLException {
         patientDAO.addPatient(patient);
     }
+
+    @Override
+    public boolean contains(Patient patient) throws SQLException {
+        return contains(patient.getID());
+    }
+
+    @Override
+    public boolean contains(String ID) throws SQLException {
+        return patientDAO.getPatientByIdNumber(ID) != null;
+    }
 }
