@@ -25,7 +25,26 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
 
     @Override
     public void addDoctor(Doctor doctor) throws SQLException {
-
+        source.restart();
+        try{
+            Connection connection = source.getConnection();
+            LocalDateTime localDateTime = LocalDateTime.now();
+            for(int i =0; i<NEX_DAYS; i++) {
+                PreparedStatement statement = connection.prepareStatement("insert into DoctorWorkTime(ID, Dates, Ten, Eleven, " +
+                        "Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen)" +
+                        "values(?,?,?,?,?,?,?,?,?,?)");
+                statement.setString(1, doctor.getID());
+                Date now = new Date(localDateTime.getYear(), localDateTime.getMonthValue()-1, localDateTime.getDayOfMonth()+1);
+                String makeDate = "" + now.getYear() + "-" + now.getMonth() + "-" + now.getDate();
+                statement.setString(2, makeDate);
+                for(int j =0; j< DAY_GRAPHIC; j++) {
+                    statement.setBoolean(3+j, false);
+                }
+                statement.executeUpdate();
+            }
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
     }
 
     @Override
