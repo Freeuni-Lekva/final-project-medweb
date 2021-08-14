@@ -10,10 +10,12 @@ import java.sql.SQLException;
 public class GeneralCommandsSQL implements GeneralCommands{
     private RequestDAO requestDAO;
     private DoctorSqlDAO doctorDAO;
+    private PatientSqlDAO patientDAO;
 
     public GeneralCommandsSQL(BasicDataSource dataSource){
         requestDAO = new RequestDAO(dataSource);
         doctorDAO = new DoctorSqlDAO(dataSource);
+        patientDAO = new PatientSqlDAO(dataSource);
     }
 
     @Override
@@ -47,8 +49,10 @@ public class GeneralCommandsSQL implements GeneralCommands{
     }
 
     @Override
-    public boolean checkIfItIsPatient(String ID, String password, Hash hash) {
-        return true;
+    public boolean checkIfItIsPatient(String ID, String password, Hash hash) throws SQLException {
+        String pass = patientDAO.getPass(ID);
+        if(pass.equals("")) return false;
+        return pass.equals(hash.generateHash(password));
     }
 
     @Override

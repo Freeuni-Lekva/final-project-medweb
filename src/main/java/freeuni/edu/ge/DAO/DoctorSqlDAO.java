@@ -133,6 +133,7 @@ public class DoctorSqlDAO {
 
     private Doctor convertToDoctor(ResultSet resultSet) throws SQLException {
         Doctor doctor = new Doctor(resultSet.getString("FirstName"), resultSet.getString("LastName"), resultSet.getString("ID_NUMBER"));
+        doctor.setHashedPassword(resultSet.getString("Password"));
         doctor.setCity(resultSet.getString("City"));
         doctor.setMobileNumber(resultSet.getString("Mobile_Number"));
         doctor.setYearExperience(resultSet.getString("Experience"));

@@ -33,7 +33,7 @@ public class VisitsSQLDAO {
             result.add(new Visit(resultSet.getString("patientId"), resultSet.getString("doctorId"),
                     resultSet.getString("reason"), resultSet.getString("date"), resultSet.getString("type")));
         }
-        if(result.isEmpty()) return null;
+//        if(result.isEmpty()) return null;
         return result.iterator();
     }
 
@@ -77,5 +77,20 @@ public class VisitsSQLDAO {
         ResultSet resultSet = statement.executeQuery();
 
         return returnIterator(resultSet);
+    }
+
+    public Iterator<Visit> getPatientVisitsIterator(String ID, String type) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM visits WHERE patientId = ? AND type = ?");
+        statement.setString(1,ID);
+        statement.setString(2,type);
+        ResultSet resultSet = statement.executeQuery();
+
+        return returnIterator(resultSet);
+    }
+
+    public boolean hasVisits(String id, String type) throws SQLException {
+        return getPatientVisitsIterator(id,type) != null;
     }
 }
