@@ -27,7 +27,7 @@
 
         <li>City: <input type="text" name="city" value = <%=doctor.getCity()%>></li>
 
-        <li>ID: <input type="text" name="id" value = <%=doctor.getID()%>></li>
+        <li>ID: <input type="text" name="id" readonly value = <%=doctor.getID()%>></li>
 
         <li>Address: <input type="text" name="speciality" value = <%=doctor.getSpeciality()%>></li>
 

@@ -38,6 +38,7 @@
         <form action="/loginDc" method="post">
                     <input type="submit" value = "Log Out" name = "logOut">
                     <input type="submit" value = "Edit Info" name = "edit">
+                    <input type = "hidden" name = "id" value = <%=doctor.getID()%>>
                 </form>
     </p>
 
