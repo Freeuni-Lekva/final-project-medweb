@@ -84,7 +84,7 @@ INSERT INTO visits (patientId, doctorId, reason, date, type) Values
 
 
 
-CREATE table DoctorWorkTimes(
+CREATE table DoctorWorkTime(
 	ID varchar(40),
     Dates Date not null,
     Ten boolean,

@@ -3,6 +3,7 @@ package freeuni.edu.ge.DAO;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Models.Administrator;
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.Patient;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.SQLException;
@@ -61,4 +62,19 @@ public class GeneralCommandsSQL implements GeneralCommands{
         if(pass.equals("")) return false;
         return pass.equals(hash.generateHash(password));
     }
+
+    @Override
+    public boolean contains(Patient patient) throws SQLException {
+        return contains(patient.getID());
+    }
+
+    @Override
+    public boolean contains(String ID) throws SQLException {
+        return patientDAO.getPatientByIdNumber(ID) != null;
+    }
+    @Override
+    public void addPatient(Patient patient) throws SQLException {
+        patientDAO.addPatient(patient);
+    }
+
 }
