@@ -43,10 +43,17 @@
 
 <%--
     <% if(!doctor.getVisits.isEmpty()) { %>
+    <h2>Visits:</h2>
         <ul>
-            <% List<Visits> visits = doctor.getVisits();
+            <% List<Visit> visits = doctor.getVisits();
                 for(Visit visit : visits) { %>
-                    <li><%=visit.getPatientName()%> - doctor.getName()</li>
+                <form action = "/loginDc" method = "post" >
+                    <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+                        <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
+                        <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
+                        <input type = "submit" value = "Finish" name = "finish">
+                    </li> </br>
+                </form>
             <%}%>
         </ul>
     <%}%>
