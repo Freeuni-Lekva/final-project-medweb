@@ -40,4 +40,9 @@ public class PatientCommandsSQL implements PatientCommands{
     public Doctor getDoctorById(String id) throws SQLException {
         return doctorDAO.getDoctorByIdNumber(id);
     }
+
+    @Override
+    public void addPatient(Patient patient) throws SQLException {
+        patientDAO.addPatient(patient);
+    }
 }

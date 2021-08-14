@@ -15,6 +15,7 @@ public class GeneralCommandsSQL implements GeneralCommands{
     public GeneralCommandsSQL(BasicDataSource dataSource){
         requestDAO = new RequestDAO(dataSource);
         doctorDAO = new DoctorSqlDAO(dataSource);
+        patientDAO = new PatientSqlDAO(dataSource);
     }
 
     @Override

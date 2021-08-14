@@ -12,4 +12,5 @@ public interface PatientCommands {
     boolean hasVisits(String id, String type) throws SQLException;
     Iterator<Visit> getPatientVisitsIterator(String ID, String type) throws SQLException;
     Doctor getDoctorById(String id) throws SQLException;
+    void addPatient(Patient patient) throws SQLException;
 }

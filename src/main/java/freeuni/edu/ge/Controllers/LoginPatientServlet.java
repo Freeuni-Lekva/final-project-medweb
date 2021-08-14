@@ -1,6 +1,8 @@
 package freeuni.edu.ge.Controllers;
 
 import freeuni.edu.ge.DAO.AdministratorDao;
+import freeuni.edu.ge.DAO.PatientCommands;
+import freeuni.edu.ge.DAO.PatientCommandsSQL;
 import freeuni.edu.ge.Models.Patient;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginPatientServlet extends HttpServlet {
 
@@ -31,17 +34,21 @@ public class LoginPatientServlet extends HttpServlet {
         } else if(httpServletRequest.getParameter("logOut") != null) {
             httpServletResponse.sendRedirect("http://localhost:8080/home");
         } else {
-            updatePatientInformation(httpServletRequest, httpServletResponse, session, id);
+            try {
+                updatePatientInformation(httpServletRequest, httpServletResponse, session, id);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
-    private void updatePatientInformation(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, HttpSession session, String id) throws ServletException, IOException {
-        AdministratorDao dao = (AdministratorDao) httpServletRequest.getServletContext().getAttribute("AdministratorDAO");
+    private void updatePatientInformation(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, HttpSession session, String id) throws ServletException, IOException, SQLException {
+        PatientCommands dao = (PatientCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
         Patient patient = dao.getPatientById(id);
         updatePatient(patient, httpServletRequest);
         session.setAttribute("id", id);
         httpServletRequest.setAttribute("id", id);
-        dao.setPatientOnId(id, patient);
+        dao.addPatient(patient);
         sendTo(httpServletRequest, httpServletResponse, "View/loginPatient.jsp");
     }
 
