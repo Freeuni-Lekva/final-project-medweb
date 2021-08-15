@@ -32,13 +32,16 @@ if(type.equals("patient")){
 <br>
 
 <%--Try New Chat Scrollbar--%>
+<div class = "chat-container">
 
-<div class = "messages" id = "messages" style="overflow-y: scroll; height: 200px; width:300px; overflow-x: hidden; background: transparent;">
+<div class = "messages" id = "messages" style="overflow-y: scroll; height: 300px; width:300px; overflow-x: hidden; background: transparent;">
 
 </div>
 
-    <input type = "text" id = "messageText" size = "35"/>
-    <input type = "button" value = "Send" onclick="sendMessage();"/>
+    <input type = "text" id = "messageText" size = "35" placeholder="Type Message..."/>
+<br>
+<input class = "button"type = "button" value = "Send" onclick="sendMessage();"/>
+
     <input type="file" accept="image/*" id="file-input" />
 <br>
 
@@ -47,5 +50,6 @@ if(type.equals("patient")){
     <input type="hidden" name = "id" value=<%=(String)request.getAttribute("senderID")%>>
 </form>
 
+</div>
 </body>
 </html>

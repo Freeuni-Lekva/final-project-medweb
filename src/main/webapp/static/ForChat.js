@@ -50,7 +50,7 @@ function writeToScreen(message) {
 
     if(jsonData.image && jsonData.image !== noImage){
         let imagePath = returnImagePath(jsonData.image);
-        appendImage(imagePath);
+        appendImage(imagePath, jsonData.type);
     }
         messages.scrollTop = messages.scrollHeight;
 }
@@ -73,12 +73,21 @@ function writeToScreen(message) {
     messages.appendChild(node);
 }
 
-function appendImage(imagePath){
+function appendImage(imagePath, type){
     const messages = document.getElementById("messages");
     let node = document.createElement("IMG");
     node.src = imagePath;
     node.width = "100";
     node.height = "100";
+    if(type && type !== ""){
+        if(type === "patient"){
+            node.classList.add("patient-image")
+        }
+
+        if(type === "doctor"){
+            node.classList.add("doctor-image")
+        }
+    }
     messages.appendChild(node);
 }
 
