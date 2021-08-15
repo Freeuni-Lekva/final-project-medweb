@@ -213,8 +213,8 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
     }
 
     @Override
-    public Map<Date, List<Time>> getDoctorWorkingTime() {
-        return null;
+    public Map<Date, List<Time>> getDoctorWorkingTime(Doctor doctor) throws SQLException {
+        return getAllDoctorWorkingTime().get(doctor.getID());
     }
 
     private void getInformation(ResultSet resultSet, Map<String, Map<Date, List<Time>>> doctorsWorkingTime) throws SQLException {
