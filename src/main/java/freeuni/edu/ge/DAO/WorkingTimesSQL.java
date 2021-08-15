@@ -15,45 +15,15 @@ import java.util.Date;
 
 public class WorkingTimesSQL implements WorkingTimesDAOInterface{
 
-    private static final int NEX_DAYS = 8;
+    private static final int NEXT_DAYS = 8;
     private static final int DAY_GRAPHIC= 8;
+    private static final int WORK_START_TIME = 10;
 
     private final BasicDataSource source;
 
     public WorkingTimesSQL (BasicDataSource source){
         this.source = source;
     }
-//
-//    public static void main(String [] args) throws SQLException {
-//        BasicDataSource dataSource = new BasicDataSource();
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("3.1415");
-//        WorkingTimesSQL sql = new WorkingTimesSQL(dataSource);
-//
-//        Doctor doc = new Doctor("123", "123", "123");
-//        sql.addDoctor(doc);
-//
-//        Date date =new Date(2021, 7,16);
-//        Time time = new Time(10,0,0);
-//        sql.reserveDoctor(doc, date, time);
-//        sql.getToString(sql.getAllDoctorWorkingTime());
-//
-//    }
-//
-//    public void getToString(Map<String, Map<Date, List<Time>>> returnValue) {
-//        for(String ID : returnValue.keySet()) {
-//            Map<Date, List<Time>> tmp = returnValue.get(ID);
-//            for (Date d : tmp.keySet()) {
-//                List<Time> tmp2 = tmp.get(d);
-//                System.out.print(d.toString() + " ");
-//                for (int i = 0; i < tmp2.size(); i++) {
-//                    System.out.print(tmp2.get(i) + " ");
-//                }
-//                System.out.println("");
-//            }
-//        }
-//    }
 
     @Override
     public void addDoctor(Doctor doctor) throws SQLException {
@@ -61,7 +31,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
         try{
             Connection connection = source.getConnection();
             LocalDateTime localDateTime = LocalDateTime.now();
-            for(int i =0; i<NEX_DAYS; i++) {
+            for(int i =0; i<NEXT_DAYS; i++) {
                 PreparedStatement statement = connection.prepareStatement("insert into DoctorWorkTime(ID, Dates, Ten, Eleven, " +
                         "Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen)" +
                         "values(?,?,?,?,?,?,?,?,?,?)");
@@ -80,8 +50,128 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
     }
 
     @Override
-    public void updateBase() {
+    public void updateBase() throws SQLException {
+        source.restart();
+        Map<String, Map<Date, List<Time>>> doctorsInformation = getAllDoctorWorkingTime();
+        doctorsInformation = clearBaseAndUpdate(doctorsInformation);
+        addInBase(doctorsInformation);
+    }
 
+    private void addInBase(Map<String, Map<Date, List<Time>>> doctorsInformation) throws SQLException {
+        source.restart();
+        try{
+            Connection connection = source.getConnection();
+            for(String ID : doctorsInformation.keySet()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("insert into DoctorWorkTime(ID, Dates, Ten, Eleven, " +
+                        "Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen)" +
+                        "values(?,?,?,?,?,?,?,?,?,?)");
+                preparedStatement.setString(1, ID);
+                Map<Date, List<Time>> dates = doctorsInformation.get(ID);
+                for(Date date : dates.keySet()){
+                    String makeDate = "" + date.getYear() + "-" + date.getMonth() + "-" + date.getDate();
+                    preparedStatement.setString(2, makeDate);
+                    List<Time> times = dates.get(date);
+                    for(int i =0; i <NEXT_DAYS; i++) {
+                        preparedStatement.setBoolean(3+i,false);
+                    }
+                    for(int i =0;i<times.size(); i++) {
+                        List<String> timesNames = Arrays.asList("Ten","eleven", "Twelve","Thirteen",
+                                "Fourteen", "Fifteen","Sixteen","Seventeen" );
+                        int index = (times.get(i)).getHours() -10;
+                        String str = timesNames.get(index);
+                        preparedStatement.setBoolean(2+timesNames.indexOf(str),true);
+                    }
+                    preparedStatement.executeUpdate();
+                }
+            }
+        }catch(SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    private Map<String, Map<Date, List<Time>>> clearBaseAndUpdate(Map<String, Map<Date, List<Time>>> doctorsInformation) throws SQLException {
+        clearAndCreateBase();
+        Map <String, List <Date>> doctorAndDates = new HashMap<>();
+        makeCopyOfDoctorsInformation(doctorsInformation, doctorAndDates);
+        updateWorkingTimesMap(doctorAndDates);
+        Map<String, Map<Date, List<Time>>> tmpToctorsInformation = new HashMap<>();
+        for(String doctorID : doctorAndDates.keySet()) {
+            List<Date> doctorDates = doctorAndDates.get(doctorID);
+            Map<Date, List<Time>> doctorWork = doctorsInformation.get(doctorID);
+            Map<Date, List<Time>> tmpDoctorWork = new HashMap<>();
+            for(int i=0; i <doctorDates.size();i++) {
+                if(!doctorWork.containsKey(doctorDates.get(i))) {
+                    List<Time> dayGraphic = new ArrayList<>();
+                    tmpDoctorWork.put(doctorDates.get(i), dayGraphic);
+                } else {
+                    tmpDoctorWork.put(doctorDates.get(i), doctorWork.get(doctorDates.get(i)));
+                }
+                tmpToctorsInformation.put(doctorID, tmpDoctorWork);
+            }
+        }
+        return tmpToctorsInformation;
+    }
+
+    private void updateWorkingTimesMap(Map<String, List<Date>> doctorAndDates) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Date now = new Date(localDateTime.getYear(), localDateTime.getMonthValue()-1, localDateTime.getDayOfMonth());
+        for(String doctorID : doctorAndDates.keySet()) {
+            List<Date> dates = doctorAndDates.get(doctorID);
+            for(int i = 0; i < dates.size(); i++){
+                if(dates.get(i).compareTo(now) < 0) {
+                    Date date;
+                    if(dates.get(dates.size()-1).compareTo(now) < 0) {
+                        date = new Date(now.getYear(), now.getMonth(),now.getDate()+1);
+                    } else {
+                        date = new Date(now.getYear(), now.getMonth(),dates.get(dates.size()-1).getDate()+1);
+                    }
+                    dates.remove(i);
+                    dates.add(date);
+                    i--;
+                }
+            }
+        }
+    }
+
+    private void makeCopyOfDoctorsInformation(Map<String, Map<Date, List<Time>>> doctorsInformation, Map<String, List<Date>> doctorAndDates) {
+        List forDoctorAndDates = new ArrayList<>();
+        for(String doctorsId : doctorsInformation.keySet()) {
+            Map<Date, List<Time>> eachDoctorTimes = doctorsInformation.get(doctorsId);
+            for(Date date : eachDoctorTimes.keySet()) {
+                forDoctorAndDates.add(date);
+            }
+            Collections.sort(forDoctorAndDates);
+            doctorAndDates.put(doctorsId,forDoctorAndDates);
+        }
+    }
+
+
+    private void clearAndCreateBase() throws SQLException {
+        clear();
+        createBase();
+    }
+
+    private void createBase() throws SQLException {
+        Connection connection = source.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("create table DoctorWorkTime(\n" +
+                "\tID varchar(40),\n" +
+                "    Dates varchar(40),\n" +
+                "    Ten boolean,\n" +
+                "    Eleven boolean,\n" +
+                "    Twelve boolean,\n" +
+                "    Thirteen boolean,\n" +
+                "    Fourteen boolean,\n" +
+                "    Fifteen boolean,\n" +
+                "    Sixteen boolean,\n" +
+                "    Seventeen boolean\n" +
+                ");");
+        preparedStatement.executeUpdate();
+    }
+
+    private void clear() throws SQLException {
+        Connection connection = source.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("drop table DoctorWorkTime;");
+        preparedStatement.executeUpdate();
     }
 
     @Override
@@ -89,15 +179,8 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
         source.restart();
         try{
             Connection connection = source.getConnection();
-            List<String> times = new ArrayList<>();
-            times.add("Ten");
-            times.add("eleven");
-            times.add("Twelve");
-            times.add("Thirteen");
-            times.add("Fourteen");
-            times.add("Fifteen");
-            times.add("Sixteen");
-            times.add("Seventeen");
+            List<String> times = Arrays.asList("Ten","eleven", "Twelve","Thirteen",
+                    "Fourteen", "Fifteen","Sixteen","Seventeen" );
             int index = time.getHours() -10;
             String str = times.get(index);
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE DoctorWorkTime SET " + str + " =? " + "where (ID = ? && Dates = ?);");
@@ -171,6 +254,5 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
         int day =Integer.parseInt(dateInString.substring(secondDelimIndex+1));
         Date returnDate = new Date(year,month,day);
         return returnDate;
-
     }
 }
