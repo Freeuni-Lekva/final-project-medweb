@@ -21,6 +21,7 @@ public class DoctorCommandsSQL implements DoctorCommands{
 
     @Override
     public Doctor getDoctorById(String id) throws SQLException {
+        System.out.println("In:  " + doctorDAO.getDoctorByIdNumber(id));
         return doctorDAO.getDoctorByIdNumber(id);
     }
 

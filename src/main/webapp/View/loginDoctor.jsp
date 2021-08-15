@@ -38,6 +38,7 @@
         <form action="/loginDc" method="post">
                     <input type="submit" value = "Log Out" name = "logOut">
                     <input type="submit" value = "Edit Info" name = "edit">
+                    <input type = "hidden" name = "id" value = <%=doctor.getID()%>>
                 </form>
     </p>
 
@@ -59,18 +60,28 @@
     <%}%>
 --%>
 
+    <h2>Your Physical Visits:</h2>
+
+    <ol>
+            <%
+            Iterator<Visit> itP = dao.getDoctorVisitsIterator(doctor.getID(),"Physical");
+            while(itP.hasNext()) {
+                Visit visit = itP.next();
+        %>
+                <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+
+    <%}%>
+
     <h2>Your Online Visits:</h2>
 
     <ol>
-
-
         <%
             Iterator<Visit> it = dao.getDoctorVisitsIterator(doctor.getID(),"Online");
             while(it.hasNext()) {
                 Visit visit = it.next();
         %>
         <form action = "/chat?tp=d" method = post>
-            <li>Doctor: <%=dao.getDoctorById(visit.getDoctorId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+            <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
                 <input type = "submit" value = "Open Chat">
