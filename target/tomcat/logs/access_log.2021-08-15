@@ -1,0 +1,3 @@
+0:0:0:0:0:0:0:1 - - [15/Aug/2021:19:05:50 +0400] "GET /home HTTP/1.1" 200 948 http-bio-8080-exec-1 1380
+0:0:0:0:0:0:0:1 - - [15/Aug/2021:19:05:51 +0400] "GET /dr HTTP/1.1" 200 678 http-bio-8080-exec-3 118
+0:0:0:0:0:0:0:1 - - [15/Aug/2021:19:05:51 +0400] "GET /static/DoctorRegistrationFirstStageCSS.css HTTP/1.1" 304 - http-bio-8080-exec-4 11
