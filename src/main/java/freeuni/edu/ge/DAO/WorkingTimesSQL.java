@@ -11,6 +11,8 @@ import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.sql.*;
+import java.util.List;
+import java.util.Map;
 
 public class WorkingTimesSQL implements WorkingTimesDAOInterface{
 
@@ -55,5 +57,10 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
     @Override
     public void reserveDoctor(Doctor doctor, Date date, Time time) {
 
+    }
+
+    @Override
+    public Map<String, Map<Date, List<Time>>> getAllDoctorWorkingTime() {
+        return null;
     }
 }
