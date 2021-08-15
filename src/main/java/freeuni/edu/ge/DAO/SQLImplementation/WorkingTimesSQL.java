@@ -45,9 +45,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
                 }
                 statement.executeUpdate();
             }
-        }catch(SQLException exception){
-            exception.printStackTrace();
-        }
+        }catch(SQLException exception){ exception.printStackTrace(); }
     }
 
     @Override
@@ -72,24 +70,20 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
                     String makeDate = "" + date.getYear() + "-" + date.getMonth() + "-" + date.getDate();
                     preparedStatement.setString(2, makeDate);
                     List<Time> times = dates.get(date);
-                    for(int i =0; i <NEXT_DAYS; i++) {
-                        preparedStatement.setBoolean(3+i,true);
-                    }
+                    for(int i =0;i<NEXT_DAYS; i++) { preparedStatement.setBoolean(3+i,false); }
+                    Date t = new Date(2021, 7, 15);
                     for(int i =0;i<times.size(); i++) {
                         List<String> timesNames = Arrays.asList("Ten","eleven", "Twelve","Thirteen",
                                 "Fourteen", "Fifteen","Sixteen","Seventeen" );
                         int index = (times.get(i)).getHours() -10;
                         String str = timesNames.get(index);
-                        preparedStatement.setBoolean(2+timesNames.indexOf(str),false);
+                        preparedStatement.setBoolean(3+timesNames.indexOf(str),true);
                     }
                     preparedStatement.executeUpdate();
                 }
             }
-        }catch(SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        }catch(SQLException throwables) { throwables.printStackTrace(); }
     }
-
     private Map<String, Map<Date, List<Time>>> clearBaseAndUpdate(Map<String, Map<Date, List<Time>>> doctorsInformation) throws SQLException {
         clearAndCreateBase();
         Map <String, List <Date>> doctorAndDates = new HashMap<>();
@@ -102,11 +96,9 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
             Map<Date, List<Time>> tmpDoctorWork = new HashMap<>();
             for(int i=0; i <doctorDates.size();i++) {
                 if(!doctorWork.containsKey(doctorDates.get(i))) {
-                    List<Time> dayGraphic = new ArrayList<>();
-                    tmpDoctorWork.put(doctorDates.get(i), dayGraphic);
-                } else {
-                    tmpDoctorWork.put(doctorDates.get(i), doctorWork.get(doctorDates.get(i)));
-                }
+                 //   List<Time> dayGraphic = new ArrayList<>();
+                    tmpDoctorWork.put(doctorDates.get(i), new ArrayList<>());
+                } else { tmpDoctorWork.put(doctorDates.get(i), doctorWork.get(doctorDates.get(i))); }
                 tmpToctorsInformation.put(doctorID, tmpDoctorWork);
             }
         }
@@ -121,11 +113,8 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
             for(int i = 0; i < dates.size(); i++){
                 if(dates.get(i).compareTo(now) < 0) {
                     Date date;
-                    if(dates.get(dates.size()-1).compareTo(now) < 0) {
-                        date = new Date(now.getYear(), now.getMonth(),now.getDate()+1);
-                    } else {
-                        date = new Date(now.getYear(), now.getMonth(),dates.get(dates.size()-1).getDate()+1);
-                    }
+                    if(dates.get(dates.size()-1).compareTo(now) < 0) { date = new Date(now.getYear(), now.getMonth(),now.getDate()+1); }
+                    else { date = new Date(now.getYear(), now.getMonth(),dates.get(dates.size()-1).getDate()+1); }
                     dates.remove(i);
                     dates.add(date);
                     i--;
@@ -133,7 +122,6 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
             }
         }
     }
-
     private void makeCopyOfDoctorsInformation(Map<String, Map<Date, List<Time>>> doctorsInformation, Map<String, List<Date>> doctorAndDates) {
         List forDoctorAndDates = new ArrayList<>();
         for(String doctorsId : doctorsInformation.keySet()) {
@@ -145,6 +133,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
             doctorAndDates.put(doctorsId,forDoctorAndDates);
         }
     }
+
 
 
     private void clearAndCreateBase() throws SQLException {
@@ -174,7 +163,6 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
         PreparedStatement preparedStatement = connection.prepareStatement("drop table DoctorWorkTime;");
         preparedStatement.executeUpdate();
     }
-
     @Override
     public void reserveDoctor(Doctor doctor, Date date, Time time) throws SQLException {
         source.restart();
@@ -191,9 +179,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
             String makeDate = "" + date.getYear() + "-" + date.getMonth() + "-" + date.getDate();
             preparedStatement.setString(3,makeDate);
             preparedStatement.executeUpdate();
-        }catch(SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        }catch(SQLException throwables) { throwables.printStackTrace(); }
     }
 
     @Override
@@ -204,19 +190,13 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
             Connection connection = source.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet =statement.executeQuery("select * from DoctorWorkTime;");
-            while(resultSet.next()) {
-                getInformation(resultSet, doctorsWorkingTime);
-            }
-        }catch(SQLException throwables){
-            throwables.printStackTrace();
-        }
+            while(resultSet.next()) { getInformation(resultSet, doctorsWorkingTime); }
+        }catch(SQLException throwables){ throwables.printStackTrace(); }
         return doctorsWorkingTime;
     }
 
     @Override
-    public Map<Date, List<Time>> getDoctorWorkingTime(Doctor doctor) throws SQLException {
-        return getAllDoctorWorkingTime().get(doctor.getID());
-    }
+    public Map<Date, List<Time>> getDoctorWorkingTime(Doctor doctor) throws SQLException { return getAllDoctorWorkingTime().get(doctor.getID()); }
 
     private void getInformation(ResultSet resultSet, Map<String, Map<Date, List<Time>>> doctorsWorkingTime) throws SQLException {
         List<Time> times = new ArrayList<>();

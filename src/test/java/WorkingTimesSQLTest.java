@@ -2,15 +2,14 @@ import freeuni.edu.ge.DAO.SQLImplementation.WorkingTimesSQL;
 import freeuni.edu.ge.Models.Doctor;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
-
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
