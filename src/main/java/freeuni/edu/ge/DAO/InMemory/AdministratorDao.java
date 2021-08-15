@@ -1,4 +1,4 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.InMemory;
 
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Models.Doctor;
@@ -9,7 +9,6 @@ import freeuni.edu.ge.Models.Visit;
 import java.util.Iterator;
 
 public interface AdministratorDao {
-  
     void addNewDoctorRegistrationRequest(String name, String surname, String ID);
     Iterator<Request> getIterator();
     Patient getPatientById(String id);

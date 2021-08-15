@@ -1,4 +1,4 @@
-import freeuni.edu.ge.DAO.VisitsSQLDAO;
+import freeuni.edu.ge.DAO.SQLImplementation.VisitsSQLDAO;
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.BeforeEach;

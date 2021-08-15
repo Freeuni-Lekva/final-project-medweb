@@ -1,14 +1,14 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.InMemory;
 
+import freeuni.edu.ge.DAO.InMemory.DoctorDAO;
 import freeuni.edu.ge.Models.Doctor;
-import freeuni.edu.ge.Models.Patient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DoctorsDAO implements DoctorDAO{
+public class DoctorsDAO implements DoctorDAO {
 
     private Map<String, Doctor> doctors;
 
@@ -65,6 +65,9 @@ public class DoctorsDAO implements DoctorDAO{
                 result.add(doctor);
             }
         }
+
+        result.add(new Doctor("luka", "kapanadze", "56"));
+        
         return result;
     }
 

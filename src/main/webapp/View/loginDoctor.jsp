@@ -1,11 +1,11 @@
-<%@ page import="freeuni.edu.ge.DAO.InMemoryAdmnDao" %>
+<%@ page import="freeuni.edu.ge.DAO.InMemory.InMemoryAdmnDao" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.InMemory.AdministratorDao" %>
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
 <%@ page import="freeuni.edu.ge.Models.Visit" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="freeuni.edu.ge.DAO.DoctorCommands" %>
-<%@ page import="freeuni.edu.ge.DAO.DoctorCommandsSQL" %><%--
+<%@ page import="freeuni.edu.ge.DAO.Interfaces.DoctorCommands" %>
+<%@ page import="freeuni.edu.ge.DAO.SQLImplementation.DoctorCommandsSQL" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/24/2021
@@ -38,32 +38,50 @@
         <form action="/loginDc" method="post">
                     <input type="submit" value = "Log Out" name = "logOut">
                     <input type="submit" value = "Edit Info" name = "edit">
+                    <input type = "hidden" name = "id" value = <%=doctor.getID()%>>
                 </form>
     </p>
 
 <%--
     <% if(!doctor.getVisits.isEmpty()) { %>
+    <h2>Visits:</h2>
         <ul>
-            <% List<Visits> visits = doctor.getVisits();
+            <% List<Visit> visits = doctor.getVisits();
                 for(Visit visit : visits) { %>
-                    <li><%=visit.getPatientName()%> - doctor.getName()</li>
+                <form action = "/loginDc" method = "post" >
+                    <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+                        <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
+                        <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
+                        <input type = "submit" value = "Finish" name = "finish">
+                    </li> </br>
+                </form>
             <%}%>
         </ul>
     <%}%>
 --%>
 
+    <h2>Your Physical Visits:</h2>
+
+    <ol>
+            <%
+            Iterator<Visit> itP = dao.getDoctorVisitsIterator(doctor.getID(),"Physical");
+            while(itP.hasNext()) {
+                Visit visit = itP.next();
+        %>
+                <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+
+    <%}%>
+
     <h2>Your Online Visits:</h2>
 
     <ol>
-
-
         <%
             Iterator<Visit> it = dao.getDoctorVisitsIterator(doctor.getID(),"Online");
             while(it.hasNext()) {
                 Visit visit = it.next();
         %>
         <form action = "/chat?tp=d" method = post>
-            <li>Doctor: <%=dao.getDoctorById(visit.getDoctorId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+            <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
                 <input type = "submit" value = "Open Chat">

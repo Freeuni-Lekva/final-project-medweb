@@ -1,17 +1,18 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
+import freeuni.edu.ge.DAO.Interfaces.AdministratorCommands;
 import freeuni.edu.ge.Models.Request;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.SQLException;
 import java.util.Iterator;
 
-public class AdminCommandsSQL implements AdministratorCommands{
-    private RequestDAO requestDAO;
+public class AdminCommandsSQL implements AdministratorCommands {
+    private RequestSQLDAO requestDAO;
 
 
     public AdminCommandsSQL(BasicDataSource dataSource){
-        requestDAO = new RequestDAO(dataSource);
+        requestDAO = new RequestSQLDAO(dataSource);
     }
 
 
