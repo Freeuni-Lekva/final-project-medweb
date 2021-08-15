@@ -1,16 +1,12 @@
-import freeuni.edu.ge.DAO.RequestDAO;
+import freeuni.edu.ge.DAO.SQLImplementation.RequestSQLDAO;
 import freeuni.edu.ge.Models.Request;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,7 +26,7 @@ public class RequestDAOTest {
     //about insert request in table
     @Test
     public void test1() throws SQLException {
-        RequestDAO dao = new RequestDAO(dataSource);
+        RequestSQLDAO dao = new RequestSQLDAO(dataSource);
         String name = "luka";
         String surname = "kapanadze";
         String ID = "60001156789";
@@ -43,7 +39,7 @@ public class RequestDAOTest {
     //get Request method check
     @Test
     public void test2() throws SQLException {
-        RequestDAO dao = new RequestDAO(dataSource);
+        RequestSQLDAO dao = new RequestSQLDAO(dataSource);
         String ID = "60001156789";
         Request request = dao.getRequestByID(ID);
         assertEquals(request.getID(), ID);
@@ -54,7 +50,7 @@ public class RequestDAOTest {
     //Iterator test
     @Test
     public void test3() throws SQLException {
-        RequestDAO dao = new RequestDAO(dataSource);
+        RequestSQLDAO dao = new RequestSQLDAO(dataSource);
         Request request1 = new Request("luka","kapanadze","60001156789");
         Request request2 = new Request("doctor","doctorashvil","10001112233");
         Request request3 = new Request("medic","medicamenti","12341231212");
@@ -84,7 +80,7 @@ public class RequestDAOTest {
     //checking remove from requests table method
     @Test
     public void test4() throws SQLException {
-        RequestDAO dao = new RequestDAO(dataSource);
+        RequestSQLDAO dao = new RequestSQLDAO(dataSource);
         dao.addNewDoctorRegistrationRequest("axali","doxtori","6000100203040");
 
         assertEquals("axali",dao.getNameById("6000100203040"));
@@ -111,7 +107,7 @@ public class RequestDAOTest {
     //test about can register table insert. method - add new doctor in mentioned table.
     @Test
     public void test5() throws SQLException {
-        RequestDAO dao = new RequestDAO(dataSource);
+        RequestSQLDAO dao = new RequestSQLDAO(dataSource);
         Request request1 = new Request("Michael","Butler","30001233445");
         Request request2 = new Request("Nicole","Bennett","60231256419");
 
@@ -133,7 +129,7 @@ public class RequestDAOTest {
     //when doctor is accepted
     @Test
     public void test6() throws SQLException {
-        RequestDAO dao = new RequestDAO(dataSource);
+        RequestSQLDAO dao = new RequestSQLDAO(dataSource);
 
         //in base
         Request request1 = new Request("luka","kapanadze","60001156789");
@@ -152,7 +148,7 @@ public class RequestDAOTest {
 
     @Test
     public void test7() throws SQLException {
-        RequestDAO dao = new RequestDAO(dataSource);
+        RequestSQLDAO dao = new RequestSQLDAO(dataSource);
         //in base
         Request request1 = new Request("luka","kapanadze","60001156789");
         Request request3 = new Request("medic","medicamenti","12341231212");

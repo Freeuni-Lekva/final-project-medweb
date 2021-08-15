@@ -1,4 +1,4 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.Models.Request;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -10,11 +10,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class RequestDAO {
+public class RequestSQLDAO {
     private BasicDataSource dataSource;
 
 
-    public RequestDAO(BasicDataSource dataSource){
+    public RequestSQLDAO(BasicDataSource dataSource){
         this.dataSource = dataSource;
     }
 

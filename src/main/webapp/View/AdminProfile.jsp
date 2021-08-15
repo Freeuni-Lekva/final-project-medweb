@@ -1,8 +1,8 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="freeuni.edu.ge.Models.Request" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorCommands" %>
-<%@ page import="freeuni.edu.ge.DAO.AdminCommandsSQL" %>
+<%@ page import="freeuni.edu.ge.DAO.InMemory.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.Interfaces.AdministratorCommands" %>
+<%@ page import="freeuni.edu.ge.DAO.SQLImplementation.AdminCommandsSQL" %>
 <html>
 <head>
 

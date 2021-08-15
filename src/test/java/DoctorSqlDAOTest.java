@@ -1,4 +1,4 @@
-import freeuni.edu.ge.DAO.DoctorSqlDAO;
+import freeuni.edu.ge.DAO.SQLImplementation.DoctorSqlDAO;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Helpers.HashUsingSHA1;
 import freeuni.edu.ge.Models.Doctor;

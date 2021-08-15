@@ -1,9 +1,8 @@
 package freeuni.edu.ge.Controllers;
 
 
-import freeuni.edu.ge.DAO.GeneralCommands;
-import freeuni.edu.ge.DAO.GeneralCommandsSQL;
-import freeuni.edu.ge.DAO.AdministratorDao;
+import freeuni.edu.ge.DAO.Interfaces.GeneralCommands;
+import freeuni.edu.ge.DAO.SQLImplementation.GeneralCommandsSQL;
 import freeuni.edu.ge.Models.Doctor;
 
 import javax.servlet.ServletException;
@@ -32,9 +31,9 @@ public class DoctorRegistrationServlet extends HttpServlet {
 
             try {
                 if (dao.canDoctorRegister(name, surname, ID)) {
-    //                if(adminDAO.getDoctorById(ID) == null){
-    //                    adminDAO.addDoctorPrimaryInformation(name,surname,ID);
-    //                }
+                    //                if(adminDAO.getDoctorById(ID) == null){
+                    //                    adminDAO.addDoctorPrimaryInformation(name,surname,ID);
+                    //                }
 
                     Doctor doc = new Doctor(name,surname,ID);
                     httpServletRequest.setAttribute("doctor",doc);
