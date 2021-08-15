@@ -1,8 +1,10 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="javax.swing.*" %>
+
 <html>
     <head>
         <title>Registration</title>
+          <link href="/static/ForPatientRegistrationCSS.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <h1>Registration Form</h1>
@@ -18,13 +20,17 @@
         <%} %>
 
         <form action = "/pr" method="post">
+
+            <div class="required">
             <label>First Name </label>
             <% if(request.getAttribute("Optional") != null || request.getAttribute("NotFilled") != null) {%>
                 <input type="text" name = "fName" value = <%=request.getAttribute("fName")%> ><br>
             <%}else {%>
                 <input type="text" name = "fName"><br>
             <%}%>
+            </div>
 
+            <div class="required">
             <label>Last Name </label>
             <% if(request.getAttribute("Optional") != null|| request.getAttribute("NotFilled") != null) {%>
                 <input type="text" name = "lName" value = <%=request.getAttribute("lName")%> ><br>
@@ -32,20 +38,25 @@
             <%}else {%>
                 <input type="text" name = "lName" ><br>
             <%}%>
+            </div>
 
+            <div class="required">
             <label>ID Number </label>
             <% if(request.getAttribute("Optional") != null || request.getAttribute("NotFilled") != null) {%>
                 <input type="text" name = "ID" value = <%=request.getAttribute("ID")%> ><br>
             <%}else {%>
                 <input type="text" name = "ID" ><br>
             <%}%>
+            </div>
 
+            <div class="required">
             <label>Password </label>
             <% if(request.getAttribute("Optional") != null || request.getAttribute("NotFilled") != null) {%>
                 <input type="password" name="password" value = <%=request.getAttribute("password")%>><br>
             <%}else {%>
                 <input type="password" name = "password"><br>
             <%}%>
+            </div>
 
             <label>Birthday </label>
             <% if(request.getAttribute("Optional") != null || request.getAttribute("NotFilled") != null) {%>
@@ -97,7 +108,7 @@
             <%}%>
 
             <label>Family Members(Optional).Click Add </label>
-            <input type="submit" value = "Add" name = "add"> <br>
+            <input type="submit" value = "Add" name = "add" class="add"> <br>
 
 
             <% if(request.getAttribute("Optional") != null) {%>
@@ -109,8 +120,8 @@
                 <%}%>
             <%}%>
             <br>
-            <input type="submit" value = "Submit" name = "submit"><br><br>
-            <a href="/home"> Back To Home </a>
+            <input type="submit" value = "Submit" name = "submit" class="registerButton"><br><br>
+            <a href="/home" class="back"> Back To Home </a>
         </form>
     </body>
 </html>

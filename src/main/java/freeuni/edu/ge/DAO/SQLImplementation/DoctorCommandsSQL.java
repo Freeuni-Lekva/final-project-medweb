@@ -46,5 +46,9 @@ public class DoctorCommandsSQL implements DoctorCommands {
     @Override
     public Visit getVisitByDoctorAndPatientId(String doc, String pat) throws SQLException {
         return visitsDAO.getVisitByPatientAndDoctorId(pat, doc);
+
+    @Override
+    public boolean updateDoctor(Doctor doctor) throws SQLException {
+        return doctorDAO.updateDoctorInfo(doctor);
     }
 }

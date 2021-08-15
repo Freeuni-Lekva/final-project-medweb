@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 import java.util.Iterator;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestVisitsDAO {
 

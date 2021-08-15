@@ -43,10 +43,8 @@ public class HomePageServlet extends HttpServlet {
             } else {
                 try {
                     if(dao.checkIfItIsPatient(id, password, hash)) {
-                        HttpSession session = httpServletRequest.getSession();
-                        session.setAttribute("id", id);
-                        setPatientDaoOnSession(httpServletRequest);
-                        httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + id);
+                        String index = setPatientDaoOnSession(httpServletRequest, id);
+                        httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + index);
                     } else {
                         try {
                             if(dao.checkIfItIsDoctor(id, password, hash)) {
@@ -67,11 +65,12 @@ public class HomePageServlet extends HttpServlet {
         }
     }
 
-    private void setPatientDaoOnSession(HttpServletRequest httpServletRequest) {
+    private String setPatientDaoOnSession(HttpServletRequest httpServletRequest, String id) throws SQLException {
         HttpSession session = httpServletRequest.getSession();
         BasicDataSource dataSource = (BasicDataSource) httpServletRequest.getServletContext().getAttribute("dataSource");
         PatientCommands dao = new PatientCommandsSQL(dataSource);
         session.setAttribute("DAO",dao);
+        return dao.getPatientIndex(id);
     }
 
 

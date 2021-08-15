@@ -3,7 +3,6 @@ package freeuni.edu.ge.DAO.SQLImplementation;
 import freeuni.edu.ge.Models.Request;
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

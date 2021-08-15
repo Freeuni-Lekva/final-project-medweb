@@ -31,9 +31,9 @@ public class DoctorRegistrationServlet extends HttpServlet {
 
             try {
                 if (dao.canDoctorRegister(name, surname, ID)) {
-    //                if(adminDAO.getDoctorById(ID) == null){
-    //                    adminDAO.addDoctorPrimaryInformation(name,surname,ID);
-    //                }
+                    //                if(adminDAO.getDoctorById(ID) == null){
+                    //                    adminDAO.addDoctorPrimaryInformation(name,surname,ID);
+                    //                }
 
                     Doctor doc = new Doctor(name,surname,ID);
                     httpServletRequest.setAttribute("doctor",doc);

@@ -102,3 +102,14 @@ CREATE table DoctorTimes(
   doctorId varchar(40) not null,
   date varchar(40)
 );
+
+CREATE table history(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  Patient_ID_NUMBER varchar(40) not null,
+  Doctor_ID_NUMBER varchar(40) not null,
+  Reason varchar(40) ,
+  date varchar(40),
+  Medical_Conclusion varchar(40)
+);
+
+
