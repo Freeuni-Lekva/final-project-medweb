@@ -7,7 +7,7 @@
 <body>
 
 <div class="box">
- <h1> Login </h1>
+ <h1> Welcome </h1>
     <br>
     <form action = "/home" method="post">
 
@@ -15,9 +15,8 @@
         <input type="password" name="pass" value="Password" onfocus="field_focus(this, 'Password');" onblur="field_blur(this, 'Password');" class="Password">
 
         <br>
-        <br>
         <div class="submit">
-        <input type="submit" value = "LOGIN" name="submit">
+        <input type="submit" value = "Sign In" name="submit" class="submitButton">
         </div>
 
         <a href="/pr"><div class="buttonOne">Sign Up As Patient</div></a>
