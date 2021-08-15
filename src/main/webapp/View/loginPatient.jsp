@@ -96,6 +96,7 @@
 
         <form action="/bookDC" method="post">
             <input type="submit" value = "Book New Visit" name = "book">
+            <input type="hidden" name = "BookOnId" value = <%=patient.getID()%>>
         </form>
 
 
