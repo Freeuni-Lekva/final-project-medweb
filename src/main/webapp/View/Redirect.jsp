@@ -26,7 +26,7 @@
     <% if(request.getAttribute("doctors") == null) {%>
 
     <p>Select your option from the drop-down list.</p>
-    <form action="/bookDC" method="post">
+    <form action="/redirect" method="post">
         <label for="specialty">Choose a department:</label>
         <select name="specialty" id="specialty">
             <% for (Doctor.DoctorSpecialities specialty : Doctor.DoctorSpecialities.values()) {%>
@@ -59,7 +59,7 @@
     %>
 
     <% if(!doctors.isEmpty()) {%>
-    <form action="/bookDC" method="post">
+    <form action="/redirect" method="post">
 
         <br><br>
 

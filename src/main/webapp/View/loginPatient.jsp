@@ -21,27 +21,28 @@
 <html>
 <head>
     <title>Welcome <%=patient.getName()%>!</title>
+    <link rel="stylesheet" href="../static/Doctor.css">
 </head>
 <body>
 
     <h2>Personal Information</h2>
     <p>
 
-        <label>Name: </label> <%=patient.getName() %> <br>
+        <label>Name:  <%=patient.getName() %> </label> <br> <br>
 
-        <label>Surname: </label> <%=patient.getSurname() %> <br>
+        <label>Surname:  <%=patient.getSurname() %> </label> <br> <br>
 
-        <label>Date of birth: </label> <%=patient.getDateOfBirth() %> <br>
+        <label>Date of birth:  <%=patient.getDateOfBirth() %> </label> <br> <br>
 
-        <label>sex: </label> <%=patient.getSex() %> <br>
+        <label>sex:  <%=patient.getSex() %> </label> <br> <br>
 
-        <label>City: </label> <%=patient.getCity() %> <br>
+        <label>City:  <%=patient.getCity() %> </label> <br> <br>
 
-        <label>ID: </label> <%=patient.getID() %> <br>
+        <label>ID:  <%=patient.getID() %> </label> <br> <br>
 
-        <label>Address: </label> <%=patient.getAddress() %> <br>
+        <label>Address:  <%=patient.getAddress() %> </label> <br> <br>
 
-        <label>Mobile: </label> <%=patient.getMobileNumber() %> <br>
+        <label>Mobile:  <%=patient.getMobileNumber() %> </label> <br> <br>
 
         <form action="/loginPT" method="post">
             <input type="submit" value = "Update Personal Information" name = "update"><br>
