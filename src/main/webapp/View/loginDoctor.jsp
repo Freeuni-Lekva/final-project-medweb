@@ -1,11 +1,11 @@
-<%@ page import="freeuni.edu.ge.DAO.InMemoryAdmnDao" %>
+<%@ page import="freeuni.edu.ge.DAO.InMemory.InMemoryAdmnDao" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.InMemory.AdministratorDao" %>
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
 <%@ page import="freeuni.edu.ge.Models.Visit" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="freeuni.edu.ge.DAO.DoctorCommands" %>
-<%@ page import="freeuni.edu.ge.DAO.DoctorCommandsSQL" %><%--
+<%@ page import="freeuni.edu.ge.DAO.Interfaces.DoctorCommands" %>
+<%@ page import="freeuni.edu.ge.DAO.SQLImplementation.DoctorCommandsSQL" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/24/2021
@@ -48,7 +48,7 @@
         <ul>
             <% List<Visit> visits = doctor.getVisits();
                 for(Visit visit : visits) { %>
-                <form action = "/loginDc" method = "post" >
+                <form action = "/redirect" method = "post" >
                     <li>Doctor: <%=visit.getDoctorName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
                         <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                         <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >

@@ -1,6 +1,13 @@
 package freeuni.edu.ge.Controllers;
 
-import freeuni.edu.ge.DAO.*;
+import freeuni.edu.ge.DAO.Interfaces.AdministratorCommands;
+import freeuni.edu.ge.DAO.Interfaces.DoctorCommands;
+import freeuni.edu.ge.DAO.Interfaces.GeneralCommands;
+import freeuni.edu.ge.DAO.Interfaces.PatientCommands;
+import freeuni.edu.ge.DAO.SQLImplementation.AdminCommandsSQL;
+import freeuni.edu.ge.DAO.SQLImplementation.DoctorCommandsSQL;
+import freeuni.edu.ge.DAO.SQLImplementation.GeneralCommandsSQL;
+import freeuni.edu.ge.DAO.SQLImplementation.PatientCommandsSQL;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Helpers.HashUsingSHA1;
 import org.apache.commons.dbcp2.BasicDataSource;

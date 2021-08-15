@@ -1,4 +1,4 @@
-import freeuni.edu.ge.DAO.PatientSqlDAO;
+import freeuni.edu.ge.DAO.SQLImplementation.PatientSqlDAO;
 import freeuni.edu.ge.Models.Patient;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,14 +1,12 @@
 package freeuni.edu.ge.Controllers;
 
-import freeuni.edu.ge.DAO.AdministratorDao;
+import freeuni.edu.ge.DAO.InMemory.AdministratorDao;
 import freeuni.edu.ge.Models.Doctor;
-import freeuni.edu.ge.Models.Patient;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LoginDoctorServlet extends HttpServlet {
@@ -31,10 +29,6 @@ public class LoginDoctorServlet extends HttpServlet {
             Doctor doctor = dao.getDoctorById(id);
             httpServletRequest.setAttribute("doctor", doctor);
             httpServletRequest.getRequestDispatcher("View/editDoctor.jsp").forward(httpServletRequest,httpServletResponse);
-        } else if(httpServletRequest.getParameter("finish") != null){
-            //delete visit and add in history
-        } else if(httpServletRequest.getParameter("redirect") != null){
-            httpServletRequest.getRequestDispatcher("View/BookDoctor.jsp").forward(httpServletRequest,httpServletResponse);
         } else {
             update(httpServletRequest, httpServletResponse, id);
         }

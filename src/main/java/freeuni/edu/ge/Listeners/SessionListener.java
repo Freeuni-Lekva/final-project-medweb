@@ -1,7 +1,7 @@
 package freeuni.edu.ge.Listeners;
 
-import freeuni.edu.ge.DAO.GeneralCommands;
-import freeuni.edu.ge.DAO.GeneralCommandsSQL;
+import freeuni.edu.ge.DAO.Interfaces.GeneralCommands;
+import freeuni.edu.ge.DAO.SQLImplementation.GeneralCommandsSQL;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.servlet.http.HttpSessionEvent;

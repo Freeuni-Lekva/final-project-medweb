@@ -95,6 +95,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Redirect</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.RedirectServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Redirect</servlet-name>
+        <url-pattern>/redirect</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>chat</servlet-name>
         <servlet-class>freeuni.edu.ge.Controllers.ChatServlet</servlet-class>
     </servlet>

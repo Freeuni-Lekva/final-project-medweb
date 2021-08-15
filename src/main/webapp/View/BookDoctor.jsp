@@ -1,9 +1,9 @@
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
 <%@ page import="javax.print.Doc" %>
 <%@ page import="java.util.List" %>
-<%@ page import="freeuni.edu.ge.DAO.DoctorDAO" %>
+<%@ page import="freeuni.edu.ge.DAO.InMemory.DoctorDAO" %>
 <%@ page import="freeuni.edu.ge.Models.Patient" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.InMemory.AdministratorDao" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: User
