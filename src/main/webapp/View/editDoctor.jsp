@@ -32,9 +32,9 @@
 
         <li>Mobile: <input type="text" name="mobile" value = <%=doctor.getMobileNumber()%>></li>
 
-        <li>Mobile: <input type="text" name="qualification" value = <%=doctor.getQualification()%>></li>
+        <li>Qualification: <input type="text" name="qualification" value = <%=doctor.getQualification()%>></li>
 
-        <li>Mobile: <input type="text" name="mobile" value = <%=doctor.getYearExperience()%>></li>
+        <li>Experience: <input type="text" name="yearExperience" value = <%=doctor.getYearExperience()%>></li>
 
         </ul>
 

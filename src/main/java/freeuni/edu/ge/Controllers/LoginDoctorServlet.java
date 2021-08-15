@@ -40,9 +40,21 @@ public class LoginDoctorServlet extends HttpServlet {
         AdministratorDao dao = (AdministratorDao) httpServletRequest.getServletContext().getAttribute("AdministratorDAO");
         Doctor doctor = dao.getDoctorById(id);
         doctor.setCity(httpServletRequest.getParameter("city"));
-        //doctor.setSpeciality(httpServletRequest.getParameter("speciality"));
+        String docQ = httpServletRequest.getParameter("qualification");
+        for(Doctor.Doctor_Qualifications qualification : Doctor.Doctor_Qualifications.values()){
+            if(qualification.toString().equals(docQ)){
+                doctor.setQualification(qualification);
+                break;
+            }
+        }
+        String docS = httpServletRequest.getParameter("speciality");
+        for(Doctor.DoctorSpecialities speciality : Doctor.DoctorSpecialities.values()) {
+            if(speciality.toString().equals(docS)) {
+                doctor.setSpeciality(speciality);
+                break;
+            }
+        }
         doctor.setMobileNumber(httpServletRequest.getParameter("mobile"));
-        //doctor.setQualification(httpServletRequest.getParameter("qualification"));
         doctor.setYearExperience(httpServletRequest.getParameter("yearExperience"));
         httpServletRequest.setAttribute("id", id);
         dao.putDoctorById(id, doctor);
