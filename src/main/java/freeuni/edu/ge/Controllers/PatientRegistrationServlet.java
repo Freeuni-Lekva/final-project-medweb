@@ -1,9 +1,6 @@
 package freeuni.edu.ge.Controllers;
 
-import freeuni.edu.ge.DAO.AdministratorDao;
-import freeuni.edu.ge.DAO.PatientCommands;
-import freeuni.edu.ge.DAO.PatientCommandsSQL;
-import freeuni.edu.ge.DAO.PatientDAOInterface;
+import freeuni.edu.ge.DAO.*;
 import freeuni.edu.ge.Models.Patient;
 
 import javax.servlet.ServletException;
@@ -108,7 +105,7 @@ public class PatientRegistrationServlet extends HttpServlet {
     }
 
     private void checkId(String id, HttpServletRequest httpServletRequest, boolean tmp, HttpServletResponse httpServletResponse) throws ServletException, IOException, SQLException {
-        PatientCommands dao = (PatientCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
+        GeneralCommands dao = (GeneralCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
         if (dao.contains(id)) {
             httpServletRequest.setAttribute("Registered",true);
             httpServletRequest.getRequestDispatcher("/View/ForPatientRegistration.jsp").forward(httpServletRequest, httpServletResponse);
