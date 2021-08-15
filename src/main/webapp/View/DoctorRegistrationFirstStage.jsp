@@ -6,10 +6,13 @@
 
 <body>
 
-<h1>Doctor Registration</h1><br>
 
 <%if(request.getAttribute("message")== null) {%>
 
+<div class="header">
+<h1>Doctor Registration</h1>
+</div>
+<br><br>
 <form action = "/dr" method ="post">
     <label>First Name</label>
     <input type = "text" name = "name"><br>
@@ -22,7 +25,9 @@
 
 <%} else {%>
 <h1>
-<%=request.getAttribute("message")%>
+    <div class="header">
+        <%=request.getAttribute("message")%>
+    </div>
 </h1>
 <%}%>
 <br>
@@ -31,6 +36,5 @@
 </form>
 
 </body>
-
 
 </html>

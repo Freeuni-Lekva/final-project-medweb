@@ -1,4 +1,4 @@
-input[type=text], input[type=password], input[type=date] {
+input[type=text], input[type=password], select {
     width: 100%;
     padding: 10px;
     margin: 5px 0 22px 0;
@@ -7,7 +7,7 @@ input[type=text], input[type=password], input[type=date] {
     background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus, select:focus {
     background-color: #ddd;
     outline: none;
 }
@@ -17,7 +17,15 @@ hr {
     margin-bottom: 25px;
 }
 
-.doctorSubmit {
+.header {
+    padding: 15px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 15px;
+}
+
+.submitDC {
     background-color: #04AA6D;
     color: white;
     padding: 16px 20px;
@@ -27,7 +35,6 @@ hr {
     width: 100%;
     opacity: 0.9;
 }
-
 
 .buttonDC {
     border: none;
@@ -43,12 +50,4 @@ hr {
 .buttonDC:hover {
     background-color: #555;
     color: white;
-}
-
-.header {
-    padding: 15px;
-    text-align: center;
-    background: #1abc9c;
-    color: white;
-    font-size: 15px;
 }
