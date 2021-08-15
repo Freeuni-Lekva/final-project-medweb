@@ -8,6 +8,7 @@
 
 <script type = "application/javascript" src = "/static/ForChat.js">
 </script>
+<link rel="stylesheet" type="text/css" href="/static/Chat.css" />
 <body>
 
 <%  String type =(String)request.getAttribute("type");
@@ -27,16 +28,20 @@ if(type.equals("patient")){
     <input type = "hidden" name = "userName" id = "userName" value = <%=name%> />
     <input type = "hidden" name = "recipient" id = "recipientID" value = <%=(String)request.getAttribute("recipientID")%> />
     <input type = "hidden" name = "sender" id = "senderID" value = <%=(String)request.getAttribute("senderID")%>/>
+    <input type = "hidden" name = "UserType" id = "UserType" value = <%=type%>>
 <br>
 
 <%--Try New Chat Scrollbar--%>
+<div class = "chat-container">
 
-<div id = "messages" style="overflow-y: scroll; height: 200px; width:300px; overflow-x: hidden; background: transparent;">
+<div class = "messages" id = "messages" style="overflow-y: scroll; height: 300px; width:300px; overflow-x: hidden; background: transparent;">
 
 </div>
 
-    <input type = "text" id = "messageText" size = "35"/>
-    <input type = "button" value = "Send" onclick="sendMessage();"/>
+    <input type = "text" id = "messageText" size = "35" placeholder="Type Message..."/>
+<br>
+<input class = "button"type = "button" value = "Send" onclick="sendMessage();"/>
+
     <input type="file" accept="image/*" id="file-input" />
 <br>
 
@@ -45,5 +50,6 @@ if(type.equals("patient")){
     <input type="hidden" name = "id" value=<%=(String)request.getAttribute("senderID")%>>
 </form>
 
+</div>
 </body>
 </html>

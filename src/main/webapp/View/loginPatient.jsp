@@ -28,6 +28,8 @@
     <p>
 
 
+
+
         <label>Name: </label> <%=patient.getName() %> <br>
 
         <label>Surname: </label> <%=patient.getSurname() %> <br>
@@ -98,6 +100,7 @@
 
         <form action="/bookDC" method="post">
             <input type="submit" value = "Book New Visit" name = "book">
+            <input type="hidden" name = "BookOnId" value = <%=patient.getID()%>>
         </form>
 
 

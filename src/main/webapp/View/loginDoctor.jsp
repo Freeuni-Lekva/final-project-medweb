@@ -36,10 +36,10 @@
         <label>Mobile: </label> <%=doctor.getMobileNumber() %> <br>
 
         <form action="/loginDc" method="post">
-                    <input type="submit" value = "Log Out" name = "logOut">
-                    <input type="submit" value = "Edit Info" name = "edit">
-                    <input type = "hidden" name = "id" value = <%=doctor.getID()%>>
-                </form>
+            <input type="submit" value = "Log Out" name = "logOut">
+            <input type="submit" value = "Edit Info" name = "edit">
+            <input type = "hidden" name = "id" value = <%=doctor.getID()%>>
+        </form>
     </p>
 
 <%--
@@ -86,7 +86,13 @@
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
                 <input type = "submit" value = "Open Chat">
-            </li> </br>
+            </li>
+        </form>
+
+        <form action="/loginDc" method="post">
+            <input type = "submit" name="history" value="Clear Visit">
+            <input type = "hidden" name = "doctor2" id = "doctor2" value = <%=visit.getDoctorId()%> >
+            <input type = "hidden" name = "patient2" id = "patient2" value = <%=visit.getPatientId()%> >
         </form>
         <%}%>
 
@@ -96,7 +102,6 @@
         <input type="submit" value = "Your History" name = "history">
         <input type="hidden" name = "hiddenID" value=<%=doctor.getID()%>>
     </form>
-
 
 
 
