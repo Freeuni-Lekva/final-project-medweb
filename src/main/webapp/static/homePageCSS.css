@@ -96,3 +96,14 @@ h1 {
 .buttonTwo:hover{
     background:#3594D2;
 }
+
+.submitButton{
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    width:250px;
+}
