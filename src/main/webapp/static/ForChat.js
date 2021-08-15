@@ -14,6 +14,7 @@ function sendMessage(){
         "name": document.getElementById("userName").value,
         "message": document.getElementById("messageText").value,
         "recipientID": document.getElementById("recipientID").value,
+        "type": document.getElementById("UserType").value,
         "senderID": document.getElementById("senderID").value,
         "image": imageNameParsed
     });
@@ -44,7 +45,7 @@ function writeToScreen(message) {
 
 
     if(jsonData.message != null) {
-        appendMessage(jsonData.name+ ":  " + jsonData.message + "\n");
+        appendMessage(jsonData.name+ ":  " + jsonData.message + "\n", jsonData.type);
     }
 
     if(jsonData.image && jsonData.image !== noImage){
@@ -54,11 +55,21 @@ function writeToScreen(message) {
         messages.scrollTop = messages.scrollHeight;
 }
 
- function appendMessage(message){
+ function appendMessage(message, type){
     const messages = document.getElementById("messages");
     let node = document.createElement("DIV");
     node.innerHTML = message;
-    node.classList.add("message");
+    if(type && type !== ""){
+        if(type === "patient"){
+            node.classList.add("patient-message")
+        }
+
+        if(type === "doctor"){
+            node.classList.add("doctor-message")
+        }
+    } else {
+        node.classList.add("program-message");
+    }
     messages.appendChild(node);
 }
 

@@ -8,6 +8,7 @@
 
 <script type = "application/javascript" src = "/static/ForChat.js">
 </script>
+<link rel="stylesheet" type="text/css" href="Chat.css" />
 <body>
 
 <%  String type =(String)request.getAttribute("type");
@@ -27,6 +28,7 @@ if(type.equals("patient")){
     <input type = "hidden" name = "userName" id = "userName" value = <%=name%> />
     <input type = "hidden" name = "recipient" id = "recipientID" value = <%=(String)request.getAttribute("recipientID")%> />
     <input type = "hidden" name = "sender" id = "senderID" value = <%=(String)request.getAttribute("senderID")%>/>
+    <input type = "hidden" name = "UserType" id = "UserType" value = <%=type%>>
 <br>
 
 <%--Try New Chat Scrollbar--%>
