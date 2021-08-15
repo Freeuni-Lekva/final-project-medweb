@@ -15,7 +15,7 @@
     position: relative;
 }
 
-.messages .doctor-message {
+.doctor-message {
     margin-right: 3em;
     background: green;
     color: white;
@@ -26,4 +26,14 @@
     margin-bottom: 10px;
     width: 70%;
     position: relative;
+}
+
+.program-message {
+    color: #dc1c1c;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    width: 70%;
+    position: relative;
+    font-weight: bold;
 }
