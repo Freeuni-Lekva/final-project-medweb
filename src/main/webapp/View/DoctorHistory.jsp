@@ -20,6 +20,7 @@
 <html>
 <head>
     <title><%=doctor.getName()%> History</title>
+    <link href="/static/HistoryCSS.css" rel="stylesheet" type="text/css">
 
     <h1>Your history of visits</h1>
 </head>
