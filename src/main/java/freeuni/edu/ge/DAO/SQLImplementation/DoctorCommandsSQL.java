@@ -42,4 +42,9 @@ public class DoctorCommandsSQL implements DoctorCommands {
     public Patient getPatientById(String id) throws SQLException {
         return patientDAO.getPatientByIdNumber(id);
     }
+
+    @Override
+    public boolean updateDoctor(Doctor doctor) throws SQLException {
+        return doctorDAO.updateDoctorInfo(doctor);
+    }
 }
