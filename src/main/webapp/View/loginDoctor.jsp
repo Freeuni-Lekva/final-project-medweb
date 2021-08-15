@@ -53,6 +53,7 @@
                         <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                         <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
                         <input type = "submit" value = "Finish" name = "finish">
+                        <input type = "submit" value = "Redirect" name = "redirect">
                     </li> </br>
                 </form>
             <%}%>

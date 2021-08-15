@@ -31,6 +31,10 @@ public class LoginDoctorServlet extends HttpServlet {
             Doctor doctor = dao.getDoctorById(id);
             httpServletRequest.setAttribute("doctor", doctor);
             httpServletRequest.getRequestDispatcher("View/editDoctor.jsp").forward(httpServletRequest,httpServletResponse);
+        } else if(httpServletRequest.getParameter("finish") != null){
+            //delete visit and add in history
+        } else if(httpServletRequest.getParameter("redirect") != null){
+            httpServletRequest.getRequestDispatcher("View/BookDoctor.jsp").forward(httpServletRequest,httpServletResponse);
         } else {
             update(httpServletRequest, httpServletResponse, id);
         }
