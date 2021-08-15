@@ -1,8 +1,10 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="javax.swing.*" %>
+
 <html>
     <head>
         <title>Registration</title>
+          <link href="/static/ForPatientRegistrationCSS.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <h1>Registration Form</h1>
@@ -18,6 +20,7 @@
         <%} %>
 
         <form action = "/pr" method="post">
+
             <label>First Name </label>
             <% if(request.getAttribute("Optional") != null || request.getAttribute("NotFilled") != null) {%>
                 <input type="text" name = "fName" value = <%=request.getAttribute("fName")%> ><br>
@@ -97,7 +100,7 @@
             <%}%>
 
             <label>Family Members(Optional).Click Add </label>
-            <input type="submit" value = "Add" name = "add"> <br>
+            <input type="submit" value = "Add" name = "add" class="add"> <br>
 
 
             <% if(request.getAttribute("Optional") != null) {%>
@@ -109,8 +112,8 @@
                 <%}%>
             <%}%>
             <br>
-            <input type="submit" value = "Submit" name = "submit"><br><br>
-            <a href="/home"> Back To Home </a>
+            <input type="submit" value = "Submit" name = "submit" class="registerButton"><br><br>
+            <a href="/home" class="back"> Back To Home </a>
         </form>
     </body>
 </html>
