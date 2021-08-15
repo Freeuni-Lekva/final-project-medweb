@@ -1,4 +1,4 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.Models.Doctor;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -99,7 +99,7 @@ public class DoctorSqlDAO {
         }
     }
 
-    //error aqvs
+
     public boolean updateDoctorInfo(Doctor doctor) throws SQLException {
         dataSource.restart();
         try {

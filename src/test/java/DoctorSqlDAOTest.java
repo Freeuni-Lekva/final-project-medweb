@@ -1,4 +1,4 @@
-import freeuni.edu.ge.DAO.DoctorSqlDAO;
+import freeuni.edu.ge.DAO.SQLImplementation.DoctorSqlDAO;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Helpers.HashUsingSHA1;
 import freeuni.edu.ge.Models.Doctor;
@@ -15,12 +15,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DoctorSqlDAOTest {
     private BasicDataSource dataSource = new BasicDataSource();
 
+    String PASSWORD = "datoiesimon1!";
+    String USER = "root";
+
 
     @BeforeEach
     public void init(){
         dataSource.setUrl("jdbc:mysql://localhost:3306/medWeb");
+<<<<<<< HEAD
+        dataSource.setUsername(USER);
+        dataSource.setPassword(PASSWORD);
+=======
         dataSource.setUsername("root");
         dataSource.setPassword("");
+>>>>>>> 0fc3cbefbcc152a4cb17717635fb42d477e6702a
 
     }
 

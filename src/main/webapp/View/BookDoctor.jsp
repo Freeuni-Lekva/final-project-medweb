@@ -1,9 +1,9 @@
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
 <%@ page import="javax.print.Doc" %>
 <%@ page import="java.util.List" %>
-<%@ page import="freeuni.edu.ge.DAO.DoctorDAO" %>
+<%@ page import="freeuni.edu.ge.DAO.InMemory.DoctorDAO" %>
 <%@ page import="freeuni.edu.ge.Models.Patient" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.InMemory.AdministratorDao" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: User
@@ -61,9 +61,6 @@
     <form action="/bookDC" method="post">
 
         <br><br>
-
-
-
 
         <table bgcolor="lightgray" border="5" width="60%" cellpadding="5" cellspacing="0.5" color="blue" >
             <tr>

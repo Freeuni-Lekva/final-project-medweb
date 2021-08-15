@@ -1,4 +1,4 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.InMemory;
 
 import freeuni.edu.ge.Models.Patient;
 

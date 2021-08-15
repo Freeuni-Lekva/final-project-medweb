@@ -1,5 +1,6 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
+import freeuni.edu.ge.DAO.Interfaces.PatientCommands;
 import freeuni.edu.ge.Models.Doctor;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Visit;
@@ -8,11 +9,12 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import java.sql.SQLException;
 import java.util.Iterator;
 
-public class PatientCommandsSQL implements PatientCommands{
+public class PatientCommandsSQL implements PatientCommands {
     private BasicDataSource dataSource;
     private VisitsSQLDAO visitsDAO;
     private PatientSqlDAO patientDAO;
     private DoctorSqlDAO doctorDAO;
+
 
     public PatientCommandsSQL(BasicDataSource dataSource){
         this.dataSource = dataSource;
@@ -59,5 +61,15 @@ public class PatientCommandsSQL implements PatientCommands{
     @Override
     public boolean updatePatientInfo(Patient patient) throws SQLException {
         return patientDAO.updatePatientInfo(patient);
+    }
+
+    @Override
+    public String getPatientIndex(String id) throws SQLException {
+        return patientDAO.getPatientIndex(id);
+    }
+
+    @Override
+    public String getPatientIdByIndex(String index) throws SQLException {
+        return patientDAO.getPatientIdByIndex(index);
     }
 }

@@ -1,6 +1,9 @@
 package freeuni.edu.ge.Controllers;
 
-import freeuni.edu.ge.DAO.*;
+import freeuni.edu.ge.DAO.Interfaces.DoctorCommands;
+import freeuni.edu.ge.DAO.Interfaces.PatientCommands;
+import freeuni.edu.ge.DAO.SQLImplementation.DoctorCommandsSQL;
+import freeuni.edu.ge.DAO.SQLImplementation.PatientCommandsSQL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

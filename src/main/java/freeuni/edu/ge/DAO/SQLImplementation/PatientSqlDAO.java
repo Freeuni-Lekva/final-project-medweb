@@ -1,4 +1,4 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.Models.Patient;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PatientSqlDAO {
 
-    private final BasicDataSource dataSource;
+    private BasicDataSource dataSource;
 
     public PatientSqlDAO(BasicDataSource dataSource) {
         this.dataSource = dataSource;
@@ -43,6 +43,24 @@ public class PatientSqlDAO {
             ResultSet result = statement.executeQuery();
             while(result.next()){
                 return convertToPatient(result);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public String getPatientIdByIndex(String index) throws SQLException {
+        dataSource.restart();
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement("select * from patients where id = ?;");
+            statement.setString(1, index);
+            ResultSet result = statement.executeQuery();
+
+            while(result.next()){
+                return result.getString("ID_NUMBER");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -129,6 +147,17 @@ public class PatientSqlDAO {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    public String getPatientIndex(String id) throws SQLException {
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("Select * FROM patients where ID_NUMBER = ?;");
+        statement.setString(1, id);
+        ResultSet resultSet = statement.executeQuery();
+        while(resultSet.next()) {
+            return resultSet.getString("id");
+        }
+        return null;
     }
 
 

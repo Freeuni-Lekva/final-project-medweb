@@ -1,18 +1,20 @@
 package freeuni.edu.ge.EndPoint;
 
+import com.google.gson.Gson;
 import freeuni.edu.ge.Helpers.ChatDecoder;
 import freeuni.edu.ge.Helpers.ChatEncoder;
 import freeuni.edu.ge.Models.Chat;
+import org.json.JSONObject;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonValue;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 
@@ -49,6 +51,23 @@ public class ChatEndPoint {
 
         //view message to sender
         session.getBasicRemote().sendObject(chat);
+
+//        String str = "";
+//        boolean isChanged = false;
+//        if(chat.getJson().get("type").toString().equals("\"patient\"")){
+//            str = "\"doctor\"";
+//            isChanged = true;
+//        } else if(chat.getJson().get("type").toString().equals("\"doctor\"")){
+//            str = "\"patient\"";
+//            isChanged = true;
+//        }
+//
+//
+//        String toJsonForSend = "{\"name\": " + chat.getJson().get("name") +", \"message\" : "+ chat.getJson().get("message")+", \"type\" : " + str + ", \"image\" : " + chat.getJson().get("image")+"}";
+//        JsonObject jsonObjectForSend = Json.createReader(new StringReader(toJsonForSend)).readObject();
+//        if(isChanged){
+//            chat = new Chat(jsonObjectForSend);
+//        }
 
         boolean conversationStart = false;
         for(Session peer : peers){

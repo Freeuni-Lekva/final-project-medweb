@@ -1,4 +1,4 @@
-import freeuni.edu.ge.DAO.PatientSqlDAO;
+import freeuni.edu.ge.DAO.SQLImplementation.PatientSqlDAO;
 import freeuni.edu.ge.Models.Patient;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,12 +14,15 @@ public class PatientSqlDAOTest {
 
     private BasicDataSource dataSource = new BasicDataSource();
 
+    String PASSWORD = "datoiesimon1!";
+    String USER = "root";
+
 
     @BeforeEach
     public void init(){
         dataSource.setUrl("jdbc:mysql://localhost:3306/medWeb");
-        dataSource.setUsername("root");
-        dataSource.setPassword("datoiesimon1!");
+        dataSource.setUsername(USER);
+        dataSource.setPassword(PASSWORD);
 
     }
 

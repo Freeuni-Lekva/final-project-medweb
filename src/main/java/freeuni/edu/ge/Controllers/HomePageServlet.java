@@ -1,6 +1,13 @@
 package freeuni.edu.ge.Controllers;
 
-import freeuni.edu.ge.DAO.*;
+import freeuni.edu.ge.DAO.Interfaces.AdministratorCommands;
+import freeuni.edu.ge.DAO.Interfaces.DoctorCommands;
+import freeuni.edu.ge.DAO.Interfaces.GeneralCommands;
+import freeuni.edu.ge.DAO.Interfaces.PatientCommands;
+import freeuni.edu.ge.DAO.SQLImplementation.AdminCommandsSQL;
+import freeuni.edu.ge.DAO.SQLImplementation.DoctorCommandsSQL;
+import freeuni.edu.ge.DAO.SQLImplementation.GeneralCommandsSQL;
+import freeuni.edu.ge.DAO.SQLImplementation.PatientCommandsSQL;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Helpers.HashUsingSHA1;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -36,10 +43,8 @@ public class HomePageServlet extends HttpServlet {
             } else {
                 try {
                     if(dao.checkIfItIsPatient(id, password, hash)) {
-                        HttpSession session = httpServletRequest.getSession();
-                        session.setAttribute("id", id);
-                        setPatientDaoOnSession(httpServletRequest);
-                        httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + id);
+                        String index = setPatientDaoOnSession(httpServletRequest, id);
+                        httpServletResponse.sendRedirect("http://localhost:8080/loginPT?id=" + index);
                     } else {
                         try {
                             if(dao.checkIfItIsDoctor(id, password, hash)) {
@@ -60,11 +65,12 @@ public class HomePageServlet extends HttpServlet {
         }
     }
 
-    private void setPatientDaoOnSession(HttpServletRequest httpServletRequest) {
+    private String setPatientDaoOnSession(HttpServletRequest httpServletRequest, String id) throws SQLException {
         HttpSession session = httpServletRequest.getSession();
         BasicDataSource dataSource = (BasicDataSource) httpServletRequest.getServletContext().getAttribute("dataSource");
         PatientCommands dao = new PatientCommandsSQL(dataSource);
         session.setAttribute("DAO",dao);
+        return dao.getPatientIndex(id);
     }
 
 

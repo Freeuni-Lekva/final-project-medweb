@@ -1,7 +1,7 @@
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
-<%@ page import="freeuni.edu.ge.DAO.DoctorCommands" %>
-<%@ page import="freeuni.edu.ge.DAO.DoctorCommandsSQL" %><%--
+<%@ page import="freeuni.edu.ge.DAO.InMemory.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.Interfaces.DoctorCommands" %>
+<%@ page import="freeuni.edu.ge.DAO.SQLImplementation.DoctorCommandsSQL" %><%--
   Created by IntelliJ IDEA.
   User: User
 
@@ -32,9 +32,9 @@
 
         <li>Mobile: <input type="text" name="mobile" value = <%=doctor.getMobileNumber()%>></li>
 
-        <li>Mobile: <input type="text" name="qualification" value = <%=doctor.getQualification()%>></li>
+        <li>Qualification: <input type="text" name="qualification" value = <%=doctor.getQualification()%>></li>
 
-        <li>Mobile: <input type="text" name="mobile" value = <%=doctor.getYearExperience()%>></li>
+        <li>Experience: <input type="text" name="yearExperience" value = <%=doctor.getYearExperience()%>></li>
 
         </ul>
 
