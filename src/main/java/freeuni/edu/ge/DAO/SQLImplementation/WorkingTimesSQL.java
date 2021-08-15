@@ -71,7 +71,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
                 String makeDate = "" + now.getYear() + "-" + now.getMonth() + "-" + now.getDate();
                 statement.setString(2, makeDate);
                 for(int j =0; j< DAY_GRAPHIC; j++) {
-                    statement.setBoolean(3+j, false);
+                    statement.setBoolean(3+j, true);
                 }
                 statement.executeUpdate();
             }
@@ -102,7 +102,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
             int index = time.getHours() -10;
             String str = times.get(index);
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE DoctorWorkTime SET " + str + " =? " + "where (ID = ? && Dates = ?);");
-            preparedStatement.setBoolean(1, true);
+            preparedStatement.setBoolean(1, false);
             preparedStatement.setString(2, doctor.getID());
 
             String makeDate = "" + date.getYear() + "-" + date.getMonth() + "-" + date.getDate();

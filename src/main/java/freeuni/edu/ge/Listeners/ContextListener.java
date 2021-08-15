@@ -22,9 +22,15 @@ public class ContextListener implements ServletContextListener {
         servletContextEvent.getServletContext().setAttribute("DoctorsDAO", doctorDAO);
 
         BasicDataSource dataSource = new BasicDataSource();
+
         dataSource.setUrl("jdbc:mysql://localhost:3306/medWeb");
         dataSource.setUsername(USER);
         dataSource.setPassword(PASSWORD);
+
+        dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
+        dataSource.setUsername("root");
+        dataSource.setPassword("lukakapa1213");
+
         servletContextEvent.getServletContext().setAttribute("dataSource",dataSource);
     }
 

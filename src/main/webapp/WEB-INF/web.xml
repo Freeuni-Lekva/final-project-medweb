@@ -103,6 +103,7 @@
         <servlet-name>chat</servlet-name>
         <url-pattern>/chat</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>ptHistory</servlet-name>
         <servlet-class>freeuni.edu.ge.Controllers.PatientHistoryServlet</servlet-class>
@@ -124,5 +125,6 @@
         <servlet-name>drHistory</servlet-name>
         <url-pattern>/drHistory</url-pattern>
     </servlet-mapping>
+
 
 </web-app>

@@ -1,10 +1,12 @@
 package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class DoctorSqlDAO {
@@ -169,5 +171,26 @@ public class DoctorSqlDAO {
         }
 
         return "";
+    }
+
+    public Iterator<Doctor> getDoctorByDegreeAndSpecialty(Doctor.DoctorSpecialities specialty, Doctor.Doctor_Qualifications degree) throws SQLException {
+        dataSource.restart();
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement("select * from doctors where Doctor_Specialities = ? AND Doctor_Qualifications = ?;");
+        String spec = specialty.name();
+        String deg = degree.name();
+        statement.setString(1,spec);
+        statement.setString(2,deg);
+        ResultSet result = statement.executeQuery();
+
+        return returnIterator(result);
+    }
+
+    private Iterator<Doctor> returnIterator(ResultSet resultSet) throws SQLException {
+        ArrayList<Doctor> result = new ArrayList<>();
+        while(resultSet.next()) {
+            result.add(convertToDoctor(resultSet));
+        }
+        return result.iterator();
     }
 }
