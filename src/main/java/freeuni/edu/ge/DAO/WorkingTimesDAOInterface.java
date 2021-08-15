@@ -12,5 +12,5 @@ public interface WorkingTimesDAOInterface {
     public  void addDoctor(Doctor doctor) throws SQLException;
     public void updateBase();
     public void reserveDoctor(Doctor doctor, Date date, Time time);
-    public Map<String , Map<Date, List<Time>>> getAllDoctorWorkingTime();
+    public Map<String , Map<Date, List<Time>>> getAllDoctorWorkingTime() throws SQLException;
 }
