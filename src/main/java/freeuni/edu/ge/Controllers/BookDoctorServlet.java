@@ -23,21 +23,22 @@ public class BookDoctorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        if(httpServletRequest.getParameter("filter") != null) {
 
-            showDoctors(httpServletRequest, httpServletResponse);
+            if (httpServletRequest.getParameter("filter") != null) {
 
-        } else if(httpServletRequest.getParameter("choose") != null) {
+                showDoctors(httpServletRequest, httpServletResponse);
 
-            bookDoctor(httpServletRequest, httpServletResponse);
+            } else if (httpServletRequest.getParameter("choose") != null) {
 
-        } else {
+                bookDoctor(httpServletRequest, httpServletResponse);
 
-            sendTo(httpServletRequest, httpServletResponse, "View/BookDoctor.jsp");
+            } else {
+
+                sendTo(httpServletRequest, httpServletResponse, "View/BookDoctor.jsp");
+
+            }
 
         }
-
-    }
 
     private void bookDoctor(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         String doctorId = httpServletRequest.getParameter("doctor");

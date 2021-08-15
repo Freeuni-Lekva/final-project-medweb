@@ -4,6 +4,7 @@ import freeuni.edu.ge.DAO.InMemory.AdministratorDao;
 import freeuni.edu.ge.DAO.Interfaces.DoctorCommands;
 import freeuni.edu.ge.DAO.SQLImplementation.DoctorCommandsSQL;
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.Visit;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,26 +24,43 @@ public class LoginDoctorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        String id = httpServletRequest.getParameter("id");
-        if(httpServletRequest.getParameter("logOut") != null) {
-            httpServletResponse.sendRedirect("http://localhost:8080/home");
-        } else if(httpServletRequest.getParameter("edit") != null) {
-            httpServletRequest.setAttribute("id", id);
-            DoctorCommands dao = (DoctorCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
-            Doctor doctor = null;
-            try {
-                doctor = dao.getDoctorById(id);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+        if(httpServletRequest.getParameter("history") == null) {
+            String id = httpServletRequest.getParameter("id");
+            if (httpServletRequest.getParameter("logOut") != null) {
+                httpServletResponse.sendRedirect("http://localhost:8080/home");
+            } else if (httpServletRequest.getParameter("edit") != null) {
+                httpServletRequest.setAttribute("id", id);
+                DoctorCommands dao = (DoctorCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
+                Doctor doctor = null;
+                try {
+                    doctor = dao.getDoctorById(id);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                httpServletRequest.setAttribute("doctor", doctor);
+                httpServletRequest.getRequestDispatcher("View/editDoctor.jsp").forward(httpServletRequest, httpServletResponse);
+            } else {
+                try {
+                    update(httpServletRequest, httpServletResponse, id);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
-            httpServletRequest.setAttribute("doctor", doctor);
-            httpServletRequest.getRequestDispatcher("View/editDoctor.jsp").forward(httpServletRequest,httpServletResponse);
         } else {
+
+            String doctorId = httpServletRequest.getParameter("doctor2");
+            String patientId = httpServletRequest.getParameter("patient2");
+            DoctorCommands dao = (DoctorCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
+            Visit visit = null;
             try {
-                update(httpServletRequest, httpServletResponse, id);
+                visit = dao.getVisitByPatientAndDoctorId(patientId, doctorId);
+                dao.finishVisit(visit, "Resolved");
+                dao.deleteVisitByPatientAndDoctorId(patientId, doctorId);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+            httpServletRequest.setAttribute("id", doctorId);
+            httpServletRequest.getRequestDispatcher("View/loginDoctor.jsp").forward(httpServletRequest,httpServletResponse);
         }
     }
 
