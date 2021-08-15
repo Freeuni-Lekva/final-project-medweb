@@ -27,6 +27,12 @@
     <h2>Personal Information</h2>
     <p>
 
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> develop
         <label>Name: </label> <%=patient.getName() %> <br>
 
         <label>Surname: </label> <%=patient.getSurname() %> <br>
