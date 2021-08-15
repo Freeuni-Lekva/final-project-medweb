@@ -53,4 +53,8 @@ hr {
     opacity: 0.9;
 }
 
+.required input:after {
+    content:"*";
+    color:black;
+}
 

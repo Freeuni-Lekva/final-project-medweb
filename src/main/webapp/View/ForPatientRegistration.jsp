@@ -21,13 +21,16 @@
 
         <form action = "/pr" method="post">
 
+            <div class="required">
             <label>First Name </label>
             <% if(request.getAttribute("Optional") != null || request.getAttribute("NotFilled") != null) {%>
                 <input type="text" name = "fName" value = <%=request.getAttribute("fName")%> ><br>
             <%}else {%>
                 <input type="text" name = "fName"><br>
             <%}%>
+            </div>
 
+            <div class="required">
             <label>Last Name </label>
             <% if(request.getAttribute("Optional") != null|| request.getAttribute("NotFilled") != null) {%>
                 <input type="text" name = "lName" value = <%=request.getAttribute("lName")%> ><br>
@@ -35,20 +38,25 @@
             <%}else {%>
                 <input type="text" name = "lName" ><br>
             <%}%>
+            </div>
 
+            <div class="required">
             <label>ID Number </label>
             <% if(request.getAttribute("Optional") != null || request.getAttribute("NotFilled") != null) {%>
                 <input type="text" name = "ID" value = <%=request.getAttribute("ID")%> ><br>
             <%}else {%>
                 <input type="text" name = "ID" ><br>
             <%}%>
+            </div>
 
+            <div class="required">
             <label>Password </label>
             <% if(request.getAttribute("Optional") != null || request.getAttribute("NotFilled") != null) {%>
                 <input type="password" name="password" value = <%=request.getAttribute("password")%>><br>
             <%}else {%>
                 <input type="password" name = "password"><br>
             <%}%>
+            </div>
 
             <label>Birthday </label>
             <% if(request.getAttribute("Optional") != null || request.getAttribute("NotFilled") != null) {%>

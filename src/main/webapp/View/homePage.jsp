@@ -23,7 +23,6 @@
         <a href="/dr"><div class="buttonTwo">Sign Up As Doctor</div></a>
     </form>
 
-
  <br>
     <%if(request.getAttribute("message") != null){%>
     <%=request.getAttribute("message")%>
@@ -32,6 +31,4 @@
 </div>
 
 </body>
-
-
 </html>
