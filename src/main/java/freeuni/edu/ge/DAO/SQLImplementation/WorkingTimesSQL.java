@@ -41,7 +41,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
                 String makeDate = "" + now.getYear() + "-" + now.getMonth() + "-" + now.getDate();
                 statement.setString(2, makeDate);
                 for(int j =0; j< DAY_GRAPHIC; j++) {
-                    statement.setBoolean(3+j, false);
+                    statement.setBoolean(3+j, true);
                 }
                 statement.executeUpdate();
             }
@@ -73,14 +73,14 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
                     preparedStatement.setString(2, makeDate);
                     List<Time> times = dates.get(date);
                     for(int i =0; i <NEXT_DAYS; i++) {
-                        preparedStatement.setBoolean(3+i,false);
+                        preparedStatement.setBoolean(3+i,true);
                     }
                     for(int i =0;i<times.size(); i++) {
                         List<String> timesNames = Arrays.asList("Ten","eleven", "Twelve","Thirteen",
                                 "Fourteen", "Fifteen","Sixteen","Seventeen" );
                         int index = (times.get(i)).getHours() -10;
                         String str = timesNames.get(index);
-                        preparedStatement.setBoolean(2+timesNames.indexOf(str),true);
+                        preparedStatement.setBoolean(2+timesNames.indexOf(str),false);
                     }
                     preparedStatement.executeUpdate();
                 }
@@ -185,7 +185,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
             int index = time.getHours() -10;
             String str = times.get(index);
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE DoctorWorkTime SET " + str + " =? " + "where (ID = ? && Dates = ?);");
-            preparedStatement.setBoolean(1, true);
+            preparedStatement.setBoolean(1, false);
             preparedStatement.setString(2, doctor.getID());
 
             String makeDate = "" + date.getYear() + "-" + date.getMonth() + "-" + date.getDate();
@@ -220,14 +220,14 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
 
     private void getInformation(ResultSet resultSet, Map<String, Map<Date, List<Time>>> doctorsWorkingTime) throws SQLException {
         List<Time> times = new ArrayList<>();
-        if(resultSet.getBoolean("Ten")){times.add(new Time(10,0,0));}
-        if(resultSet.getBoolean("Eleven")){times.add(new Time(11,0,0));}
-        if(resultSet.getBoolean("Twelve")){times.add(new Time(12,0,0));}
-        if(resultSet.getBoolean("Thirteen")){times.add(new Time(13,0,0));}
-        if(resultSet.getBoolean("Fourteen")){times.add(new Time(14,0,0));}
-        if(resultSet.getBoolean("Fifteen")){times.add(new Time(15,0,0));}
-        if(resultSet.getBoolean("Sixteen")){times.add(new Time(16,0,0));}
-        if(resultSet.getBoolean("Seventeen")){times.add(new Time(17,0,0));}
+        if(!resultSet.getBoolean("Ten")){times.add(new Time(10,0,0));}
+        if(!resultSet.getBoolean("Eleven")){times.add(new Time(11,0,0));}
+        if(!resultSet.getBoolean("Twelve")){times.add(new Time(12,0,0));}
+        if(!resultSet.getBoolean("Thirteen")){times.add(new Time(13,0,0));}
+        if(!resultSet.getBoolean("Fourteen")){times.add(new Time(14,0,0));}
+        if(!resultSet.getBoolean("Fifteen")){times.add(new Time(15,0,0));}
+        if(!resultSet.getBoolean("Sixteen")){times.add(new Time(16,0,0));}
+        if(!resultSet.getBoolean("Seventeen")){times.add(new Time(17,0,0));}
 
         String dateInString = resultSet.getString("Dates");
         Date date = convertStringToDate(dateInString);
