@@ -16,10 +16,21 @@ public class LoginPatientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        String index = httpServletRequest.getParameter("id");
         HttpSession session = httpServletRequest.getSession();
+        PatientCommands dao = (PatientCommandsSQL) session.getAttribute("DAO");
+
         String id = (String) session.getAttribute("id");
+        if(id == null) {
+            try {
+                id = dao.getPatientIdByIndex(index);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
 
         httpServletRequest.setAttribute("id", id);
+        session.setAttribute("id", id);
 
         sendTo(httpServletRequest, httpServletResponse, "View/loginPatient.jsp");
     }
@@ -44,11 +55,9 @@ public class LoginPatientServlet extends HttpServlet {
     private void updatePatientInformation(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, HttpSession session, String id) throws ServletException, IOException, SQLException {
         PatientCommands dao = (PatientCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
         Patient patient = dao.getPatientById(id);
-        System.out.println("Pass:  " + patient.getPassword());
         updatePatient(patient, httpServletRequest);
         session.setAttribute("id", id);
         httpServletRequest.setAttribute("id", id);
-        System.out.println("Pass:  " + patient.getPassword());
         dao.updatePatientInfo(patient);
         sendTo(httpServletRequest, httpServletResponse, "View/loginPatient.jsp");
     }

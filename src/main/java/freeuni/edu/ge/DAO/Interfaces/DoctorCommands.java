@@ -13,4 +13,5 @@ public interface DoctorCommands {
     void updateInfo(Doctor doctor) throws SQLException;
     Patient getPatientById(String id) throws SQLException;
     Visit getVisitByDoctorAndPatientId(String doc, String pat) throws SQLException;
+    boolean updateDoctor(Doctor doctor) throws SQLException;
 }

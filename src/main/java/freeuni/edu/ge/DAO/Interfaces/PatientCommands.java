@@ -16,4 +16,6 @@ public interface PatientCommands {
     boolean contains(Patient patient) throws SQLException;
     boolean contains(String ID) throws SQLException;
     boolean updatePatientInfo(Patient patient) throws SQLException;
+    String getPatientIndex(String id) throws SQLException;
+    String getPatientIdByIndex(String index) throws SQLException;
 }

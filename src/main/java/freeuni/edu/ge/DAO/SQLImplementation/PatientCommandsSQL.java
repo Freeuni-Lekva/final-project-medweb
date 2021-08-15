@@ -15,6 +15,7 @@ public class PatientCommandsSQL implements PatientCommands {
     private PatientSqlDAO patientDAO;
     private DoctorSqlDAO doctorDAO;
 
+
     public PatientCommandsSQL(BasicDataSource dataSource){
         this.dataSource = dataSource;
         visitsDAO = new VisitsSQLDAO(dataSource);
@@ -60,5 +61,15 @@ public class PatientCommandsSQL implements PatientCommands {
     @Override
     public boolean updatePatientInfo(Patient patient) throws SQLException {
         return patientDAO.updatePatientInfo(patient);
+    }
+
+    @Override
+    public String getPatientIndex(String id) throws SQLException {
+        return patientDAO.getPatientIndex(id);
+    }
+
+    @Override
+    public String getPatientIdByIndex(String index) throws SQLException {
+        return patientDAO.getPatientIdByIndex(index);
     }
 }

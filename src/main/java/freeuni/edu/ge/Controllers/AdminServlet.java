@@ -23,22 +23,22 @@ public class AdminServlet extends HttpServlet {
         AdministratorCommands dao = getAdministratorDao(httpServletRequest);
         String ID = httpServletRequest.getParameter("hidden");
 
-            if (httpServletRequest.getParameter("accept"+ID) != null) {
-                try {
-                    dao.requestAnswer(Boolean.TRUE, ID);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        if (httpServletRequest.getParameter("accept"+ID) != null) {
+            try {
+                dao.requestAnswer(Boolean.TRUE, ID);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
+        }
 
-            if (httpServletRequest.getParameter("reject"+ID) != null) {
-                try {
-                    dao.requestAnswer(Boolean.FALSE, ID);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        if (httpServletRequest.getParameter("reject"+ID) != null) {
+            try {
+                dao.requestAnswer(Boolean.FALSE, ID);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
-            httpServletRequest.getRequestDispatcher("/View/AdminProfile.jsp").forward(httpServletRequest, httpServletResponse);
+        }
+        httpServletRequest.getRequestDispatcher("/View/AdminProfile.jsp").forward(httpServletRequest, httpServletResponse);
 
     }
 

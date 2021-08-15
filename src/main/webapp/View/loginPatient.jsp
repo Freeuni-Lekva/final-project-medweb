@@ -27,11 +27,13 @@
     <h2>Personal Information</h2>
     <p>
 
+<<<<<<< HEAD
 
-        
 
+
+=======
+>>>>>>> develop
         <label>Name: </label> <%=patient.getName() %> <br>
-
 
         <label>Surname: </label> <%=patient.getSurname() %> <br>
 
@@ -62,10 +64,15 @@
         <h2>Your Physical Visits:</h2>
 
         <ol>
+
+            <% for(Visit visit : patient.getVisits()) { %>
+                <li>Doctor: <%=visit.getDoctorId() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %></li> </br>
+
             <% Iterator<Visit> itP = dao.getPatientVisitsIterator(id,"Physical");
             while(itP.hasNext()){
-            Visit visit = itP.next();%>
-                <li>Doctor: <%=dao.getDoctorById(visit.getDoctorId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %></li> </br>
+            Visit visit2 = itP.next();%>
+                <li>Doctor: <%=dao.getDoctorById(visit2.getDoctorId()).getName() %> <br> Reason: <%=visit2.getReason() %> <br> Date: <%=visit2.getDate() %></li> </br>
+
             <%}%>
         </ol>
 
@@ -80,12 +87,15 @@
             Visit visit = itO.next();
         %>
         <form action = "/chat?tp=p" method = post>
+            <li>Doctor: <%=visit.getDoctorId() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
             <li>Doctor: <%=dao.getDoctorById(visit.getDoctorId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
                 <input type = "submit" value = "Open Chat">
             </li> </br>
         </form>
+        <%}%>
         <%}%>
     </ol>
 
