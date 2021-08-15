@@ -62,9 +62,6 @@
 
         <br><br>
 
-
-
-
         <table bgcolor="lightgray" border="5" width="60%" cellpadding="5" cellspacing="0.5" color="blue" >
             <tr>
 
