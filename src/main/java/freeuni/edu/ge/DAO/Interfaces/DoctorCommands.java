@@ -1,6 +1,7 @@
 package freeuni.edu.ge.DAO.Interfaces;
 
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.History;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Visit;
 
@@ -13,4 +14,5 @@ public interface DoctorCommands {
     void updateInfo(Doctor doctor) throws SQLException;
     Patient getPatientById(String id) throws SQLException;
     boolean updateDoctor(Doctor doctor) throws SQLException;
+    Iterator<History> getDoctorHistory(String index) throws SQLException;
 }

@@ -2,6 +2,7 @@ package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.DAO.Interfaces.DoctorCommands;
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.History;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -13,11 +14,13 @@ public class DoctorCommandsSQL implements DoctorCommands {
     private DoctorSqlDAO doctorDAO;
     private VisitsSQLDAO visitsDAO;
     private PatientSqlDAO patientDAO;
+    private HistorySqlDAO historyDAO;
 
     public DoctorCommandsSQL(BasicDataSource dataSource){
         doctorDAO = new DoctorSqlDAO(dataSource);
         visitsDAO = new VisitsSQLDAO(dataSource);
         patientDAO = new PatientSqlDAO(dataSource);
+        historyDAO = new HistorySqlDAO(dataSource);
     }
 
     @Override
@@ -46,5 +49,10 @@ public class DoctorCommandsSQL implements DoctorCommands {
     @Override
     public boolean updateDoctor(Doctor doctor) throws SQLException {
         return doctorDAO.updateDoctorInfo(doctor);
+    }
+
+    @Override
+    public Iterator<History> getDoctorHistory(String index) throws SQLException {
+        return historyDAO.getDoctorHistory(index);
     }
 }
