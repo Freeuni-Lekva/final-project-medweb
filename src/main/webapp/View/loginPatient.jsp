@@ -27,17 +27,10 @@
     <p>
 
 
-<<<<<<< HEAD
-        <label>Name: </label> <%=patient.getName() %> <br>
 
-
-
-=======
-        
 
         <label>Name: </label> <%=patient.getName() %> <br>
 
->>>>>>> 0fc3cbefbcc152a4cb17717635fb42d477e6702a
 
         <label>Surname: </label> <%=patient.getSurname() %> <br>
 

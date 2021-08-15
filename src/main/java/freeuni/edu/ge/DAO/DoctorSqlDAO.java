@@ -99,10 +99,7 @@ public class DoctorSqlDAO {
         }
     }
 
-<<<<<<< HEAD
-=======
-    //error aqvs
->>>>>>> 0fc3cbefbcc152a4cb17717635fb42d477e6702a
+
     public boolean updateDoctorInfo(Doctor doctor) throws SQLException {
         dataSource.restart();
         try {

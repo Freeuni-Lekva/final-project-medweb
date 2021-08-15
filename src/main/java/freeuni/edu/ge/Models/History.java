@@ -10,18 +10,9 @@ public class History {
         this.MedicalConclusion = MedicalConclusion;
     }
 
-    public String getPatientName(){
-        return visit.getPatientName();
-    }
-    public String getPatientSurName(){
-        return visit.getPatientSurName();
-    }
-    public String getDoctorName(){
-        return visit.getDoctorName();
-    }
-    public String getDoctorSurName(){
-        return visit.getDoctorSurName();
-    }
+
+
+
     public String getPatientId(){
         return visit.getPatientId();
     }

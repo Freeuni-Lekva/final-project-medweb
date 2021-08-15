@@ -83,27 +83,22 @@ INSERT INTO visits (patientId, doctorId, reason, date, type) Values
 ("92277337523","49316498372","Gamonazardi","2021-08-17","Physical");
 
 
-<<<<<<< HEAD
-date varchar(40)
 
-);
+
 
 CREATE TABLE history (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    Patient_Name VARCHAR(255) NOT NULL,
-	Patient_LastName VARCHAR(255) NOT NULL,
     Patient_ID_NUMBER VARCHAR(255) NOT NULL,
-    Doctor_Name VARCHAR(255) NOT NULL,
-    Doctor_LastName VARCHAR(255) NOT NULL,
     Doctor_ID_NUMBER VARCHAR(255) NOT NULL,
     date VARCHAR(255),
     Reason VARCHAR(255),
     Type VARCHAR(255),
     Medical_Conclusion VARCHAR(255)
-=======
+);
+
 CREATE table DoctorTimes(
   id INT PRIMARY KEY AUTO_INCREMENT,
   doctorId varchar(40) not null,
   date varchar(40)
->>>>>>> 0fc3cbefbcc152a4cb17717635fb42d477e6702a
+
 );

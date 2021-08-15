@@ -2,6 +2,7 @@ package freeuni.edu.ge.Controllers;
 
 import freeuni.edu.ge.DAO.AdministratorCommands;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,12 +38,12 @@ public class AdminServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-<<<<<<< HEAD
+
         }
         httpServletRequest.getRequestDispatcher("/View/AdminProfile.jsp").forward(httpServletRequest, httpServletResponse);
-=======
+
             httpServletRequest.getRequestDispatcher("/View/AdminProfile.jsp").forward(httpServletRequest, httpServletResponse);
->>>>>>> 0fc3cbefbcc152a4cb17717635fb42d477e6702a
+
 
     }
 

@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import freeuni.edu.ge.DAO.VisitDAO;
-import freeuni.edu.ge.DAO.VisitsDAO;
-=======
+
 import freeuni.edu.ge.DAO.VisitsSQLDAO;
->>>>>>> 0fc3cbefbcc152a4cb17717635fb42d477e6702a
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,11 +8,9 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 import java.util.Iterator;
 
-<<<<<<< HEAD
 import static org.junit.jupiter.api.Assertions.assertEquals;
-=======
-import static org.junit.Assert.*;
->>>>>>> 0fc3cbefbcc152a4cb17717635fb42d477e6702a
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class TestVisitsDAO {
 
