@@ -1,7 +1,7 @@
 <%@ page import="freeuni.edu.ge.Models.Patient" %>
-<%@ page import="freeuni.edu.ge.DAO.AdministratorDao" %>
-<%@ page import="freeuni.edu.ge.DAO.PatientCommandsSQL" %>
-<%@ page import="freeuni.edu.ge.DAO.PatientCommands" %><%--
+<%@ page import="freeuni.edu.ge.DAO.InMemory.AdministratorDao" %>
+<%@ page import="freeuni.edu.ge.DAO.SQLImplementation.PatientCommandsSQL" %>
+<%@ page import="freeuni.edu.ge.DAO.Interfaces.PatientCommands" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/25/2021

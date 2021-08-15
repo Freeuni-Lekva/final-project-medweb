@@ -1,4 +1,4 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.Interfaces;
 
 import freeuni.edu.ge.Models.Doctor;
 import freeuni.edu.ge.Models.Patient;

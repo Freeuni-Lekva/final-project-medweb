@@ -1,14 +1,12 @@
 package freeuni.edu.ge.Controllers;
 
-import freeuni.edu.ge.DAO.AdministratorDao;
+import freeuni.edu.ge.DAO.InMemory.AdministratorDao;
 import freeuni.edu.ge.Models.Doctor;
-import freeuni.edu.ge.Models.Patient;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LoginDoctorServlet extends HttpServlet {

@@ -3,7 +3,9 @@
 <%@ page import="freeuni.edu.ge.Models.Visit" %>
 <%@ page import="freeuni.edu.ge.Models.Administrator" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="freeuni.edu.ge.DAO.*" %><%--
+<%@ page import="freeuni.edu.ge.DAO.*" %>
+<%@ page import="freeuni.edu.ge.DAO.Interfaces.PatientCommands" %>
+<%@ page import="freeuni.edu.ge.DAO.SQLImplementation.PatientCommandsSQL" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 7/24/2021

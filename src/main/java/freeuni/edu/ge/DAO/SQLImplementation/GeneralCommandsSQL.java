@@ -1,5 +1,6 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
+import freeuni.edu.ge.DAO.Interfaces.GeneralCommands;
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Models.Administrator;
 import freeuni.edu.ge.Models.Doctor;
@@ -8,13 +9,13 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.SQLException;
 
-public class GeneralCommandsSQL implements GeneralCommands{
-    private RequestDAO requestDAO;
+public class GeneralCommandsSQL implements GeneralCommands {
+    private RequestSQLDAO requestDAO;
     private DoctorSqlDAO doctorDAO;
     private PatientSqlDAO patientDAO;
 
     public GeneralCommandsSQL(BasicDataSource dataSource){
-        requestDAO = new RequestDAO(dataSource);
+        requestDAO = new RequestSQLDAO(dataSource);
         doctorDAO = new DoctorSqlDAO(dataSource);
         patientDAO = new PatientSqlDAO(dataSource);
     }

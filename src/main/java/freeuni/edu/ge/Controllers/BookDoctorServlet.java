@@ -1,7 +1,7 @@
 package freeuni.edu.ge.Controllers;
 
-import freeuni.edu.ge.DAO.AdministratorDao;
-import freeuni.edu.ge.DAO.DoctorDAO;
+import freeuni.edu.ge.DAO.InMemory.AdministratorDao;
+import freeuni.edu.ge.DAO.InMemory.DoctorDAO;
 import freeuni.edu.ge.Models.Doctor;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Visit;

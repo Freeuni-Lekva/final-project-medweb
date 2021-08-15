@@ -1,5 +1,6 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
+import freeuni.edu.ge.DAO.Interfaces.WorkingTimesDAOInterface;
 import freeuni.edu.ge.Models.Doctor;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -13,7 +14,7 @@ import java.util.*;
 import java.sql.*;
 import java.util.Date;
 
-public class WorkingTimesSQL implements WorkingTimesDAOInterface{
+public class WorkingTimesSQL implements WorkingTimesDAOInterface {
 
     private static final int NEX_DAYS = 8;
     private static final int DAY_GRAPHIC= 8;
