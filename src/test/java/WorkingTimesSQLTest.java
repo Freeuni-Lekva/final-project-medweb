@@ -86,4 +86,18 @@ public class WorkingTimesSQLTest {
         int size = sql.getDoctorWorkingTime(doc).get(date).size();
         assertEquals(size, 7);
     }
+
+    @Test
+    public void testUpdateBase() throws SQLException {
+        init();
+        WorkingTimesSQL sql = new WorkingTimesSQL(dataSource);
+        Doctor doc = new Doctor("123", "123", "123");
+        sql.addDoctor(doc);
+        Map<String, Map<Date, List<Time>>> tmp = sql.getAllDoctorWorkingTime();
+        sql.updateBase();
+        Map<String, Map<Date, List<Time>>> tmp2 = sql.getAllDoctorWorkingTime();
+        for(String ID : tmp.keySet()) {
+            assertTrue(tmp2.containsKey(ID));
+        }
+    }
 }
