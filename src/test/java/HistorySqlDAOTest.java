@@ -1,4 +1,4 @@
-import freeuni.edu.ge.DAO.HistorySqlDAO;
+import freeuni.edu.ge.DAO.SQLImplementation.HistorySqlDAO;
 import freeuni.edu.ge.Models.History;
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -33,10 +33,7 @@ public class HistorySqlDAOTest {
         HistorySqlDAO dao= new HistorySqlDAO(dataSource);
         //History history = new History(visit, "gankurnebulia");
         visit.setDoctorName("nino");
-        visit.setDoctorSurName("ninoshvili");
 
-        visit.setPatientName("eka");
-        visit.setPatientSurName("bekauri");
 
         dao.addFinishedVisit(visit, "gankurnebulia");
 
@@ -53,31 +50,21 @@ public class HistorySqlDAOTest {
 
         Visit visit1 = new Visit("23", "24", "Tavis Tkivili", "05.11.1789");
 
-        visit1.setDoctorName("nino");
-        visit1.setDoctorSurName("ninoshvili");
 
-        visit1.setPatientName("eka");
-        visit1.setPatientSurName("bekauri");
 
         dao.addFinishedVisit(visit1, "gankurnebulia");
 
         Visit visit2 = new Visit("21", "24", "Muclis Tkivili", "05.11.1799");
 
-        visit2.setDoctorName("nino");
-        visit2.setDoctorSurName("ninoshvili");
 
-        visit2.setPatientName("vaja");
-        visit2.setPatientSurName("margvelashvili");
+
 
         dao.addFinishedVisit(visit2, "gankurnebulia");
 
         Visit visit3 = new Visit("21", "27", "simsivne", "07.11.1413");
 
         visit3.setDoctorName("akaki");
-        visit3.setDoctorSurName("wereteli");
-
-        visit3.setPatientName("vaja");
-        visit3.setPatientSurName("margvelashvili");
+       
 
         dao.addFinishedVisit(visit3, "ganukurnebeli");
 

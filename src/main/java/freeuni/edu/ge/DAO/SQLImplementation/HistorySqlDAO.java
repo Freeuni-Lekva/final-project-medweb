@@ -1,4 +1,4 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.Models.History;
 import freeuni.edu.ge.Models.Visit;
@@ -63,19 +63,16 @@ public class HistorySqlDAO {
         dataSource.restart();
         try {
             Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement("insert into history  (Patient_Name, Patient_LastName, Patient_ID_NUMBER , Doctor_Name, " +
-                    "  Doctor_LastName, Doctor_ID_NUMBER, date,  Reason, Type, Medical_Conclusion)  " +
+            PreparedStatement statement = connection.prepareStatement("insert into history  (Patient_ID_NUMBER , " +
+                    " Doctor_ID_NUMBER, date,  Reason, Type, Medical_Conclusion)  " +
                     "values (?,?,?,?,?,?,?,?,?,?);");
-            statement.setString(1, visit.getPatientName());
-            statement.setString(2, visit.getDoctorSurName());
-            statement.setString(3, visit.getPatientId());
-            statement.setString(4, visit.getDoctorName());
-            statement.setString(5, visit.getDoctorSurName());
-            statement.setString(6, visit.getDoctorId());
-            statement.setString(7, visit.getDate());
-            statement.setString(8, visit.getReason());
-            statement.setString(9, visit.getType());
-            statement.setString(10, conclusion);
+
+            statement.setString(1, visit.getPatientId());
+            statement.setString(2, visit.getDoctorId());
+            statement.setString(3, visit.getDate());
+            statement.setString(4, visit.getReason());
+            statement.setString(5, visit.getType());
+            statement.setString(6, conclusion);
 
 
             //System.out.println("Added "+patient.getName());
