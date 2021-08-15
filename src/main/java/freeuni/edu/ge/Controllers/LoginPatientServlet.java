@@ -16,11 +16,17 @@ public class LoginPatientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        String id = httpServletRequest.getParameter("id");
+        String index = httpServletRequest.getParameter("id");
         HttpSession session = httpServletRequest.getSession();
+        PatientCommands dao = (PatientCommandsSQL) session.getAttribute("DAO");
 
+        String id = (String) session.getAttribute("id");
         if(id == null) {
-            id = (String) session.getAttribute("id");
+            try {
+                id = dao.getPatientIdByIndex(index);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         httpServletRequest.setAttribute("id", id);

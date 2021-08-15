@@ -36,7 +36,6 @@ public class PatientSqlDAO {
 
     public Patient getPatientByIdNumber(String ID_NUMBER) throws SQLException {
         dataSource.restart();
-        System.out.println("Here IS");
         try {
             Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement("select * from patients where ID_NUMBER = ?;");
@@ -44,6 +43,24 @@ public class PatientSqlDAO {
             ResultSet result = statement.executeQuery();
             while(result.next()){
                 return convertToPatient(result);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public String getPatientIdByIndex(String index) throws SQLException {
+        dataSource.restart();
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement("select * from patients where id = ?;");
+            statement.setString(1, index);
+            ResultSet result = statement.executeQuery();
+
+            while(result.next()){
+                return result.getString("ID_NUMBER");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -137,8 +154,10 @@ public class PatientSqlDAO {
         PreparedStatement statement = connection.prepareStatement("Select * FROM patients where ID_NUMBER = ?;");
         statement.setString(1, id);
         ResultSet resultSet = statement.executeQuery();
-        if(resultSet == null) return null;
-        return resultSet.getString("id");
+        while(resultSet.next()) {
+            return resultSet.getString("id");
+        }
+        return null;
     }
 
 
