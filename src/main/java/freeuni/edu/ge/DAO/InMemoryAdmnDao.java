@@ -60,7 +60,7 @@ public class InMemoryAdmnDao implements AdministratorDao {
         }
         System.out.println("test");
         Doctor doctor = new Doctor("luka", "kk", "123");
-        doctor.setCity("Tbilisiii");
+        doctor.setCity("Tbilisiiiii");
         return doctor;
     }
 
