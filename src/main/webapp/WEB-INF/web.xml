@@ -103,4 +103,5 @@
         <servlet-name>chat</servlet-name>
         <url-pattern>/chat</url-pattern>
     </servlet-mapping>
+
 </web-app>
