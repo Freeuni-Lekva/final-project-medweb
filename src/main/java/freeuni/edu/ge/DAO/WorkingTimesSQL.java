@@ -23,7 +23,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
     public WorkingTimesSQL (BasicDataSource source){
         this.source = source;
     }
-
+//
 //    public static void main(String [] args) throws SQLException {
 //        BasicDataSource dataSource = new BasicDataSource();
 //        dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
@@ -32,9 +32,13 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
 //        WorkingTimesSQL sql = new WorkingTimesSQL(dataSource);
 //
 //        Doctor doc = new Doctor("123", "123", "123");
-//
 //        sql.addDoctor(doc);
+//
+//        Date date =new Date(2021, 7,16);
+//        Time time = new Time(10,0,0);
+//        sql.reserveDoctor(doc, date, time);
 //        sql.getToString(sql.getAllDoctorWorkingTime());
+//
 //    }
 //
 //    public void getToString(Map<String, Map<Date, List<Time>>> returnValue) {
@@ -81,8 +85,31 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
     }
 
     @Override
-    public void reserveDoctor(Doctor doctor, Date date, Time time) {
+    public void reserveDoctor(Doctor doctor, Date date, Time time) throws SQLException {
+        source.restart();
+        try{
+            Connection connection = source.getConnection();
+            List<String> times = new ArrayList<>();
+            times.add("Ten");
+            times.add("eleven");
+            times.add("Twelve");
+            times.add("Thirteen");
+            times.add("Fourteen");
+            times.add("Fifteen");
+            times.add("Sixteen");
+            times.add("Seventeen");
+            int index = time.getHours() -10;
+            String str = times.get(index);
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE DoctorWorkTime SET " + str + " =? " + "where (ID = ? && Dates = ?);");
+            preparedStatement.setBoolean(1, true);
+            preparedStatement.setString(2, doctor.getID());
 
+            String makeDate = "" + date.getYear() + "-" + date.getMonth() + "-" + date.getDate();
+            preparedStatement.setString(3,makeDate);
+            preparedStatement.executeUpdate();
+        }catch(SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
