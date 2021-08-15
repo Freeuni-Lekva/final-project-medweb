@@ -84,7 +84,11 @@ INSERT INTO visits (patientId, doctorId, reason, date, type) Values
 
 
 
-
+CREATE table DoctorTimes(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  doctorId varchar(40) not null,
+  date varchar(40)
+);
 
 CREATE TABLE history (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -94,11 +98,4 @@ CREATE TABLE history (
     Reason VARCHAR(255),
     Type VARCHAR(255),
     Medical_Conclusion VARCHAR(255)
-);
-
-CREATE table DoctorTimes(
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  doctorId varchar(40) not null,
-  date varchar(40)
-
 );
