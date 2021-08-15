@@ -21,6 +21,7 @@
 <html>
 <head>
     <title>Welcome <%=doctor.getName()%>!</title>
+    <link rel="stylesheet" href="../static/Doctor.css">
 </head>
 <body>
 

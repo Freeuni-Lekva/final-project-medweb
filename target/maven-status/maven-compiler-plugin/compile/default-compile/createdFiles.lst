@@ -31,6 +31,7 @@ freeuni\edu\ge\DAO\SQLImplementation\PatientSqlDAO.class
 freeuni\edu\ge\DAO\SQLImplementation\WorkingTimesSQL.class
 freeuni\edu\ge\Helpers\HashUsingSHA1.class
 freeuni\edu\ge\DAO\InMemory\InMemoryAdmnDao.class
+freeuni\edu\ge\Controllers\RedirectServlet.class
 freeuni\edu\ge\DAO\InMemory\WorkingTimesDAO.class
 freeuni\edu\ge\Controllers\LoginPatientServlet.class
 freeuni\edu\ge\Helpers\ChatDecoder.class
