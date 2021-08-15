@@ -27,14 +27,14 @@
 
     <h2>Personal Information</h2>
     <p>
-        <label>Name: </label> <%=doctor.getName() %> <br>
-        <label>Surname: </label> <%=doctor.getSurname() %> <br>
-        <label>Speciality: </label> <%=doctor.getSpeciality() %> <br>
-        <label>Qualification: </label> <%=doctor.getQualification() %> <br>
-        <label>Experience: </label> <%=doctor.getYearExperience() %> <br>
-        <label>City: </label> <%=doctor.getCity() %> <br>
-        <label>ID: </label> <%=doctor.getID() %> <br>
-        <label>Mobile: </label> <%=doctor.getMobileNumber() %> <br>
+        <label>Name: <%=doctor.getName() %> </label> <br> <br>
+        <label>Surname: <%=doctor.getSurname() %> </label> <br> <br>
+        <label>Speciality: <%=doctor.getSpeciality() %> </label> <br> <br>
+        <label>Qualification: <%=doctor.getQualification() %> </label> <br> <br>
+        <label>Experience: <%=doctor.getYearExperience() %> </label> <br> <br>
+        <label>City: <%=doctor.getCity() %> </label> <br> <br>
+        <label>ID: <%=doctor.getID() %> </label> <br> <br>
+        <label>Mobile: <%=doctor.getMobileNumber() %> </label> <br> <br>
 
         <form action="/loginDc" method="post">
                     <input type="submit" value = "Log Out" name = "logOut">

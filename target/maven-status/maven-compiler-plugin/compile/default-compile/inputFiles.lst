@@ -3,6 +3,7 @@ C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\Controllers\AdminServlet.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\InMemory\DoctorsDAO.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\InMemory\InMemoryAdmnDao.java
+C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\SQLImplementation\HistorySqlDAO.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\SQLImplementation\WorkingTimesSQL.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\Interfaces\DoctorCommands.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\InMemory\WorkingTimesDAO.java
@@ -10,6 +11,7 @@ C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\SQLImplementation\DoctorCommandsSQL.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\EndPoint\ChatEndPoint.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\Interfaces\PatientCommands.java
+C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\Models\History.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\Interfaces\AdministratorCommands.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\Helpers\ChatEncoder.java
 C:\Users\Jurxa\Desktop\project\final-project-medweb\src\main\java\freeuni\edu\ge\DAO\InMemory\PatientDAO.java

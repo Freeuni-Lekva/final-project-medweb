@@ -1,3 +1,39 @@
 body {
-    background-color:green;
+    background-color:grey;
+      margin: 0;
+      min-width: 250px;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+label {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+}
+
+h2 {
+  background-color: #f44336;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+
+label:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+label:hover {
+  background: #ddd;
+}
+
+
