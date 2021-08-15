@@ -1,4 +1,6 @@
 import freeuni.edu.ge.DAO.DoctorSqlDAO;
+import freeuni.edu.ge.Helpers.Hash;
+import freeuni.edu.ge.Helpers.HashUsingSHA1;
 import freeuni.edu.ge.Models.Doctor;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,8 +22,13 @@ public class DoctorSqlDAOTest {
     @BeforeEach
     public void init(){
         dataSource.setUrl("jdbc:mysql://localhost:3306/medWeb");
+<<<<<<< HEAD
         dataSource.setUsername(USER);
         dataSource.setPassword(PASSWORD);
+=======
+        dataSource.setUsername("root");
+        dataSource.setPassword("");
+>>>>>>> 0fc3cbefbcc152a4cb17717635fb42d477e6702a
 
     }
 
@@ -275,6 +282,25 @@ public class DoctorSqlDAOTest {
         assertEquals(dao.getDoctorByIdNumber(dr2.getID()).getName(), dr3.getName());
         //assertEquals(dao.getDoctorByIdNumber(dr1.getID()).getQualification(), dr2.getQualification());
 
+    }
+
+
+    //get Hashed Password Tests
+    @Test
+    public void test5() throws SQLException {
+        Hash hash = new HashUsingSHA1();
+        DoctorSqlDAO dao = new DoctorSqlDAO(dataSource);
+        Doctor doc = new Doctor("Alexis","Bell","12341231212");
+        doc.setPassword("password");
+        dao.addDoctor(doc);
+        assertEquals(hash.generateHash("password"),dao.getPass("12341231212"));
+        assertEquals("",dao.getPass("123456"));
+
+        Doctor doc1 = new Doctor("Kingston", "Martinez","7777");
+        String pass = "HardP!ssw0rD";
+        doc1.setPassword(pass);
+        dao.addDoctor(doc1);
+        assertEquals(hash.generateHash(pass),dao.getPass("7777"));
     }
 
 }
