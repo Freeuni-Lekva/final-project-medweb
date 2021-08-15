@@ -1,6 +1,6 @@
 package freeuni.edu.ge.Listeners;
 
-import freeuni.edu.ge.DAO.*;
+import freeuni.edu.ge.DAO.InMemory.*;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.servlet.ServletContextEvent;
@@ -21,7 +21,7 @@ public class ContextListener implements ServletContextListener {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
         dataSource.setUsername("root");
-        dataSource.setPassword("3.1415");
+        dataSource.setPassword("lukakapa1213");
         servletContextEvent.getServletContext().setAttribute("dataSource",dataSource);
     }
 

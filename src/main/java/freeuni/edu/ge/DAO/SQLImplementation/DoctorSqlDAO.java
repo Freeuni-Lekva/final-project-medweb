@@ -1,4 +1,4 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.Models.Doctor;
 import org.apache.commons.dbcp2.BasicDataSource;

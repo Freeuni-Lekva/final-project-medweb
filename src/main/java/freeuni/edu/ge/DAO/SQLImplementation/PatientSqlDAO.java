@@ -1,4 +1,4 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.Models.Patient;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PatientSqlDAO {
 
-    private final BasicDataSource dataSource;
+    private BasicDataSource dataSource;
 
     public PatientSqlDAO(BasicDataSource dataSource) {
         this.dataSource = dataSource;
@@ -36,6 +36,7 @@ public class PatientSqlDAO {
 
     public Patient getPatientByIdNumber(String ID_NUMBER) throws SQLException {
         dataSource.restart();
+        System.out.println("Here IS");
         try {
             Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement("select * from patients where ID_NUMBER = ?;");
