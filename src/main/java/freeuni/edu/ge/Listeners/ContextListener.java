@@ -21,7 +21,7 @@ public class ContextListener implements ServletContextListener {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
         dataSource.setUsername("root");
-        dataSource.setPassword("misho99tedy");
+        dataSource.setPassword("lukakapa1213");
         servletContextEvent.getServletContext().setAttribute("dataSource",dataSource);
     }
 

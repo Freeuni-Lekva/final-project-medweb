@@ -5,12 +5,20 @@ import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Visit;
 
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public interface DoctorCommands {
     Doctor getDoctorById(String id) throws SQLException;
+
     Iterator<Visit> getDoctorVisitsIterator(String ID, String type) throws SQLException;
+
     void updateInfo(Doctor doctor) throws SQLException;
+
     Patient getPatientById(String id) throws SQLException;
+
     boolean updateDoctor(Doctor doctor) throws SQLException;
 }
