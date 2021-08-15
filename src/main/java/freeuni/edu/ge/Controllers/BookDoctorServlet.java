@@ -56,8 +56,9 @@ public class BookDoctorServlet extends HttpServlet {
             String type = httpServletRequest.getParameter("typeSelect");
             System.out.println(type);
         }
+           
 
-    }
+        }
 
     private void bookDoctor(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, SQLException {
         String doctorId = httpServletRequest.getParameter("doctor");
