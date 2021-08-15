@@ -17,6 +17,7 @@
 <html>
 <head>
     <title><%=patient.getName()%> History</title>
+    <link href="/static/HistoryCSS.css" rel="stylesheet" type="text/css">
 
     <h1>Your history of visits</h1>
 </head>
@@ -24,14 +25,17 @@
 <body>
 
 <form action="/ptHistory" method="get">
+
     <% while(history.hasNext()) {%>
 
+
     <%History cur = history.next();%>
+
 
     <label>Doctor Name: </label> <%=dao.getDoctorById(cur.getDoctorId()).getName() %> <br>
     <label>Reason: </label> <%=cur.getReason() %> <br>
     <label>Medical Conclusion: </label> <%=cur.getMedicalConclusion()%> <br>
-    <label>Visit Date: </label> <%=cur.getDate() %> <br>
+    <label> Visit Date: </label> <%=cur.getDate() %> <br>
 
     <br> <br>
 
