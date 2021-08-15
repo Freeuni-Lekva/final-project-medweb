@@ -13,15 +13,20 @@
 <html>
 <head>
     <title>Conclusion</title>
+    <link href="/static/Conclusion.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+<div class="header">
 <h1>Please add your conclusion!</h1>
+</div>
 
 <form action="loginDc" method="post">
-    <textarea id="conclusion" name="conclusion" rows="4" cols="50"></textarea><br>
+    <textarea id="conclusion" name="conclusion" rows="4" cols="50"></textarea>
     <input type = "hidden" name = "doctor" id = "doctor" value = <%=doctorId%> >
     <input type = "hidden" name = "patient" id = "patient" value = <%=patientId%> >
-    <input type="submit" name="submitConclusion" value="Submit">
+    <br><br>
+    <input type="submit" name="submitConclusion" value="Submit" class="buttonDC">
 </form>
 
 </body>
