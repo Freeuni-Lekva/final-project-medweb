@@ -71,8 +71,9 @@
                 <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
 
     <%}%>
+    </ol>
 
-    <h2>Your Online Visits:</h2>
+    <h3>Your Online Visits:</h3>
 
     <ol>
         <%
@@ -94,7 +95,14 @@
             <input type = "hidden" name = "patient2" id = "patient2" value = <%=visit.getPatientId()%> >
         </form>
         <%}%>
+
     </ol>
+    <h3>See Your History Of Visits</h3>
+    <form action="/drHistory" method="get">
+        <input type="submit" value = "Your History" name = "history">
+        <input type="hidden" name = "hiddenID" value=<%=doctor.getID()%>>
+    </form>
+
 
 
 </body>

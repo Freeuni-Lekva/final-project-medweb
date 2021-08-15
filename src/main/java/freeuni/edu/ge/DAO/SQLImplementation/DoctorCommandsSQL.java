@@ -2,6 +2,7 @@ package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.DAO.Interfaces.DoctorCommands;
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.History;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -55,6 +56,10 @@ public class DoctorCommandsSQL implements DoctorCommands {
     }
 
     @Override
+
+    public Iterator<History> getDoctorHistory(String index) throws SQLException {
+        return historyDAO.getDoctorHistory(index);
+
     public void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
         visitsDAO.deleteVisitByPatientAndDoctorId(patientId, doctorId);
     }
@@ -67,5 +72,6 @@ public class DoctorCommandsSQL implements DoctorCommands {
     @Override
     public void finishVisit(Visit visit, String conclusion) throws SQLException {
         historyDAO.addFinishedVisit(visit, conclusion);
+
     }
 }
