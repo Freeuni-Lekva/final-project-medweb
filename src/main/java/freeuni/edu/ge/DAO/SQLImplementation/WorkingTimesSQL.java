@@ -169,7 +169,7 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
         preparedStatement.executeUpdate();
     }
 
-    private void clear() throws SQLException {
+    public void clear() throws SQLException {
         Connection connection = source.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("drop table DoctorWorkTime;");
         preparedStatement.executeUpdate();
@@ -220,14 +220,14 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface {
 
     private void getInformation(ResultSet resultSet, Map<String, Map<Date, List<Time>>> doctorsWorkingTime) throws SQLException {
         List<Time> times = new ArrayList<>();
-        if(!resultSet.getBoolean("Ten")){times.add(new Time(10,0,0));}
-        if(!resultSet.getBoolean("Eleven")){times.add(new Time(11,0,0));}
-        if(!resultSet.getBoolean("Twelve")){times.add(new Time(12,0,0));}
-        if(!resultSet.getBoolean("Thirteen")){times.add(new Time(13,0,0));}
-        if(!resultSet.getBoolean("Fourteen")){times.add(new Time(14,0,0));}
-        if(!resultSet.getBoolean("Fifteen")){times.add(new Time(15,0,0));}
-        if(!resultSet.getBoolean("Sixteen")){times.add(new Time(16,0,0));}
-        if(!resultSet.getBoolean("Seventeen")){times.add(new Time(17,0,0));}
+        if(resultSet.getBoolean("Ten")){times.add(new Time(10,0,0));}
+        if(resultSet.getBoolean("Eleven")){times.add(new Time(11,0,0));}
+        if(resultSet.getBoolean("Twelve")){times.add(new Time(12,0,0));}
+        if(resultSet.getBoolean("Thirteen")){times.add(new Time(13,0,0));}
+        if(resultSet.getBoolean("Fourteen")){times.add(new Time(14,0,0));}
+        if(resultSet.getBoolean("Fifteen")){times.add(new Time(15,0,0));}
+        if(resultSet.getBoolean("Sixteen")){times.add(new Time(16,0,0));}
+        if(resultSet.getBoolean("Seventeen")){times.add(new Time(17,0,0));}
 
         String dateInString = resultSet.getString("Dates");
         Date date = convertStringToDate(dateInString);
