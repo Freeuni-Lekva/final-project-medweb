@@ -13,11 +13,13 @@ public class DoctorCommandsSQL implements DoctorCommands {
     private DoctorSqlDAO doctorDAO;
     private VisitsSQLDAO visitsDAO;
     private PatientSqlDAO patientDAO;
+    private HistorySqlDAO historyDAO;
 
     public DoctorCommandsSQL(BasicDataSource dataSource){
         doctorDAO = new DoctorSqlDAO(dataSource);
         visitsDAO = new VisitsSQLDAO(dataSource);
         patientDAO = new PatientSqlDAO(dataSource);
+        historyDAO = new HistorySqlDAO(dataSource);
     }
 
     @Override
@@ -46,5 +48,20 @@ public class DoctorCommandsSQL implements DoctorCommands {
     @Override
     public boolean updateDoctor(Doctor doctor) throws SQLException {
         return doctorDAO.updateDoctorInfo(doctor);
+    }
+
+    @Override
+    public void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
+        visitsDAO.deleteVisitByPatientAndDoctorId(patientId, doctorId);
+    }
+
+    @Override
+    public Visit getVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
+        return visitsDAO.getVisitByPatientAndDoctorId(patientId, doctorId);
+    }
+
+    @Override
+    public void finishVisit(Visit visit, String conclusion) throws SQLException {
+        historyDAO.addFinishedVisit(visit, conclusion);
     }
 }
