@@ -1,7 +1,8 @@
 <%@ page import="freeuni.edu.ge.Models.Doctor" %>
 <html>
 <head>
-<title>Registration</title>
+    <title>Registration</title>
+    <link href="/static/DoctorRegistrationSecondStageCSS.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -15,6 +16,11 @@
 Doctor doc = (Doctor) request.getAttribute("doctor");
 %>
 
+<div class="header">
+<h1>Doctor Registration</h1>
+</div>
+
+<br><br>
 
 <form action = "/dr" method = "post">
     <label for = "username">Username: </label>
@@ -74,12 +80,18 @@ Doctor doc = (Doctor) request.getAttribute("doctor");
     <input type = "text" name = "graduation" id = "graduation">
 
     <br>
-    <input type = "submit" name = "register" value = "Register">
+    <input type = "submit" name = "register" value = "Register" class="submitDC">
 
 <%} else {%>
-    <%=request.getAttribute("message")%>
+
+    <div class="header">
+        <h1><%=request.getAttribute("message")%></h1>
+    </div>
+
     <br>
-    <a href="/home">Back To Home</a>
+    <form action="/home">
+        <input type="submit" value="Back To Home" class="buttonDC">
+    </form>
 
     <%}%>
 
