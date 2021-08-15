@@ -212,6 +212,11 @@ public class WorkingTimesSQL implements WorkingTimesDAOInterface{
         return doctorsWorkingTime;
     }
 
+    @Override
+    public Map<Date, List<Time>> getDoctorWorkingTime() {
+        return null;
+    }
+
     private void getInformation(ResultSet resultSet, Map<String, Map<Date, List<Time>>> doctorsWorkingTime) throws SQLException {
         List<Time> times = new ArrayList<>();
         if(resultSet.getBoolean("Ten")){times.add(new Time(10,0,0));}
