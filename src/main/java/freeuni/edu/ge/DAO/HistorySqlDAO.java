@@ -51,8 +51,8 @@ public class HistorySqlDAO {
         List<History>  history = new ArrayList<>();
 
         while(resultSet.next()) {
-            history.add(new History(new Visit(resultSet.getString("patientId"), resultSet.getString("doctorId"),
-                    resultSet.getString("reason"), resultSet.getString("date")),
+            history.add(new History(new Visit(resultSet.getString("Patient_ID_NUMBER"), resultSet.getString("Doctor_ID_NUMBER"),
+                    resultSet.getString("Reason"), resultSet.getString("date")),
                     resultSet.getString("Medical_Conclusion")));
         }
         if(history.isEmpty()) return null;

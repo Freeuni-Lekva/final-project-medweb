@@ -1,7 +1,6 @@
 package freeuni.edu.ge.Controllers;
 
 import freeuni.edu.ge.DAO.AdministratorCommands;
-import freeuni.edu.ge.DAO.AdministratorDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,25 +20,26 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        AdministratorDao adminDAO = getAdministratorDao(httpServletRequest);
+        AdministratorCommands dao = getAdministratorDao(httpServletRequest);
         String ID = httpServletRequest.getParameter("hidden");
 
-            if (httpServletRequest.getParameter("accept"+ID) != null) {
-                try {
-                    dao.requestAnswer(Boolean.TRUE, ID);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        if (httpServletRequest.getParameter("accept"+ID) != null) {
+            try {
+                dao.requestAnswer(Boolean.TRUE, ID);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
+        }
 
-            if (httpServletRequest.getParameter("reject"+ID) != null) {
-                try {
-                    dao.requestAnswer(Boolean.FALSE, ID);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        if (httpServletRequest.getParameter("reject"+ID) != null) {
+            try {
+                dao.requestAnswer(Boolean.FALSE, ID);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
-            httpServletRequest.getRequestDispatcher("/View/AdminProfile.jsp").forward(httpServletRequest, httpServletResponse);
+        }
+        httpServletRequest.getRequestDispatcher("/View/AdminProfile.jsp").forward(httpServletRequest, httpServletResponse);
+
     }
 
     private AdministratorCommands getAdministratorDao(HttpServletRequest request){
