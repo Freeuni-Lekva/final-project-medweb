@@ -3,8 +3,6 @@ package freeuni.edu.ge.Controllers;
 
 import freeuni.edu.ge.DAO.GeneralCommands;
 import freeuni.edu.ge.DAO.GeneralCommandsSQL;
-import freeuni.edu.ge.DAO.AdministratorDao;
-import freeuni.edu.ge.DAO.WorkingTimesDAOInterface;
 import freeuni.edu.ge.Models.Doctor;
 
 import javax.servlet.ServletException;
