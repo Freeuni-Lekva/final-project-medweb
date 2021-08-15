@@ -70,6 +70,7 @@ public class Doctor {
     public void setPassword(String password) {
         this.password = hash.generateHash(password);
     }
+    public void setHashedPassword(String password){this.password = password;}
     public void setCity(String city){
         this.city = city;
     }
@@ -101,6 +102,9 @@ public class Doctor {
         return password;
     }
     public String getCity() {
+        System.out.println("city");
+        System.out.println(city);
+
         return city;
     }
     public DoctorSpecialities getSpeciality(){

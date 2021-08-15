@@ -1,7 +1,8 @@
-package freeuni.edu.ge.DAO;
+package freeuni.edu.ge.DAO.Interfaces;
 
 import freeuni.edu.ge.Helpers.Hash;
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.Patient;
 
 import java.sql.SQLException;
 
@@ -14,4 +15,9 @@ public interface GeneralCommands {
     boolean checkIfItIsAdministrator(String ID, String password, Hash hash);
     boolean checkIfItIsPatient(String ID, String password, Hash hash) throws SQLException;
     boolean checkIfItIsDoctor(String ID, String password, Hash hash) throws SQLException;
+
+    boolean contains(Patient patient) throws SQLException;
+    boolean contains(String ID) throws SQLException;
+
+    public void addPatient(Patient patient) throws SQLException;
 }

@@ -1,7 +1,7 @@
 package freeuni.edu.ge.Controllers;
 
-import freeuni.edu.ge.DAO.AdministratorDao;
-import freeuni.edu.ge.DAO.PatientDAOInterface;
+import freeuni.edu.ge.DAO.Interfaces.GeneralCommands;
+import freeuni.edu.ge.DAO.SQLImplementation.GeneralCommandsSQL;
 import freeuni.edu.ge.Models.Patient;
 
 import javax.servlet.ServletException;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -29,7 +30,11 @@ public class PatientRegistrationServlet extends HttpServlet {
             httpServletRequest.getRequestDispatcher("View/ForPatientRegistration.jsp").forward(httpServletRequest,httpServletResponse);
         }
         if(httpServletRequest.getParameter("submit") != null) {
-            checkFilledFields(httpServletRequest, httpServletResponse, tmp);
+            try {
+                checkFilledFields(httpServletRequest, httpServletResponse, tmp);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
     }
@@ -72,7 +77,7 @@ public class PatientRegistrationServlet extends HttpServlet {
         return patient;
     }
 
-    private void checkFilledFields(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, boolean tmp) throws ServletException, IOException {
+    private void checkFilledFields(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, boolean tmp) throws ServletException, IOException, SQLException {
         if(ifEmptyNecessaryFields(httpServletRequest)){
             String answer = "Fill ";
             if (httpServletRequest.getParameter("fName") == "") {answer += "First Name Field, "; }
@@ -100,27 +105,15 @@ public class PatientRegistrationServlet extends HttpServlet {
         return false;
     }
 
-    private void checkId(String id, HttpServletRequest httpServletRequest, boolean tmp, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        AdministratorDao adminDao = getAdministratorDao(httpServletRequest);
-        PatientDAOInterface base = getDAO(httpServletRequest);
-        Map<String, String> map = base.getAllLoginAndPass();
-        if (map.containsKey(id)) {
+    private void checkId(String id, HttpServletRequest httpServletRequest, boolean tmp, HttpServletResponse httpServletResponse) throws ServletException, IOException, SQLException {
+        GeneralCommands dao = (GeneralCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
+        if (dao.contains(id)) {
             httpServletRequest.setAttribute("Registered",true);
             httpServletRequest.getRequestDispatcher("/View/ForPatientRegistration.jsp").forward(httpServletRequest, httpServletResponse);
         } else {
             Patient patient = makePatientFromInformation(httpServletRequest , tmp);
-            base.addPatient(patient);
-            adminDao.setPatientOnId(id,patient);
+            dao.addPatient(patient);
             httpServletRequest.getRequestDispatcher("/View/SuccessfulRegistered.jsp").forward(httpServletRequest, httpServletResponse);
         }
-    }
-
-    private PatientDAOInterface getDAO(HttpServletRequest httpServletRequest) {
-        PatientDAOInterface returnDAO  = (PatientDAOInterface) httpServletRequest.getServletContext().getAttribute("PatientsBase");
-        return returnDAO;
-    }
-
-    private AdministratorDao getAdministratorDao(HttpServletRequest request){
-        return (AdministratorDao)request.getServletContext().getAttribute("AdministratorDAO");
     }
 }

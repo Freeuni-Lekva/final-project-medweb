@@ -1,7 +1,7 @@
 package freeuni.edu.ge.Listeners;
 
-import freeuni.edu.ge.DAO.GeneralCommands;
-import freeuni.edu.ge.DAO.GeneralCommandsSQL;
+import freeuni.edu.ge.DAO.Interfaces.GeneralCommands;
+import freeuni.edu.ge.DAO.SQLImplementation.GeneralCommandsSQL;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.servlet.http.HttpSessionEvent;
@@ -13,7 +13,7 @@ public class SessionListener implements HttpSessionListener {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
         dataSource.setUsername("root");
-        dataSource.setPassword("misho99tedy");
+        dataSource.setPassword("lukakapa1213");
         GeneralCommands dao = new GeneralCommandsSQL(dataSource);
         httpSessionEvent.getSession().setAttribute("DAO",dao);
     }
