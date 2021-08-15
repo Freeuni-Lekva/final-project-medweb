@@ -7,7 +7,11 @@ import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class DoctorCommandsSQL implements DoctorCommands {
     private DoctorSqlDAO doctorDAO;
