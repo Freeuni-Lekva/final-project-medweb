@@ -2,22 +2,29 @@ package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.DAO.Interfaces.DoctorCommands;
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.History;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class DoctorCommandsSQL implements DoctorCommands {
     private DoctorSqlDAO doctorDAO;
     private VisitsSQLDAO visitsDAO;
     private PatientSqlDAO patientDAO;
+    private HistorySqlDAO historyDAO;
 
     public DoctorCommandsSQL(BasicDataSource dataSource){
         doctorDAO = new DoctorSqlDAO(dataSource);
         visitsDAO = new VisitsSQLDAO(dataSource);
         patientDAO = new PatientSqlDAO(dataSource);
+        historyDAO = new HistorySqlDAO(dataSource);
     }
 
     @Override
@@ -46,5 +53,25 @@ public class DoctorCommandsSQL implements DoctorCommands {
     @Override
     public boolean updateDoctor(Doctor doctor) throws SQLException {
         return doctorDAO.updateDoctorInfo(doctor);
+    }
+
+    @Override
+
+    public Iterator<History> getDoctorHistory(String index) throws SQLException {
+        return historyDAO.getDoctorHistory(index);
+
+    public void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
+        visitsDAO.deleteVisitByPatientAndDoctorId(patientId, doctorId);
+    }
+
+    @Override
+    public Visit getVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
+        return visitsDAO.getVisitByPatientAndDoctorId(patientId, doctorId);
+    }
+
+    @Override
+    public void finishVisit(Visit visit, String conclusion) throws SQLException {
+        historyDAO.addFinishedVisit(visit, conclusion);
+
     }
 }

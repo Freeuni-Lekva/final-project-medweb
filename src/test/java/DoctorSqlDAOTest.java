@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,6 +27,10 @@ public class DoctorSqlDAOTest {
         dataSource.setPassword(PASSWORD);
         dataSource.setUsername("root");
         dataSource.setPassword("3.1415");
+
+        dataSource.setUsername("root");
+        dataSource.setPassword("lukakapa1213");
+
     }
 
 
@@ -299,4 +304,22 @@ public class DoctorSqlDAOTest {
         assertEquals(hash.generateHash(pass),dao.getPass("7777"));
     }
 
+    @Test
+    public void test6() throws SQLException {
+        DoctorSqlDAO dao = new DoctorSqlDAO(dataSource);
+        Doctor doc = new Doctor("ABCD","EFG","1242546");
+        doc.setQualification(Doctor.Doctor_Qualifications.Bachelor_Of_Medicine);
+        doc.setSpeciality(Doctor.DoctorSpecialities.Dermatology);
+        dao.addDoctor(doc);
+        Doctor doc2 = new Doctor("ABCD","EFG","12312414124");
+        dao.addDoctor(doc2);
+
+        Iterator<Doctor> it = dao.getDoctorByDegreeAndSpecialty(Doctor.DoctorSpecialities.Dermatology, Doctor.Doctor_Qualifications.Bachelor_Of_Medicine);
+        int count = 0;
+        while(it.hasNext()){
+            assertEquals(it.next().getID(),"1242546");
+            count++;
+            if(count > 1) assertEquals(false,true);
+        }
+    }
 }
