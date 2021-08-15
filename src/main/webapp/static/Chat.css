@@ -1,0 +1,29 @@
+.messages{
+    background: #eeb45f;
+}
+
+.patient-message {
+    margin-left: 3em;
+    background: blue;
+    color: white;
+    padding: 9px 8px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    width: 70%;
+    position: relative;
+}
+
+.messages .doctor-message {
+    margin-right: 3em;
+    background: green;
+    color: white;
+    padding: 9px 8px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    width: 70%;
+    position: relative;
+}

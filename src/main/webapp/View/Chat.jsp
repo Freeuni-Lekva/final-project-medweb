@@ -8,7 +8,7 @@
 
 <script type = "application/javascript" src = "/static/ForChat.js">
 </script>
-<link rel="stylesheet" type="text/css" href="Chat.css" />
+<link rel="stylesheet" type="text/css" href="/static/Chat.css" />
 <body>
 
 <%  String type =(String)request.getAttribute("type");
@@ -33,7 +33,7 @@ if(type.equals("patient")){
 
 <%--Try New Chat Scrollbar--%>
 
-<div id = "messages" style="overflow-y: scroll; height: 200px; width:300px; overflow-x: hidden; background: transparent;">
+<div class = "messages" id = "messages" style="overflow-y: scroll; height: 200px; width:300px; overflow-x: hidden; background: transparent;">
 
 </div>
 
