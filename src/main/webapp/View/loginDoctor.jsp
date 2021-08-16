@@ -111,7 +111,9 @@
         <%}%>
 
     </ol>
+<div class="header">
     <h3>See Your History Of Visits</h3>
+</div>
     <form action="/drHistory" method="get">
         <input type="submit" value = "Your History" name = "history">
         <input type="hidden" name = "hiddenID" value=<%=doctor.getID()%>>
