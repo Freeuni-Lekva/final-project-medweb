@@ -15,6 +15,7 @@
 %><html>
 <head>
     <title>Edit Info</title>
+    <link href="/static/editDoctorCSS.css" rel="stylesheet" type="text/css">
 
     <h1>Edit personal information!</h1>
 </head>
@@ -38,7 +39,7 @@
 
         </ul>
 
-        <input type="submit" value="Update Information" name="updateInformation">
+        <input type="submit" value="Update Information" name="updateInformation" class="back">
     </form>
 
 </body>
