@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class HistorySqlDAO {
 
@@ -47,7 +46,7 @@ public class HistorySqlDAO {
 
     }
 
-    private ListIterator<History> returnIterator(ResultSet resultSet) throws SQLException {
+    private Iterator<History> returnIterator(ResultSet resultSet) throws SQLException {
         List<History>  history = new ArrayList<>();
 
         while(resultSet.next()) {
@@ -56,7 +55,7 @@ public class HistorySqlDAO {
                     resultSet.getString("Medical_Conclusion")));
         }
         if(history.isEmpty()) return null;
-        return history.listIterator();
+        return history.iterator();
     }
 
     public void addFinishedVisit(Visit visit, String conclusion) throws SQLException {

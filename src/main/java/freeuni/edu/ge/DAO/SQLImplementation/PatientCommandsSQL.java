@@ -2,12 +2,17 @@ package freeuni.edu.ge.DAO.SQLImplementation;
 
 import freeuni.edu.ge.DAO.Interfaces.PatientCommands;
 import freeuni.edu.ge.Models.Doctor;
+import freeuni.edu.ge.Models.History;
 import freeuni.edu.ge.Models.Patient;
 import freeuni.edu.ge.Models.Visit;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class PatientCommandsSQL implements PatientCommands {
     private BasicDataSource dataSource;
@@ -15,12 +20,22 @@ public class PatientCommandsSQL implements PatientCommands {
     private PatientSqlDAO patientDAO;
     private DoctorSqlDAO doctorDAO;
 
+    private HistorySqlDAO historyDAO;
+
+    private WorkingTimesSQL workingTimesSQL;
+
+
 
     public PatientCommandsSQL(BasicDataSource dataSource){
         this.dataSource = dataSource;
         visitsDAO = new VisitsSQLDAO(dataSource);
         patientDAO = new PatientSqlDAO(dataSource);
         doctorDAO = new DoctorSqlDAO(dataSource);
+
+        historyDAO = new HistorySqlDAO(dataSource);
+
+        workingTimesSQL = new WorkingTimesSQL(dataSource);
+
     }
 
     @Override
@@ -72,4 +87,31 @@ public class PatientCommandsSQL implements PatientCommands {
     public String getPatientIdByIndex(String index) throws SQLException {
         return patientDAO.getPatientIdByIndex(index);
     }
+
+    @Override
+
+    public Iterator<History> getPatientHistory(String index) throws SQLException {
+        return historyDAO.getPatientHistory(index);
+    }
+
+//    @Override
+//    public Iterator<History> getDoctorHistory(String index) throws SQLException {
+//        return historyDAO.getDoctorHistory(index);
+//    }
+
+    public Map<String, Map<Date, List<Time>>> getAllDoctorWorkingTime() throws SQLException {
+        return workingTimesSQL.getAllDoctorWorkingTime();
+    }
+
+    @Override
+    public void addDoctor(Doctor doctor) throws SQLException {
+        workingTimesSQL.addDoctor(doctor);
+    }
+
+    @Override
+    public Iterator<Doctor> getDoctorByDegreeAndSpecialty(Doctor.DoctorSpecialities specialty, Doctor.Doctor_Qualifications degree) throws SQLException {
+        Iterator<Doctor> it = doctorDAO.getDoctorByDegreeAndSpecialty(specialty, degree);
+        return it;
+    }
+
 }

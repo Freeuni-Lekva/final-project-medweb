@@ -104,4 +104,27 @@
         <url-pattern>/chat</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ptHistory</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.PatientHistoryServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>ptHistory</servlet-name>
+        <url-pattern>/ptHistory</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>drHistory</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.DoctorHistoryServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>drHistory</servlet-name>
+        <url-pattern>/drHistory</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
