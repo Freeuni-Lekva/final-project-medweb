@@ -13,8 +13,8 @@
     DoctorCommands dao = (DoctorCommandsSQL) request.getSession().getAttribute("DAO");
     Doctor doctor = dao.getDoctorById(id);
     Iterator<History> history = dao.getDoctorHistory(id);
-    System.out.println(id+" eqimi");
-
+    boolean isHistory = true;
+    if(history == null) isHistory = false;
 %>
 
 <html>
@@ -27,6 +27,8 @@
 
 <body>
 
+
+<%if(isHistory){%>
 <form action="/drHistory" method="get">
     <% while(history.hasNext()) {%>
 
@@ -41,7 +43,7 @@
 
     <%}%>
 </form>
-
+<%}%>
 
 <form action="/loginDc" method="get">
     <input type="submit" value=" Back To Your Profile Page" >

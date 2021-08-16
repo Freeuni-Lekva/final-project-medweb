@@ -10,7 +10,8 @@
     PatientCommands dao = (PatientCommandsSQL) request.getSession().getAttribute("DAO");
     Patient patient = dao.getPatientById(id);
     Iterator<History> history = dao.getPatientHistory(id);
-    System.out.println(id+" patienti");
+    boolean isHistory = true;
+    if(history == null) isHistory = false;
 
 %>
 
@@ -24,6 +25,7 @@
 
 <body>
 
+<%if(isHistory){%>
 <form action="/ptHistory" method="get">
 
     <% while(history.hasNext()) {%>
@@ -42,12 +44,12 @@
     <%}%>
 </form>
 
+<%}%>
 
-
-    <a href="/loginPT"> Back To Your Profile Page </a>
-
-
-
+    <form action = "/loginPT" method = "post">
+        <input type = "submit" value="Back To Profile" name = "backToProfile">
+        <input type = "hidden" name = "id" value=<%=id%>>
+    </form>
 
 </body>
 </html>

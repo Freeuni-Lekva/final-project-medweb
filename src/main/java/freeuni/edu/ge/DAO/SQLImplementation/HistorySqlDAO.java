@@ -66,8 +66,8 @@ public class HistorySqlDAO {
 
             statement.setString(1, visit.getPatientId());
             statement.setString(2, visit.getDoctorId());
-            statement.setString(3, visit.getDate());
-            statement.setString(4, visit.getReason());
+            statement.setString(3, visit.getReason());
+            statement.setString(4, visit.getDate());
             statement.setString(5, visit.getType());
             statement.setString(6, conclusion);
 

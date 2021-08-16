@@ -52,6 +52,9 @@ public class LoginDoctorServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+            httpServletRequest.setAttribute("id", doctorID);
+            httpServletRequest.getRequestDispatcher("View/loginDoctor.jsp").forward(httpServletRequest,httpServletResponse);
+
         }
         else{
             String id = httpServletRequest.getParameter("id");

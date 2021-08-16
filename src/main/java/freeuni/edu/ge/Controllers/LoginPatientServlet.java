@@ -20,14 +20,13 @@ public class LoginPatientServlet extends HttpServlet {
         HttpSession session = httpServletRequest.getSession();
         PatientCommands dao = (PatientCommandsSQL) session.getAttribute("DAO");
 
-        String id = (String) session.getAttribute("id");
-        if(id == null) {
+        String id = "";
+
             try {
                 id = dao.getPatientIdByIndex(index);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
 
         httpServletRequest.setAttribute("id", id);
         session.setAttribute("id", id);
@@ -43,7 +42,12 @@ public class LoginPatientServlet extends HttpServlet {
             sendInUpdateSite(httpServletRequest, httpServletResponse, id);
         } else if(httpServletRequest.getParameter("logOut") != null) {
             httpServletResponse.sendRedirect("http://localhost:8080/home");
-        } else {
+        } else if (httpServletRequest.getParameter("backToProfile") != null){
+            String idNum = httpServletRequest.getParameter("id");
+            httpServletRequest.setAttribute("id",idNum);
+            sendTo(httpServletRequest, httpServletResponse, "View/loginPatient.jsp");
+        }
+        else {
             try {
                 updatePatientInformation(httpServletRequest, httpServletResponse, session, id);
             } catch (SQLException throwables) {
