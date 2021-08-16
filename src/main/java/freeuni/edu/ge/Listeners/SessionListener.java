@@ -19,6 +19,9 @@ public class SessionListener implements HttpSessionListener {
         dataSource.setUsername(USER);
         dataSource.setPassword(PASSWORD);
 
+        dataSource.setUsername("root");
+        dataSource.setPassword("3.1415");
+
         GeneralCommands dao = new GeneralCommandsSQL(dataSource);
         httpSessionEvent.getSession().setAttribute("DAO",dao);
     }
