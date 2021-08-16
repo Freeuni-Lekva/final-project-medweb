@@ -12,14 +12,14 @@
     String id = (String) request.getAttribute("id");
     DoctorCommands dao = (DoctorCommandsSQL) request.getSession().getAttribute("DAO");
     Doctor doctor = dao.getDoctorById(id);
-%>
-<html>
+%><html>
 <head>
     <title>Edit Info</title>
     <link href="/static/editDoctorCSS.css" rel="stylesheet" type="text/css">
 
     <h1>Edit personal information!</h1>
 </head>
+
 <body>
 
     <form action = "/loginDc" method = "POST">
