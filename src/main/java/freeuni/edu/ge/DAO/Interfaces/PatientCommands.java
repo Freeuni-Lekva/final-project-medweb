@@ -23,14 +23,19 @@ public interface PatientCommands {
     boolean updatePatientInfo(Patient patient) throws SQLException;
     String getPatientIndex(String id) throws SQLException;
     String getPatientIdByIndex(String index) throws SQLException;
-
+    void addVisits(Visit visit) throws SQLException;
 
     Iterator<History> getPatientHistory(String index) throws SQLException;
 
+    void reserveDoctorVisit(Doctor doctor, Date date, Time time) throws SQLException;
     //Iterator<History> getDoctorHistory(String index) throws SQLException;
-
     Map<String, Map<Date, List<Time>>> getAllDoctorWorkingTime() throws SQLException;
     void addDoctor(Doctor doctor) throws SQLException;
-    Iterator<Doctor> getDoctorByDegreeAndSpecialty(Doctor.DoctorSpecialities specialty, Doctor.Doctor_Qualifications degree) throws SQLException;
+    List<Doctor> getDoctorByDegreeAndSpecialty(Doctor.DoctorSpecialities specialty, Doctor.Doctor_Qualifications degree) throws SQLException;
 
+    void updateDoctorWorkingTimeBase() throws SQLException;
+
+    Date stringToDate(String s);
+
+    Time stringToTime(String s);
 }

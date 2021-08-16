@@ -13,11 +13,13 @@ public class GeneralCommandsSQL implements GeneralCommands {
     private RequestSQLDAO requestDAO;
     private DoctorSqlDAO doctorDAO;
     private PatientSqlDAO patientDAO;
+    private WorkingTimesSQL timesDAO;
 
     public GeneralCommandsSQL(BasicDataSource dataSource){
         requestDAO = new RequestSQLDAO(dataSource);
         doctorDAO = new DoctorSqlDAO(dataSource);
         patientDAO = new PatientSqlDAO(dataSource);
+        timesDAO = new WorkingTimesSQL(dataSource);
     }
 
     @Override
@@ -76,6 +78,11 @@ public class GeneralCommandsSQL implements GeneralCommands {
     @Override
     public void addPatient(Patient patient) throws SQLException {
         patientDAO.addPatient(patient);
+    }
+
+    @Override
+    public void addDoctorInWorkingTimesSQL(Doctor doctor) throws SQLException {
+        timesDAO.addDoctor(doctor);
     }
 
 }
