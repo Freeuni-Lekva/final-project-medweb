@@ -21,49 +21,50 @@
 <html>
 <head>
     <title>Welcome <%=patient.getName()%>!</title>
+    <link href="/static/loginDoctorCSS.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
+<div class="header">
     <h2>Personal Information</h2>
+</div>
     <p>
 
+        <label>Name: <%=patient.getName() %></label>  <br>
 
+        <label>Surname: <%=patient.getSurname() %></label> <br>
 
+        <label>Date of birth: <%=patient.getDateOfBirth() %></label> <br>
 
-        <label>Name: </label> <%=patient.getName() %> <br>
+        <label>sex: <%=patient.getSex() %></label> <br>
 
-        <label>Surname: </label> <%=patient.getSurname() %> <br>
+        <label>City: <%=patient.getCity() %></label> <br>
 
-        <label>Date of birth: </label> <%=patient.getDateOfBirth() %> <br>
+        <label>ID: <%=patient.getID() %></label> <br>
 
-        <label>sex: </label> <%=patient.getSex() %> <br>
+        <label>Address: <%=patient.getAddress() %></label> <br>
 
-        <label>City: </label> <%=patient.getCity() %> <br>
-
-        <label>ID: </label> <%=patient.getID() %> <br>
-
-        <label>Address: </label> <%=patient.getAddress() %> <br>
-
-        <label>Mobile: </label> <%=patient.getMobileNumber() %> <br>
+        <label>Mobile: <%=patient.getMobileNumber() %></label> <br>
 
         <form action="/loginPT" method="post">
-            <input type="submit" value = "Update Personal Information" name = "update"><br>
-            <input type="submit" value = "Log Out" name = "logOut">
+            <input type="submit" value = "Update Personal Information" name = "update" class="back">
+            <input type="submit" value = "Log Out" name = "logOut" class="back">
         </form>
     </p>
 
     <% if(!dao.hasVisits(id,"Online")&&!dao.hasVisits(id,"Physical")) {%>
 
+<div class="header">
         <h2>Currently You have no visits booked!</h2>
+</div>
 
     <%} else {%>
 
+<div class="header">
         <h2>Your Physical Visits:</h2>
+</div>
 
         <ol>
-
-            <% for(Visit visit : patient.getVisits()) { %>
-                <li>Doctor: <%=visit.getDoctorId() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %></li> </br>
 
             <% Iterator<Visit> itP = dao.getPatientVisitsIterator(id,"Physical");
             while(itP.hasNext()){
@@ -73,9 +74,11 @@
             <%}%>
         </ol>
 
-    <%}%>
 
+
+<div class="header">
     <h2>Your Online Visits:</h2>
+</div>
 
     <ol>
         <%
@@ -89,7 +92,7 @@
 
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
-                <input type = "submit" value = "Open Chat">
+                <input type = "submit" value = "Open Chat" class="back">
             </li> </br>
         </form>
         <%}%>
@@ -99,14 +102,15 @@
 
 
         <form action="/bookDC" method="post">
-            <input type="submit" value = "Book New Visit" name = "book">
+            <input type="submit" value = "Book New Visit" name = "book" class="back">
             <input type="hidden" name = "BookOnId" value = <%=patient.getID()%>>
         </form>
 
-
+<div class="header">
     <h3>See Your History Of Visits</h3>
+</div>
     <form action="/ptHistory" method="get">
-        <input type="submit" value = "Your History" name = "history">
+        <input type="submit" value = "Your History" name = "history" class="back">
         <input type="hidden" name = "hiddenID" value=<%=patient.getID()%>>
     </form>
 
