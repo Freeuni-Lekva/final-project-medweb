@@ -19,12 +19,13 @@ public class DoctorCommandsSQL implements DoctorCommands {
     private VisitsSQLDAO visitsDAO;
     private PatientSqlDAO patientDAO;
     private HistorySqlDAO historyDAO;
-
+    private WorkingTimesSQL workingTimesSQL;
     public DoctorCommandsSQL(BasicDataSource dataSource){
         doctorDAO = new DoctorSqlDAO(dataSource);
         visitsDAO = new VisitsSQLDAO(dataSource);
         patientDAO = new PatientSqlDAO(dataSource);
         historyDAO = new HistorySqlDAO(dataSource);
+        workingTimesSQL = new WorkingTimesSQL(dataSource);
     }
 
     @Override
@@ -59,6 +60,7 @@ public class DoctorCommandsSQL implements DoctorCommands {
 
     public Iterator<History> getDoctorHistory(String index) throws SQLException {
         return historyDAO.getDoctorHistory(index);
+    }
 
     public void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
         visitsDAO.deleteVisitByPatientAndDoctorId(patientId, doctorId);

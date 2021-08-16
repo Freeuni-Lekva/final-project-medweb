@@ -89,9 +89,20 @@ public class PatientCommandsSQL implements PatientCommands {
     }
 
     @Override
+    public void addVisits(Visit visit) throws SQLException {
+        visitsDAO.addVisit(visit);
+    }
+
+    @Override
 
     public Iterator<History> getPatientHistory(String index) throws SQLException {
         return historyDAO.getPatientHistory(index);
+    }
+
+    @Override
+    public void reserveDoctorVisit(Doctor doctor, Date date, Time time) throws SQLException {
+        workingTimesSQL.reserveDoctor(doctor, date, time);
+
     }
 
 //    @Override
@@ -109,9 +120,53 @@ public class PatientCommandsSQL implements PatientCommands {
     }
 
     @Override
-    public Iterator<Doctor> getDoctorByDegreeAndSpecialty(Doctor.DoctorSpecialities specialty, Doctor.Doctor_Qualifications degree) throws SQLException {
-        Iterator<Doctor> it = doctorDAO.getDoctorByDegreeAndSpecialty(specialty, degree);
+    public List<Doctor> getDoctorByDegreeAndSpecialty(Doctor.DoctorSpecialities specialty, Doctor.Doctor_Qualifications degree) throws SQLException {
+        List<Doctor> it = doctorDAO.getDoctorByDegreeAndSpecialty(specialty, degree);
         return it;
+    }
+
+    @Override
+    public void updateDoctorWorkingTimeBase() throws SQLException {
+        workingTimesSQL.updateBase();
+    }
+
+    @Override
+    public Date stringToDate(String dateInString) {
+        int counter=0;
+        int firstDelimIndex =0;
+        int secondDelimIndex =0;
+        for(int i =0; i <dateInString.length(); i++) {
+            if(dateInString.charAt(i) =='-') {
+                counter ++;
+                if(counter ==1) { firstDelimIndex = i; }
+                if(counter == 2) { secondDelimIndex=i;}
+            }
+        }
+        int year = Integer.parseInt(dateInString.substring(0,firstDelimIndex));
+        int month =Integer.parseInt(dateInString.substring(firstDelimIndex+1, secondDelimIndex));
+        int day =Integer.parseInt(dateInString.substring(secondDelimIndex+1));
+        Date returnDate = new Date(year,month,day);
+        return returnDate;
+
+    }
+
+    @Override
+    public Time stringToTime(String s) {
+        int counter=0;
+        int firstDelimIndex =0;
+        int secondDelimIndex =0;
+        for(int i =0; i <s.length(); i++) {
+            if(s.charAt(i) ==':') {
+                counter ++;
+                if(counter ==1) { firstDelimIndex = i; }
+                if(counter == 2) { secondDelimIndex=i;}
+            }
+        }
+        int hour = Integer.parseInt(s.substring(0,firstDelimIndex));
+        int minute =Integer.parseInt(s.substring(firstDelimIndex+1, secondDelimIndex));
+        int second =Integer.parseInt(s.substring(secondDelimIndex+1));
+        Time returnTime = new Time(hour,minute,second);
+        return returnTime;
     }
 
 }

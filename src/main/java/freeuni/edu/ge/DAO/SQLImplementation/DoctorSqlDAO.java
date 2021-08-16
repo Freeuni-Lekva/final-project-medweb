@@ -173,7 +173,7 @@ public class DoctorSqlDAO {
         return "";
     }
 
-    public Iterator<Doctor> getDoctorByDegreeAndSpecialty(Doctor.DoctorSpecialities specialty, Doctor.Doctor_Qualifications degree) throws SQLException {
+    public List<Doctor> getDoctorByDegreeAndSpecialty(Doctor.DoctorSpecialities specialty, Doctor.Doctor_Qualifications degree) throws SQLException {
         dataSource.restart();
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement("select * from doctors where Doctor_Specialities = ? AND Doctor_Qualifications = ?;");
@@ -186,11 +186,11 @@ public class DoctorSqlDAO {
         return returnIterator(result);
     }
 
-    private Iterator<Doctor> returnIterator(ResultSet resultSet) throws SQLException {
+    private List<Doctor> returnIterator(ResultSet resultSet) throws SQLException {
         ArrayList<Doctor> result = new ArrayList<>();
         while(resultSet.next()) {
             result.add(convertToDoctor(resultSet));
         }
-        return result.iterator();
+        return result;
     }
 }

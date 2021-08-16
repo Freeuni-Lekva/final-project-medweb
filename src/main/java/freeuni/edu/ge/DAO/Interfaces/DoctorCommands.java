@@ -29,4 +29,5 @@ public interface DoctorCommands {
     Visit getVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException;
     void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException;
 
+
 }

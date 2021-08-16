@@ -2,6 +2,7 @@ package freeuni.edu.ge.Controllers;
 
 
 import freeuni.edu.ge.DAO.Interfaces.GeneralCommands;
+import freeuni.edu.ge.DAO.Interfaces.WorkingTimesDAOInterface;
 import freeuni.edu.ge.DAO.SQLImplementation.GeneralCommandsSQL;
 import freeuni.edu.ge.Models.Doctor;
 
@@ -79,6 +80,12 @@ public class DoctorRegistrationServlet extends HttpServlet {
 
             try {
                 dao.registrationFinished(doc);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+            try {
+                dao.addDoctorInWorkingTimesSQL(doc);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

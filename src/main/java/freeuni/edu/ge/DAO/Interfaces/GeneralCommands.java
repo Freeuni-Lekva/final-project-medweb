@@ -20,4 +20,6 @@ public interface GeneralCommands {
     boolean contains(String ID) throws SQLException;
 
     public void addPatient(Patient patient) throws SQLException;
+
+    public void addDoctorInWorkingTimesSQL(Doctor doctor) throws SQLException;
 }
