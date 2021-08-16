@@ -13,7 +13,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Working Times</title>
+    <link href="/static/BookDoctorCSS.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -48,7 +49,7 @@
         %>
 
 
-            <input type = "submit" name = "timeButton" value = <%=time.toString()%>>
+            <input type = "submit" name = "timeButton" class="back" value = <%=time.toString()%>>
             <input type = "hidden" name = "DoctorID" value=<%=doctorID%>>
             <input type = "hidden" name = "time" value = <%=time.toString()%>>
             <input type = "hidden" name = "date" value = <%=val%>>

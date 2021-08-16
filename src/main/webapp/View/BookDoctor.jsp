@@ -25,17 +25,19 @@
 <html>
 <head>
     <title>Book New Visit</title>
+    <link href="/static/BookDoctorCSS.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-
+<div class="header">
     <h1>Book Your Visit</h1>
+</div>
 
     <% if(request.getAttribute("doctors") == null) {%>
     <p>Select your option from the drop-down list.</p>
     <form action="/bookDC" method="post">
         <label for="specialty">Choose a department:</label>
-        <select name="specialty" id="specialty">
+        <select name="specialty" id="specialty" >
             <% for (Doctor.DoctorSpecialities specialty : Doctor.DoctorSpecialities.values()) {%>
                 <option value=<%=specialty%>> <%=specialty%></option>
             <%}%>
@@ -44,13 +46,13 @@
         <br><br>
 
         <label for="degree">Choose a degree:</label>
-        <select name="degree" id="degree">
+        <select name="degree" id="degree" >
             <% for (Doctor.Doctor_Qualifications degree : Doctor.Doctor_Qualifications.values()) {%>
             <option value=<%=degree%>> <%=degree%></option>
             <%}%>
         </select>
         <br><br>
-        <input type="submit" value="Submit" name="filter">
+        <input type="submit" value="Submit" name="filter" class="back">
         <input type = "hidden" name = "BookOnId" value = <%=request.getAttribute("BookOnId")%>>
         <p>Click the "Submit" button to filter doctors and get your options.</p>
     </form>
@@ -75,7 +77,7 @@
         <%}%>
     </select>
 
-        <input type="submit" value = "Choose Doctor" name = "choose"> <br>
+        <input type="submit" value = "Choose Doctor" name = "choose" class="back"> <br>
     </form>
 
     <br><br><br><br>
@@ -87,7 +89,9 @@
     <%}%>
     <%}%>
 
-    <a href="/loginPT"> Back To Profile </a>
+<form action="/loginPT">
+    <input type="submit" value="Back To Home" class="back">
+</form>
 
 </body>
 </html>

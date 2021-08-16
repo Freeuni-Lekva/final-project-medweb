@@ -9,7 +9,7 @@ import javax.servlet.ServletContextListener;
 public class ContextListener implements ServletContextListener {
 
 
-    private String PASSWORD = "lukakapa1213";
+    private String PASSWORD = "misho99tedy";
     private String USER = "root";
 
     @Override

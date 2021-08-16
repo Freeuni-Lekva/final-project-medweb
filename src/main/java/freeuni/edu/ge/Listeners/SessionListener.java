@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSessionListener;
 
 public class SessionListener implements HttpSessionListener {
 
-    private String PASSWORD = "lukakapa1213";
+    private String PASSWORD = "misho99tedy";
     private String USER = "root";
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
@@ -18,9 +18,6 @@ public class SessionListener implements HttpSessionListener {
 
         dataSource.setUsername(USER);
         dataSource.setPassword(PASSWORD);
-
-        dataSource.setUsername("root");
-        dataSource.setPassword("3.1415");
 
         GeneralCommands dao = new GeneralCommandsSQL(dataSource);
         httpSessionEvent.getSession().setAttribute("DAO",dao);
