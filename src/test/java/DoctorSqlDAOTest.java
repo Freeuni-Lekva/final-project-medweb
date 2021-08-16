@@ -23,6 +23,11 @@ public class DoctorSqlDAOTest {
     @BeforeEach
     public void init(){
         dataSource.setUrl("jdbc:mysql://localhost:3306/medWeb");
+        dataSource.setUsername(USER);
+        dataSource.setPassword(PASSWORD);
+        dataSource.setUsername("root");
+        dataSource.setPassword("3.1415");
+
         dataSource.setUsername("root");
         dataSource.setPassword("lukakapa1213");
 
