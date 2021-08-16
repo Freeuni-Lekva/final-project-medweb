@@ -9,8 +9,9 @@ import javax.servlet.ServletContextListener;
 public class ContextListener implements ServletContextListener {
 
 
-    String PASSWORD = "datoiesimon1!";
-    String USER = "root";
+    private String PASSWORD = "misho99tedy";
+    private String USER = "root";
+
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         AdministratorDao adminDAO = new InMemoryAdmnDao();
@@ -26,10 +27,6 @@ public class ContextListener implements ServletContextListener {
         dataSource.setUrl("jdbc:mysql://localhost:3306/medWeb");
         dataSource.setUsername(USER);
         dataSource.setPassword(PASSWORD);
-
-        dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
-        dataSource.setUsername("root");
-        dataSource.setPassword("lukakapa1213");
 
         servletContextEvent.getServletContext().setAttribute("dataSource",dataSource);
     }

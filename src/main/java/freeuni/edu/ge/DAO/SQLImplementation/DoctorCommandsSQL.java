@@ -59,6 +59,7 @@ public class DoctorCommandsSQL implements DoctorCommands {
 
     public Iterator<History> getDoctorHistory(String index) throws SQLException {
         return historyDAO.getDoctorHistory(index);
+    }
 
     public void deleteVisitByPatientAndDoctorId(String patientId, String doctorId) throws SQLException {
         visitsDAO.deleteVisitByPatientAndDoctorId(patientId, doctorId);
