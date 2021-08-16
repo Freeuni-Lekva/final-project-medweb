@@ -1,0 +1,130 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <display-name>Archetype Created Web Application</display-name>
+
+
+    <listener>
+        <listener-class>freeuni.edu.ge.Listeners.ContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>freeuni.edu.ge.Listeners.SessionListener</listener-class>
+    </listener>
+
+
+    <servlet>
+        <servlet-name>home-page</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.HomePageServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>home-page</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PatReg</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.PatientRegistrationServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>PatReg</servlet-name>
+        <url-pattern>/pr</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DocReg</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.DoctorRegistrationServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>DocReg</servlet-name>
+        <url-pattern>/dr</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>Admin</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.AdminServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>LoginPatient</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.LoginPatientServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginPatient</servlet-name>
+        <url-pattern>/loginPT</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginDoctor</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.LoginDoctorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginDoctor</servlet-name>
+        <url-pattern>/loginDc</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BookDoctor</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.BookDoctorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BookDoctor</servlet-name>
+        <url-pattern>/bookDC</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>chat</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.ChatServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>chat</servlet-name>
+        <url-pattern>/chat</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ptHistory</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.PatientHistoryServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>ptHistory</servlet-name>
+        <url-pattern>/ptHistory</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>drHistory</servlet-name>
+        <servlet-class>freeuni.edu.ge.Controllers.DoctorHistoryServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>drHistory</servlet-name>
+        <url-pattern>/drHistory</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

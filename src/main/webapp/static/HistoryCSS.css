@@ -1,0 +1,22 @@
+h1 {
+    font-family: Dubai Medium;
+    /*font-size:1.5em;*/
+    color:darkRed;
+    text-align: left;
+    /*background-color:darkred;*/
+}
+
+
+body {
+    background-color: lightblue;
+    background-image: url("https://www.beaumont.org/images/default-source/primary-care/getting-to-know-doctor.jpg?sfvrsn=cc08ede2_0");
+    font-family: Verdana, sans-serif;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+}
+
+
+
