@@ -21,23 +21,27 @@
 <html>
 <head>
     <title>Welcome <%=doctor.getName()%>!</title>
+    <link href="/static/loginDoctorCSS.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
+<div class="header">
     <h2>Personal Information</h2>
+</div>
+
     <p>
-        <label>Name: </label> <%=doctor.getName() %> <br>
-        <label>Surname: </label> <%=doctor.getSurname() %> <br>
-        <label>Speciality: </label> <%=doctor.getSpeciality() %> <br>
-        <label>Qualification: </label> <%=doctor.getQualification() %> <br>
-        <label>Experience: </label> <%=doctor.getYearExperience() %> <br>
-        <label>City: </label> <%=doctor.getCity() %> <br>
-        <label>ID: </label> <%=doctor.getID() %> <br>
-        <label>Mobile: </label> <%=doctor.getMobileNumber() %> <br>
+        <label>Name: <%=doctor.getName() %> </label> <br>
+        <label>Surname: <%=doctor.getSurname() %> </label> <br>
+        <label>Speciality: <%=doctor.getSpeciality() %> </label> <br>
+        <label>Qualification: <%=doctor.getQualification() %> </label> <br>
+        <label>Experience: <%=doctor.getYearExperience() %> </label> <br>
+        <label>City: <%=doctor.getCity() %> </label> <br>
+        <label>ID: <%=doctor.getID() %> </label> <br>
+        <label>Mobile: <%=doctor.getMobileNumber() %> </label> <br>
 
         <form action="/loginDc" method="post">
-            <input type="submit" value = "Log Out" name = "logOut">
-            <input type="submit" value = "Edit Info" name = "edit">
+            <input type="submit" value = "Log Out" name = "logOut" class="back">
+            <input type="submit" value = "Edit Info" name = "edit" class="back">
             <input type = "hidden" name = "id" value = <%=doctor.getID()%>>
         </form>
     </p>
@@ -60,7 +64,9 @@
     <%}%>
 --%>
 
+<div class="header">
     <h2>Your Physical Visits:</h2>
+</div>
 
     <ol>
             <%
@@ -68,12 +74,20 @@
             while(itP.hasNext()) {
                 Visit visit = itP.next();
         %>
-                <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+        <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %></li>
+        <form action="/loginDc" method="post">
+            <input type = "submit" name="history" value="Clear Visit" class="back">
+            <input type = "hidden" name = "doctor2" id = "doctor3" value = <%=visit.getDoctorId()%> >
+            <input type = "hidden" name = "patient2" id = "patient3" value = <%=visit.getPatientId()%> >
+        </form>
 
     <%}%>
-    </ol>
+                </ol>
 
-    <h3>Your Online Visits:</h3>
+     <div class="header">
+    <h2>Your Online Visits:</h2>
+     </div>
+
 
     <ol>
         <%
@@ -82,15 +96,15 @@
                 Visit visit = it.next();
         %>
         <form action = "/chat?tp=d" method = post>
-            <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
+            <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %> <br>
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
                 <input type = "hidden" name = "patient" id = "patient" value = <%=visit.getPatientId()%> >
-                <input type = "submit" value = "Open Chat">
+                <input type = "submit" value = "Open Chat" class="back">
             </li>
         </form>
 
         <form action="/loginDc" method="post">
-            <input type = "submit" name="history" value="Clear Visit">
+            <input type = "submit" name="history" value="Clear Visit" class="back">
             <input type = "hidden" name = "doctor2" id = "doctor2" value = <%=visit.getDoctorId()%> >
             <input type = "hidden" name = "patient2" id = "patient2" value = <%=visit.getPatientId()%> >
         </form>
