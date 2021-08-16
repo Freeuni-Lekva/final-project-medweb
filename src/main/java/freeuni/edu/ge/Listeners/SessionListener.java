@@ -16,8 +16,8 @@ public class SessionListener implements HttpSessionListener {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
 
-        dataSource.setUsername(USER);
-        dataSource.setPassword(PASSWORD);
+//        dataSource.setUsername(USER);
+//        dataSource.setPassword(PASSWORD);
 
         dataSource.setUsername("root");
         dataSource.setPassword("lukakapa1213");

@@ -46,7 +46,7 @@ if(type.equals("patient")){
 <br>
 
 <form action =<%=urlToForward%> method="get">
-    <input type = "submit" value="Return To Profile">
+    <input type = "submit" value="Return To Profile" name = "ReturnToProfile">
     <input type="hidden" name = "id" value=<%=(String)request.getAttribute("senderID")%>>
 </form>
 

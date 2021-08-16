@@ -69,7 +69,14 @@
                 Visit visit = itP.next();
         %>
                 <li>Patient: <%=dao.getPatientById(visit.getPatientId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
-
+                    <form action="/loginDc" method="post">
+                        <input type = "submit" name="visitFinish" value="Finish Visit">
+                        <input type = "hidden" name = "doctorID" value = <%=visit.getDoctorId()%> >
+                        <input type = "hidden" name = "patientID" value = <%=visit.getPatientId()%> >
+                        <input type = "hidden" name = "reason" value = <%=visit.getReason()%>>
+                        <input type = "hidden" name = "VisitType" value = <%=visit.getType()%>>
+                        <input type = "hidden" name = "VisitDate" value = <%=visit.getDate()%>>
+                    </form>
     <%}%>
     </ol>
 
@@ -90,9 +97,12 @@
         </form>
 
         <form action="/loginDc" method="post">
-            <input type = "submit" name="history" value="Clear Visit">
-            <input type = "hidden" name = "doctor2" id = "doctor2" value = <%=visit.getDoctorId()%> >
-            <input type = "hidden" name = "patient2" id = "patient2" value = <%=visit.getPatientId()%> >
+            <input type = "submit" name="visitFinish" value="Finish Visit">
+            <input type = "hidden" name = "doctorID" value = <%=visit.getDoctorId()%> >
+            <input type = "hidden" name = "patientID" value = <%=visit.getPatientId()%> >
+            <input type = "hidden" name = "reason" value = <%=visit.getReason()%>>
+            <input type = "hidden" name = "VisitType" value = <%=visit.getType()%>>
+            <input type = "hidden" name = "VisitDate" value = <%=visit.getDate()%>>
         </form>
         <%}%>
 
