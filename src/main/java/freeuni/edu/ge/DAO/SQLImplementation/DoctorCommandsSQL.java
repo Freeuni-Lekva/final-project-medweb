@@ -74,6 +74,5 @@ public class DoctorCommandsSQL implements DoctorCommands {
     @Override
     public void finishVisit(Visit visit, String conclusion) throws SQLException {
         historyDAO.addFinishedVisit(visit, conclusion);
-
     }
 }

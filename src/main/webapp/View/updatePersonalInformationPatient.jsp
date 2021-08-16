@@ -17,10 +17,14 @@
 <html>
 <head>
     <title>Update Information</title>
+    <link href="/static/UpdatePersonalInformationPatientCSS.css" rel="stylesheet" type="text/css">
 
-    <h1>Update your personal information!</h1>
 </head>
 <body>
+
+<div class="header">
+    <h1>Update your personal information!</h1>
+</div>
 
     <form action = "/loginPT" method = "POST">
         <ul>
@@ -43,7 +47,7 @@
 
         </ul>
 
-        <input type="submit" value="Update Information" name="updateInformation">
+        <input type="submit" value="Update Information" name="updateInformation" class="back">
     </form>
 
 </body>

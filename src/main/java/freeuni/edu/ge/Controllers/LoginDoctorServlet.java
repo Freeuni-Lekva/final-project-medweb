@@ -24,40 +24,39 @@ public class LoginDoctorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        if(httpServletRequest.getParameter("submitConclusion") != null) {
-            String doctorId = httpServletRequest.getParameter("doctor");
-            String patientId = httpServletRequest.getParameter("patient");
-            DoctorCommands dao = (DoctorCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
-            String conclusion = httpServletRequest.getParameter("conclusion");
-            Visit visit = null;
-            try {
-                visit = dao.getVisitByPatientAndDoctorId(patientId, doctorId);
-                dao.finishVisit(visit, conclusion);
-                dao.deleteVisitByPatientAndDoctorId(patientId, doctorId);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            httpServletRequest.setAttribute("id", doctorId);
-            httpServletRequest.getRequestDispatcher("View/loginDoctor.jsp").forward(httpServletRequest,httpServletResponse);
-
-        } else if(httpServletRequest.getParameter("history") != null) {
+        if(httpServletRequest.getParameter("history") != null) {
             String doctorId = httpServletRequest.getParameter("doctor2");
             String patientId = httpServletRequest.getParameter("patient2");
             httpServletRequest.setAttribute("doctorId", doctorId);
             httpServletRequest.setAttribute("patientId", patientId);
             httpServletRequest.getRequestDispatcher("View/Conclusion.jsp").forward(httpServletRequest,httpServletResponse);
-//            DoctorCommands dao = (DoctorCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
-//            Visit visit = null;
-//            try {
-//                visit = dao.getVisitByPatientAndDoctorId(patientId, doctorId);
-//                dao.finishVisit(visit, "Resolved");
-//                dao.deleteVisitByPatientAndDoctorId(patientId, doctorId);
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//            httpServletRequest.setAttribute("id", doctorId);
-//            httpServletRequest.getRequestDispatcher("View/loginDoctor.jsp").forward(httpServletRequest,httpServletResponse);
-        } else {
+        } else if(httpServletRequest.getParameter("visitFinish") != null){
+            httpServletRequest.setAttribute("doctorID",httpServletRequest.getParameter("doctorID"));
+            httpServletRequest.setAttribute("patientID",httpServletRequest.getParameter("patientID"));
+            httpServletRequest.setAttribute("reason",httpServletRequest.getParameter("reason"));
+            httpServletRequest.setAttribute("VisitType",httpServletRequest.getParameter("VisitType"));
+            httpServletRequest.setAttribute("VisitDate",httpServletRequest.getParameter("VisitDate"));
+            httpServletRequest.getRequestDispatcher("View/Conclusion.jsp").forward(httpServletRequest, httpServletResponse);
+        } else if(httpServletRequest.getParameter("submitConclusion")!= null){
+            String doctorID = httpServletRequest.getParameter("doctor");
+            String patientID = httpServletRequest.getParameter("patient");
+            String reason = httpServletRequest.getParameter("reason");
+            String VisitType = httpServletRequest.getParameter("VisitType");
+            String VisitDate = httpServletRequest.getParameter("VisitDate");
+            String conclusion = httpServletRequest.getParameter("conclusion");
+            Visit visit = new Visit(patientID,doctorID,reason,VisitDate,VisitType);
+            DoctorCommands dao = (DoctorCommandsSQL)httpServletRequest.getSession().getAttribute("DAO");
+            try {
+                dao.finishVisit(visit,conclusion);
+                dao.deleteVisitByPatientAndDoctorId(visit.getPatientId(),visit.getDoctorId());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            httpServletRequest.setAttribute("id", doctorID);
+            httpServletRequest.getRequestDispatcher("View/loginDoctor.jsp").forward(httpServletRequest,httpServletResponse);
+
+        }
+        else{
             String id = httpServletRequest.getParameter("id");
             if (httpServletRequest.getParameter("logOut") != null) {
                 httpServletResponse.sendRedirect("http://localhost:8080/home");

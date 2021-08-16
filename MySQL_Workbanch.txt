@@ -79,8 +79,11 @@ type varchar(40)
 );
 
 INSERT INTO visits (patientId, doctorId, reason, date, type) Values
-("92277337523","53747946213","Gamonayari","2021-08-18","Online"),
-("92277337523","49316498372","Gamonazardi","2021-08-17","Physical");
+("92277337523","49316498372","Gamonayari","2021-08-18","Online"),
+("92277337523","53747946213","Tavis tkivili","2021-08-18","Physical"),
+("92277337523","49316498372","Tavis tkivili","2021-08-18","Physical"),
+("22558334440","53747946213","Tavis tkivili","2021-08-18","Physical"),
+("71381483501","53747946213","Gulis pranchvebi","2021-08-17","Online");
 
 
 

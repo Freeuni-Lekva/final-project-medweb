@@ -62,20 +62,15 @@ public class HistorySqlDAO {
         dataSource.restart();
         try {
             Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement("insert into history  (Patient_ID_NUMBER , " +
-                    " Doctor_ID_NUMBER, date,  Reason, Type, Medical_Conclusion)  " +
-                    "values (?,?,?,?,?,?,?,?,?,?);");
+            PreparedStatement statement = connection.prepareStatement("insert into history  (Patient_ID_NUMBER , Doctor_ID_NUMBER, Reason,date, Type, Medical_Conclusion) values (?,?,?,?,?,?);");
 
             statement.setString(1, visit.getPatientId());
             statement.setString(2, visit.getDoctorId());
-            statement.setString(3, visit.getDate());
-            statement.setString(4, visit.getReason());
+            statement.setString(3, visit.getReason());
+            statement.setString(4, visit.getDate());
             statement.setString(5, visit.getType());
             statement.setString(6, conclusion);
 
-
-            //System.out.println("Added "+patient.getName());
-            //ResultSet resultset = statement.executeQuery();
             statement.executeUpdate();
 
 

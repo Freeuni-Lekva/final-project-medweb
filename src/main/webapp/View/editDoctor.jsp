@@ -15,11 +15,14 @@
 %><html>
 <head>
     <title>Edit Info</title>
+    <link href="/static/UpdatePersonalInformationPatientCSS.css" rel="stylesheet" type="text/css">
 
-    <h1>Edit personal information!</h1>
 </head>
 
 <body>
+<div class="header">
+    <h1>Edit personal information!</h1>
+</div>
 
     <form action = "/loginDc" method = "POST">
         <ul>
@@ -38,7 +41,7 @@
 
         </ul>
 
-        <input type="submit" value="Update Information" name="updateInformation">
+        <input type="submit" value="Update Information" name="updateInformation" class="back">
     </form>
 
 </body>
