@@ -20,9 +20,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BookDoctorServlet extends HttpServlet {
 
@@ -75,13 +77,13 @@ public class BookDoctorServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            try {
-                patientCommands.reserveDoctorVisit(patientCommands.getDoctorById(doctorID),
-                        patientCommands.stringToDate(Date)
-                        , patientCommands.stringToTime(time));
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+
+            Worker work= new Worker(patientCommands, patientCommands.stringToDate(Date), patientCommands.stringToTime(time), doctorID);
+            work.start();
+
+//                patientCommands.reserveDoctorVisit(patientCommands.getDoctorById(doctorID),
+//                        patientCommands.stringToDate(Date)
+//                        , patientCommands.stringToTime(time));
             httpServletRequest.setAttribute("id", id);
             httpServletRequest.getRequestDispatcher("View/SuccessfulBooked.jsp").forward(httpServletRequest,httpServletResponse);
         }
@@ -125,5 +127,30 @@ public class BookDoctorServlet extends HttpServlet {
 
     private void sendTo(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, String address) throws ServletException, IOException {
         httpServletRequest.getRequestDispatcher(address).forward(httpServletRequest,httpServletResponse);
+    }
+
+    private class Worker extends Thread {
+        private PatientCommands patientCommands;
+        private Date date;
+        private Time time;
+        private String doctorID;
+        private ReentrantLock lock;
+        public Worker(PatientCommands patientCommands, Date date, Time time, String doctorID) {
+            this.patientCommands=patientCommands;
+            this.date=date;
+            this.time = time;
+            this.doctorID= doctorID;
+            lock = new ReentrantLock();
+        }
+        @Override
+        public void run() {
+            lock.lock();
+            try {
+                patientCommands.reserveDoctorVisit(patientCommands.getDoctorById(doctorID), date, time);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            lock.unlock();
+        }
     }
 }
