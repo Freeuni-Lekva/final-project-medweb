@@ -9,15 +9,15 @@ import javax.servlet.http.HttpSessionListener;
 
 public class SessionListener implements HttpSessionListener {
 
-    private String PASSWORD = "misho99tedy";
+    private String PASSWORD = "lukakapa1213";
     private String USER = "root";
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
 
-//        dataSource.setUsername(USER);
-//        dataSource.setPassword(PASSWORD);
+        dataSource.setUsername(USER);
+        dataSource.setPassword(PASSWORD);
 
         dataSource.setUsername("root");
         dataSource.setPassword("3.1415");

@@ -9,7 +9,7 @@ import javax.servlet.ServletContextListener;
 public class ContextListener implements ServletContextListener {
 
 
-    private String PASSWORD = "misho99tedy";
+    private String PASSWORD = "lukakapa1213";
     private String USER = "root";
 
     @Override
@@ -24,15 +24,10 @@ public class ContextListener implements ServletContextListener {
 
         BasicDataSource dataSource = new BasicDataSource();
 
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/medWeb");
-//        dataSource.setUsername(USER);
-//        dataSource.setPassword(PASSWORD);
-
 
         dataSource.setUrl("jdbc:mysql://localhost:3306/medweb");
-        dataSource.setUsername("root");
-        dataSource.setPassword("3.1415");
-
+        dataSource.setUsername(USER);
+        dataSource.setPassword(PASSWORD);
 
         servletContextEvent.getServletContext().setAttribute("dataSource",dataSource);
     }
