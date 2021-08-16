@@ -8,9 +8,20 @@
 
 <title>Admin</title>
 </head>
-
+<link rel="stylesheet" type="text/css" href="/static/Admin.css" />
 <body>
 
+<div id = "header">
+    <br>
+   <img src = "resources/ForDesign/Icons8-Windows-8-Users-Administrator-2.ico" id = "image">
+    <br>This is Admin Panel, Please proceed with caution!
+
+</div>
+
+<div id = "sidebar">
+</div>
+
+<div id = "data">
 <h4>See Doctor Registration Requests:</h4>
 
 <%
@@ -36,7 +47,7 @@
 
 <br>
 <a href="/home"> Back To Home </a>
-
+</div>
 </body>
 
 </html>
