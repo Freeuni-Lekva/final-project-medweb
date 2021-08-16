@@ -1,0 +1,12 @@
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:11 +0400] "GET /home HTTP/1.1" 200 948 http-bio-8080-exec-1 793
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:11 +0400] "GET /static/homePageJS.js HTTP/1.1" 304 - http-bio-8080-exec-2 3
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:11 +0400] "GET /static/homePageCSS.css HTTP/1.1" 304 - http-bio-8080-exec-3 5
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:15 +0400] "POST /home HTTP/1.1" 302 - http-bio-8080-exec-4 843
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:16 +0400] "GET /loginPT?id=4 HTTP/1.1" 200 3031 http-bio-8080-exec-6 1014
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:16 +0400] "GET /static/loginDoctorCSS.css HTTP/1.1" 304 - http-bio-8080-exec-7 3
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:22 +0400] "POST /bookDC HTTP/1.1" 200 3376 http-bio-8080-exec-9 230
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:22 +0400] "GET /static/BookDoctorCSS.css HTTP/1.1" 304 - http-bio-8080-exec-9 3
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:24 +0400] "POST /loginPT HTTP/1.1" 200 3031 http-bio-8080-exec-9 574
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:28 +0400] "POST /bookDC HTTP/1.1" 200 3376 http-bio-8080-exec-4 8
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:37 +0400] "POST /bookDC HTTP/1.1" 200 1057 http-bio-8080-exec-4 3037
+0:0:0:0:0:0:0:1 - - [16/Aug/2021:10:22:39 +0400] "POST /loginPT HTTP/1.1" 200 3031 http-bio-8080-exec-4 494

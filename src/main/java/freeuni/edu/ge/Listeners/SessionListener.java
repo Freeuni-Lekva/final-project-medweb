@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSessionListener;
 
 public class SessionListener implements HttpSessionListener {
 
-    private String PASSWORD = "misho99tedy";
+    private String PASSWORD = "3.1415";
     private String USER = "root";
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {

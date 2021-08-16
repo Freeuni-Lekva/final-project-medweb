@@ -82,6 +82,7 @@ public class BookDoctorServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+            httpServletRequest.setAttribute("id", id);
             httpServletRequest.getRequestDispatcher("View/SuccessfulBooked.jsp").forward(httpServletRequest,httpServletResponse);
         }
 

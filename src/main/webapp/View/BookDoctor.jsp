@@ -89,8 +89,9 @@
     <%}%>
     <%}%>
 
-<form action="/loginPT">
-    <input type="submit" value="Back To Home" class="back">
+<form action="/loginPT" method = "post">
+    <input type = "submit" name = "backToProfile" value = "Return To Profile">
+    <input type = "hidden" name = "id" value = <%=(String)request.getAttribute("BookOnId")%>>
 </form>
 
 </body>
