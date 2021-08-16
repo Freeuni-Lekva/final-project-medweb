@@ -15,6 +15,7 @@
 String name = "";
 String head = "http://localhost:8080/";
 String urlToForward = "";
+boolean isPatient = true;
 if(type.equals("patient")){
     Patient patient = (Patient)request.getAttribute("user");
     urlToForward =head +  "loginPT";
@@ -23,6 +24,7 @@ if(type.equals("patient")){
     Doctor doctor = (Doctor) request.getAttribute("user");
     urlToForward =head+ "loginDc";
     name = doctor.getName();
+    isPatient = false;
 }
 %>
     <input type = "hidden" name = "userName" id = "userName" value = <%=name%> />
@@ -45,10 +47,18 @@ if(type.equals("patient")){
     <input type="file" accept="image/*" id="file-input" />
 <br>
 
+
+    <%if(isPatient){%>
+    <form action =<%=urlToForward%> method="post">
+        <input type = "submit" name = "backToProfile" value = "Return To Profile">
+        <input type = "hidden" name = "id" value = <%=(String)request.getAttribute("senderID")%>>
+    </form>
+     <%}else {%>
 <form action =<%=urlToForward%> method="get">
     <input type = "submit" value="Return To Profile" name = "ReturnToProfile">
     <input type="hidden" name = "id" value=<%=(String)request.getAttribute("senderID")%>>
 </form>
+    <%}%>
 
 </div>
 </body>

@@ -87,7 +87,6 @@
             Visit visit = itO.next();
         %>
         <form action = "/chat?tp=p" method = post>
-            <li>Doctor: <%=visit.getDoctorId() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
             <li>Doctor: <%=dao.getDoctorById(visit.getDoctorId()).getName() %> <br> Reason: <%=visit.getReason() %> <br> Date: <%=visit.getDate() %>
 
                 <input type = "hidden" name = "doctor" id = "doctor" value = <%=visit.getDoctorId()%> >
