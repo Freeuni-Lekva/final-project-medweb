@@ -15,12 +15,14 @@
 %><html>
 <head>
     <title>Edit Info</title>
-    <link href="/static/editDoctorCSS.css" rel="stylesheet" type="text/css">
+    <link href="/static/UpdatePersonalInformationPatientCSS.css" rel="stylesheet" type="text/css">
 
-    <h1>Edit personal information!</h1>
 </head>
 
 <body>
+<div class="header">
+    <h1>Edit personal information!</h1>
+</div>
 
     <form action = "/loginDc" method = "POST">
         <ul>
