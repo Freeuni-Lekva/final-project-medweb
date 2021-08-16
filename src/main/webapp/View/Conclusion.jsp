@@ -13,9 +13,13 @@
 <html>
 <head>
     <title>Conclusion</title>
+    <link href="/static/Conclusion.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+<div class="header">
 <h1>Please add your conclusion!</h1>
+</div>
 
 <form action="loginDc" method="post">
     <input type = "text" name = "doctor" readonly value = <%=doctorId%> ><br>

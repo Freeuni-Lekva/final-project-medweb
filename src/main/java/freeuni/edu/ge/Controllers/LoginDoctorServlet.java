@@ -30,17 +30,6 @@ public class LoginDoctorServlet extends HttpServlet {
             httpServletRequest.setAttribute("doctorId", doctorId);
             httpServletRequest.setAttribute("patientId", patientId);
             httpServletRequest.getRequestDispatcher("View/Conclusion.jsp").forward(httpServletRequest,httpServletResponse);
-//            DoctorCommands dao = (DoctorCommandsSQL) httpServletRequest.getSession().getAttribute("DAO");
-//            Visit visit = null;
-//            try {
-//                visit = dao.getVisitByPatientAndDoctorId(patientId, doctorId);
-//                dao.finishVisit(visit, "Resolved");
-//                dao.deleteVisitByPatientAndDoctorId(patientId, doctorId);
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
-//            httpServletRequest.setAttribute("id", doctorId);
-//            httpServletRequest.getRequestDispatcher("View/loginDoctor.jsp").forward(httpServletRequest,httpServletResponse);
         } else if(httpServletRequest.getParameter("visitFinish") != null){
             httpServletRequest.setAttribute("doctorID",httpServletRequest.getParameter("doctorID"));
             httpServletRequest.setAttribute("patientID",httpServletRequest.getParameter("patientID"));
